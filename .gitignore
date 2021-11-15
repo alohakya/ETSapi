@@ -22,8 +22,6 @@
 # package
 /.idea/
 /.mvn/
-/target/
-target/classes/mapper/*.xml
 
 # config
 ExperimentTeachingSystemAPI.iml
