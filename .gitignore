@@ -22,7 +22,7 @@
 # package
 /.idea/
 /.mvn/
-/target/classes/
+/target/classes/*
 
 
 # config
