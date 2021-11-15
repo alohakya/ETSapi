@@ -2,6 +2,7 @@ package com.project.etsapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,14 +12,14 @@ import java.util.Map;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/test")
 public class TestController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @RequestMapping("/studentList")
+    @CrossOrigin(origins = {"http://localhost:8888", "null"})
+    @RequestMapping("/courseList")
     public List<Map<String, Object>> getDbType(){
-        String sql = "select * from student";
+        String sql = "select * from course";
         List<Map<String, Object>> list =  jdbcTemplate.queryForList(sql);
         for (Map<String, Object> map : list) {
             Set<Map.Entry<String, Object>> entries = map.entrySet( );

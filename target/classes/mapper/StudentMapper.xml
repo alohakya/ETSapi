@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.etsapi.dao.StudentDao">  <!--要实现dao接口的全限定名-->
+
+    <!--增-->               <!--keyProperty是Java对象的属性名,useGeneratedKeys="true":设置是否使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty-->
+<!--    <insert id="insertUser" keyProperty="id" useGeneratedKeys="true">    &lt;!&ndash;向表中插入自增ID&ndash;&gt;-->
+<!--        INSERT INTO USER (NAME,PASSWORD) VALUES (#{name},#{password})-->
+<!--    </insert>-->
+
+    <!--删-->
+<!--    <delete id="deleteUser">-->
+<!--        DELETE FROM USER WHERE id=#{id}-->
+<!--    </delete>-->
+
+    <!--改-->
+<!--    <update id="updateUser">-->
+<!--        update USER-->
+<!--        <set>-->
+<!--            <if test="name != null and name != ''">-->
+<!--                NAME = #{name},-->
+<!--            </if>-->
+<!--            <if test="password != null and password != ''">-->
+<!--                PASSWORD = #{password},-->
+<!--            </if>-->
+<!--        </set>-->
+<!--        WHERE id = #{id}-->
+<!--    </update>-->
+
+    <!--查-->
+    <select id="selectAll" resultType="com.project.etsapi.entity.Student">
+        SELECT * FROM student
+    </select>
+
+</mapper>
