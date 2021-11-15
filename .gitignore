@@ -19,8 +19,12 @@
 *.tar.gz
 *.rar
 
+# package
 /.idea/
 /.mvn/
+/target/
+
+# config
 ExperimentTeachingSystemAPI.iml
 HELP.md
 mvnw
