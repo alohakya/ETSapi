@@ -1,6 +1,8 @@
 package com.project.etsapi.entity;
 
+import lombok.*;
 
+//@Data
 public class Student {
     private String student_ID;
     private String name;
@@ -13,7 +15,6 @@ public class Student {
     public Student() {
 
     }
-
 
     public String getStudent_ID() {
         return student_ID;
@@ -29,5 +30,13 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "student_ID='" + student_ID + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

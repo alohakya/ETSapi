@@ -6,4 +6,15 @@ import java.util.List;
 
 public interface StudentService {
     List<Student> selectAll();
+<<<<<<< Updated upstream
+=======
+
+    Student insertStudent(Student student);
+
+    int deleteStudent(String student_ID);
+
+    int updateStudent(Student student);
+
+    Student selectStudent(String student_ID);
+>>>>>>> Stashed changes
 }

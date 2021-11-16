@@ -1,4 +1,4 @@
-package com.project.etsapi;
+package com.project.etsapi.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -27,7 +27,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.5.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.5.6" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.5.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.5.6" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.5.6" level="project" />
     <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.6" level="project" />
@@ -52,7 +51,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.12" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.12" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.12" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.12" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.12" level="project" />
     <orderEntry type="library" name="Maven: org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-jdbc:2.5.6" level="project" />
@@ -95,5 +93,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:5.3.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.3.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.8.3" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.5.6" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.12" level="project" />
   </component>
 </module>

@@ -11,7 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+//@CrossOrigin(origins = {"http://localhost:8888", "null"})
 @RestController
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 public class TestController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
