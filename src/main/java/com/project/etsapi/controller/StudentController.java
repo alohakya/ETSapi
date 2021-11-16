@@ -3,13 +3,14 @@ package com.project.etsapi.controller;
 import com.project.etsapi.entity.Student;
 import com.project.etsapi.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+//@RequestMapping("/student")
 public class StudentController {
+
     @Autowired
     private StudentService studentService;
 
@@ -46,16 +47,30 @@ public class StudentController {
 //        }
 //    }
 //
-    @RequestMapping(value = "/select", method = RequestMethod.GET)
-    // 查找学生
-    // http://localhost:8888/student/select?student_ID=1950000
-    public String selectStudent(String student_ID) throws Exception {
-        return studentService.selectStudent(student_ID).toString();
+//    @RequestMapping(value = "/select", method = RequestMethod.GET)
+//    // 查找学生
+//    // http://localhost:8888/student/select?student_ID=1950000
+//    public String selectStudent(String student_ID) throws Exception {
+//        return studentService.selectStudent(student_ID).toString();
+//    }
+
+    //增加学生
+    @RequestMapping("/addStudent")
+    @ResponseBody
+    public int addStudent(){
+
     }
 
-    @RequestMapping("/selectAll")
+    //查找学生
+    @RequestMapping("/selectStudent")
+    @ResponseBody
+    public Student selectStudent(@RequestParam("student_ID") String student_ID){
+        return studentService.selectStudent(student_ID);
+    }
+
     // 打印所有学生信息
     // http://localhost:8888/student/selectAll
+    @RequestMapping("/selectAll")
     @ResponseBody
     public List<Student> selectAll() throws Exception{
         return studentService.selectAll();

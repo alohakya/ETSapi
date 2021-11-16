@@ -13,23 +13,27 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentMapper studentMapper;
 
+    @Override
     public Student insertStudent(Student student){
         int result = studentMapper.insertStudent(student);
         return student;
     }
 
-    public int deleteStudent(String student_ID){
-        return studentMapper.deleteStudent(student_ID);
-    }
-
-    public int updateStudent(Student student){
-        return studentMapper.updateStudent(student);
-    }
+//    @Override
+//    public int deleteStudent(String student_ID){
+//        return studentMapper.deleteStudent(student_ID);
+//    }
+//
+//    @Override
+//    public int updateStudent(Student student){
+//        return studentMapper.updateStudent(student);
+//    }
 
     @Override
     public Student selectStudent(String student_ID){
         return studentMapper.selectStudent(student_ID);
     }
+
 
     @Override
     public List<Student> selectAll(){

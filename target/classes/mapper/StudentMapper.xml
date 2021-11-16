@@ -1,7 +1,6 @@
-<<<<<<< Updated upstream
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.etsapi.dao.StudentDao">  <!--要实现dao接口的全限定名-->
+<mapper namespace="com.project.etsapi.mapper.StudentMapper">  <!--要实现dao接口的全限定名-->
 
     <!--增-->               <!--keyProperty是Java对象的属性名,useGeneratedKeys="true":设置是否使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty-->
 <!--    <insert id="insertUser" keyProperty="id" useGeneratedKeys="true">    &lt;!&ndash;向表中插入自增ID&ndash;&gt;-->
@@ -27,48 +26,14 @@
 <!--        WHERE id = #{id}-->
 <!--    </update>-->
 
-    <!--查-->
+    <!--查全部-->
     <select id="selectAll" resultType="com.project.etsapi.entity.Student">
         SELECT * FROM student
     </select>
 
-</mapper>
-=======
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.project.etsapi.mapper.StudentMapper">
-
-<!--    <resultMap id="BaseResultMap" type="com.project.etsapi.entity.Student">-->
-<!--        <result column="student_ID" jdbcType="VARCHAR" property="student_ID" />-->
-<!--        <result column="name" jdbcType="VARCHAR" property="name" />-->
-<!--    </resultMap>-->
-
-<!--    &lt;!&ndash;增加学生&ndash;&gt;-->
-<!--    <insert id="insertStudent" parameterType="com.project.etsapi.entity.Student">-->
-<!--        insert into student(student_ID, name) values(#{student_ID}, #{name})-->
-<!--    </insert>-->
-
-<!--    &lt;!&ndash;删除学生&ndash;&gt;-->
-<!--    <delete id="deleteStudent" parameterType="java.String">-->
-<!--        delete from student where student_ID=#{student_ID}-->
-<!--    </delete>-->
-
-<!--    &lt;!&ndash;修改学生&ndash;&gt;-->
-<!--    <update id="updateStudent" parameterType="com.project.etsapi.entity.Student">-->
-<!--        update student set student_ID=#{student_ID}, name=#{name} where student_ID=#{student_ID}-->
-<!--    </update>-->
-
-<!--    &lt;!&ndash;查找学生&ndash;&gt;-->
-<!--    <select id="selectStudent" parameterType="java.String" resultType="com.project.etsapi.entity.Student">-->
-<!--        select * from student where student_ID=#{student_ID}-->
-<!--    </select>-->
-
-    <!--查找全部学生-->
-    <select id="selectAll" resultType="com.project.etsapi.entity.Student">
-        select * from student
+    <!--查一个-->
+    <select id="selectStudent" resultType="com.project.etsapi.entity.Student">
+        SELECT * FROM student where student_ID = #{student_id}
     </select>
+
 </mapper>
-
-
->>>>>>> Stashed changes
