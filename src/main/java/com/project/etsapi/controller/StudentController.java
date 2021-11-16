@@ -4,29 +4,15 @@ import com.project.etsapi.entity.Student;
 import com.project.etsapi.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< Updated upstream
-=======
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
->>>>>>> Stashed changes
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
-<<<<<<< Updated upstream
 public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping("/student")
-    public List<Student> selectAll(){
-=======
-@RequestMapping("/student")
-public class StudentController {
-    @Autowired
-    StudentService studentService;
-//
 //    @RequestMapping(value = "insert/", method = RequestMethod.POST)
 //    // 插入新用户
 //    // http://localhost:8888/student/insert?student_ID=1&name=aji
@@ -72,7 +58,6 @@ public class StudentController {
     // http://localhost:8888/student/selectAll
     @ResponseBody
     public List<Student> selectAll() throws Exception{
->>>>>>> Stashed changes
         return studentService.selectAll();
     }
 }

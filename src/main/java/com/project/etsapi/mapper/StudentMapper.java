@@ -7,8 +7,6 @@ import java.util.List;
 
 @Mapper
 public interface StudentMapper {
-<<<<<<< Updated upstream
-=======
     /**
      * 新增用户
      * @param student
@@ -41,6 +39,5 @@ public interface StudentMapper {
      * 查询所有用户信息
      * @return
      */
->>>>>>> Stashed changes
     List<Student> selectAll();
 }

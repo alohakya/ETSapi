@@ -18,4 +18,9 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> selectAll() {
         return studentMapper.selectAll();
     }
+
+    @Override
+    public Student selectStudent(String student_ID) {
+        return null;
+    }
 }
