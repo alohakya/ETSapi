@@ -1,39 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.etsapi.mapper.StudentMapper">  <!--要实现dao接口的全限定名-->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.etsapi.mapper.StudentMapper">
 
-    <!--增-->               <!--keyProperty是Java对象的属性名,useGeneratedKeys="true":设置是否使用JDBC的getGenereatedKeys方法获取主键并赋值到keyProperty-->
-<!--    <insert id="insertUser" keyProperty="id" useGeneratedKeys="true">    &lt;!&ndash;向表中插入自增ID&ndash;&gt;-->
-<!--        INSERT INTO USER (NAME,PASSWORD) VALUES (#{name},#{password})-->
-<!--    </insert>-->
+    <!--增-->
+    <insert id="addStudent" parameterType="com.project.etsapi.entity.Student">
+        INSERT INTO student (student_ID, name)
+        VALUES (#{student_ID}, #{name})
+    </insert>
 
     <!--删-->
-<!--    <delete id="deleteUser">-->
-<!--        DELETE FROM USER WHERE id=#{id}-->
-<!--    </delete>-->
+    <delete id="deleteStudent" parameterType="String">
+        DELETE FROM student
+        WHERE student_ID=#{student_ID}
+    </delete>
 
     <!--改-->
-<!--    <update id="updateUser">-->
-<!--        update USER-->
-<!--        <set>-->
-<!--            <if test="name != null and name != ''">-->
-<!--                NAME = #{name},-->
-<!--            </if>-->
-<!--            <if test="password != null and password != ''">-->
-<!--                PASSWORD = #{password},-->
-<!--            </if>-->
-<!--        </set>-->
-<!--        WHERE id = #{id}-->
-<!--    </update>-->
-
-    <!--查全部-->
-    <select id="selectAll" resultType="com.project.etsapi.entity.Student">
-        SELECT * FROM student
-    </select>
+    <update id="setStudent" >
+        UPDATE student
+        <set>
+            name = #{name},
+        </set>
+        WHERE student_ID = #{student_ID}
+    </update>
 
     <!--查一个-->
-    <select id="selectStudent" resultType="com.project.etsapi.entity.Student">
-        SELECT * FROM student where student_ID = #{student_id}
+    <select id="getStudent" parameterType="String" resultType="com.project.etsapi.entity.Student">
+        SELECT * FROM student
+        WHERE student_ID = #{student_ID}
+    </select>
+
+    <!--查全部-->
+    <select id="getAll" resultType="com.project.etsapi.entity.Student">
+        SELECT * FROM student
     </select>
 
 </mapper>

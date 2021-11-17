@@ -2,8 +2,10 @@ package com.project.etsapi.entity;
 
 import lombok.*;
 
-//@Data
-public class Student {
+import java.io.Serializable;
+
+@Data
+public class Student implements Serializable {
     private String student_ID;
     private String name;
 

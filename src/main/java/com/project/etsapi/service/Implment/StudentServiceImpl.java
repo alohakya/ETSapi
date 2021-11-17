@@ -14,29 +14,41 @@ public class StudentServiceImpl implements StudentService {
     StudentMapper studentMapper;
 
     @Override
-    public Student insertStudent(Student student){
-        int result = studentMapper.insertStudent(student);
-        return student;
+    public int addStudent(Student student){
+        if(studentMapper.getStudent(student.getStudent_ID()) != null){
+            // 已经存在，返回-1
+            return -1;
+        }
+        else{
+            return studentMapper.addStudent(student);
+        }
     }
 
-//    @Override
-//    public int deleteStudent(String student_ID){
-//        return studentMapper.deleteStudent(student_ID);
-//    }
-//
-//    @Override
-//    public int updateStudent(Student student){
-//        return studentMapper.updateStudent(student);
-//    }
-
     @Override
-    public Student selectStudent(String student_ID){
-        return studentMapper.selectStudent(student_ID);
+    public int deleteStudent(String student_ID){
+        if(studentMapper.getStudent(student_ID)!=null){
+            return studentMapper.deleteStudent(student_ID);
+        }
+        // 不存在则返回-1
+        else return -1;
     }
 
+    @Override
+    public int setStudent(Student student){
+        if(studentMapper.getStudent(student.getStudent_ID())!=null){
+            return studentMapper.setStudent(student);
+        }
+        // 不存在则返回-1
+        else return -1;
+    }
 
     @Override
-    public List<Student> selectAll(){
-        return studentMapper.selectAll();
+    public Student getStudent(String student_ID){
+        return studentMapper.getStudent(student_ID);
+    }
+
+    @Override
+    public List<Student> getAll(){
+        return studentMapper.getAll();
     }
 }

@@ -12,7 +12,7 @@ public interface StudentMapper {
      * @param student
      * @return
      */
-    int insertStudent(Student student);
+    int addStudent(Student student);
 
     /**
      * 根据id删除
@@ -26,18 +26,18 @@ public interface StudentMapper {
      * @param student
      * @return
      */
-    int updateStudent(Student student);
+    int setStudent(Student student);
 
     /**
      * 根据id查询用户信息
      * @param student_ID
      * @return Student
      */
-    Student selectStudent(String student_ID);
+    Student getStudent(String student_ID);
 
     /**
      * 查询所有用户信息
      * @return
      */
-    List<Student> selectAll();
+    List<Student> getAll();
 }
