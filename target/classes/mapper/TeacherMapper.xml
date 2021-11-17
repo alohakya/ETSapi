@@ -24,13 +24,13 @@
     </update>
 
 <!--    select one-->
-    <select id="getTeacher" parameterType="String">
+    <select id="getTeacher" parameterType="String" resultType="com.project.etsapi.entity.Teacher">
         SELECT * FROM teacher
         WHERE teacher_ID = #{teacher_ID}
     </select>
 
 <!--    select all-->
-    <select id="getAll" parameterType="com.project.etsapi.entity.Teacher">
+    <select id="getAll" parameterType="com.project.etsapi.entity.Teacher" resultType="com.project.etsapi.entity.Teacher">
         SELECT * FROM teacher
     </select>
 

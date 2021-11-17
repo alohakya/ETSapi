@@ -21,11 +21,15 @@ import org.springframework.stereotype.Service;
 public class TeachCourseServiceImpl implements TeachCourseService {
     @Autowired
     TeachCourseMapper teachCourseMapper;
+    @Autowired
+    TeacherMapper teacherMapper;
+    @Autowired
+    CourseMapper courseMapper;
 
     @Override
     public int addTeachCourse(TeachCourse teachCourse) {
-        Teacher teacher = teachCourseMapper.getTeacherById(teachCourse.getTeacher_ID());
-        Course course = teachCourseMapper.getCourseById(teachCourse.getCourse_ID());
+        Teacher teacher = teacherMapper.getTeacher(teachCourse.getTeacher_ID());
+        Course course = courseMapper.getCourse(teachCourse.getCourse_ID());
         if(teacher!=null && course!=null){
             return teachCourseMapper.addTeachCourse(teachCourse);
         }

@@ -10,13 +10,13 @@
     </insert>
 
 <!--    select-->
-    <select id="getTeacherById" parameterType="String">
+    <select id="getTeacherById" parameterType="String" resultType="com.project.etsapi.entity.Teacher">
         SELECT * FROM teacher
         WHERE teacher_ID = #{teacher_ID}
     </select>
 
 <!--    select course-->
-    <select id="getCourseById" parameterType="String">
+    <select id="getCourseById" parameterType="String" resultType="com.project.etsapi.entity.Course">
         SELECT * FROM course
         WHERE course_ID = #{course_ID}
     </select>
