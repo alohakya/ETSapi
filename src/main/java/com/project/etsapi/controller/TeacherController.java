@@ -1,6 +1,5 @@
 package com.project.etsapi.controller;
 
-import com.project.etsapi.entity.Student;
 import com.project.etsapi.entity.Teacher;
 import com.project.etsapi.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;

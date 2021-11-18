@@ -16,7 +16,7 @@
     </delete>
 
     <!--改-->
-    <update id="setStudent" >
+    <update id="setStudent" parameterType="com.project.etsapi.entity.Student">
         UPDATE student
         <set>
             name = #{name},

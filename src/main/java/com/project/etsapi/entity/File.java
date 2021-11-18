@@ -1,5 +1,8 @@
 package com.project.etsapi.entity;
 
+import lombok.Data;
+
+@Data
 public class File {
     private String course_ID;
     private int number;

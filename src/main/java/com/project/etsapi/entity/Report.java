@@ -1,5 +1,8 @@
 package com.project.etsapi.entity;
 
+import lombok.Data;
+
+@Data
 public class Report {
     private String student_ID;
     private String project_ID;

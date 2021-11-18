@@ -1,11 +1,14 @@
 package com.project.etsapi.entity;
 
+import lombok.Data;
+
+@Data
 public class TakeCourse {
     private String student_ID;
     private String course_ID;
-    private boolean authority;
+    private String authority;
 
-    public TakeCourse(String student_ID, String course_ID, boolean authority) {
+    public TakeCourse(String student_ID, String course_ID, String authority) {
         this.student_ID = student_ID;
         this.course_ID = course_ID;
         this.authority = authority;
@@ -31,11 +34,12 @@ public class TakeCourse {
         this.course_ID = course_ID;
     }
 
-    public boolean isAuthority() {
+
+    public String getAuthority() {
         return authority;
     }
 
-    public void setAuthority(boolean authority) {
+    public void setAuthority(String authority) {
         this.authority = authority;
     }
 }

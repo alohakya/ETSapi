@@ -1,9 +1,11 @@
 package com.project.etsapi.mapper;
 
-import com.project.etsapi.entity.Course;
 import com.project.etsapi.entity.TeachCourse;
 import com.project.etsapi.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @InterfaceName TeachCourseMapper
@@ -21,8 +23,8 @@ public interface TeachCourseMapper {
      */
     int addTeachCourse(TeachCourse teachCourse);
 
-    Teacher getTeacherById(String teacher_ID);
+    List<Teacher> getTeacherListByCourseId(String course_ID);
 
-    Course getCourseById(String course_ID);
+    TeachCourse getTeachCourse(HashMap<String, String> parameters);
 
 }

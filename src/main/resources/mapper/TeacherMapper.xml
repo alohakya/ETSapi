@@ -30,7 +30,7 @@
     </select>
 
 <!--    select all-->
-    <select id="getAll" parameterType="com.project.etsapi.entity.Teacher" resultType="com.project.etsapi.entity.Teacher">
+    <select id="getAll" resultType="com.project.etsapi.entity.Teacher">
         SELECT * FROM teacher
     </select>
 
