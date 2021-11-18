@@ -1,6 +1,8 @@
 package com.project.etsapi.entity;
 
+import lombok.Data;
 
+@Data
 public class Account {
     private String account_ID;
     private String password;

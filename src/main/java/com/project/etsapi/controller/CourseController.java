@@ -42,8 +42,14 @@ public class CourseController {
     @ResponseBody
     public List<Student> getStudentListByCourseId(@RequestParam("course_ID")String course_ID, @RequestParam("authority")String authority){
         return courseService.getStudentListByCourseId(course_ID, authority);
-//        ,@RequestParam("authority")String authority
-//        return courseService.getStudentListByCourseId(course_ID);
+    }
+
+    // get project list by course_ID
+    // http://localhost:8888/course/getProjectListByCourseId?course_ID=42024401
+    @GetMapping("/getProjectListByCourseId")
+    @ResponseBody
+    public List<Project> getProjectListByCourseId(String course_ID){
+        return courseService.getProjectListByCourseId(course_ID);
     }
 
     // 添加一位老师到一个课程
@@ -93,5 +99,7 @@ public class CourseController {
     public TeachCourse getTeachCourse(@RequestParam("teacher_ID") String teacher_ID, @RequestParam("course_ID") String course_ID){
         return courseService.getTeachCourse(teacher_ID, course_ID);
     }
+
+
 
 }

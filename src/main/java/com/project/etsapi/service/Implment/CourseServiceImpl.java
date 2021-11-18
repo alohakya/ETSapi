@@ -29,6 +29,8 @@ public class CourseServiceImpl implements CourseService {
     StudentMapper studentMapper;
     @Autowired
     TeacherMapper teacherMapper;
+    @Autowired
+    ProjectMapper projectMapper;
 
     @Override
     public Course getCourse(String course_ID) {
@@ -40,23 +42,17 @@ public class CourseServiceImpl implements CourseService {
         return teachCourseMapper.getTeacherListByCourseId(course_ID);
     }
 
-//    @Override
-//    public List<Student> getStudentListByCourseId(String course_ID){
-//        return takeCourseMapper.getStudentListByCourseId(course_ID);
-//    }
-
     @Override
     public List<Student> getStudentListByCourseId(String course_ID, String authority) {
         HashMap<String, String> parameters = new HashMap<>();
         parameters.put("course_ID", course_ID);
         parameters.put("authority", authority);
         return takeCourseMapper.getStudentListByCourseId(parameters);
-//        List<String> student_IDs = takeCourseMapper.getStudentListByCourseId(parameters);
-//        List<Student> students = new ArrayList<>();
-//        for(String student_ID : student_IDs){
-//            students.add(studentMapper.getStudent(student_ID));
-//        }
-//        return students;
+    }
+
+    @Override
+    public List<Project> getProjectListByCourseId(String course_ID) {
+        return projectMapper.getProjectListByCourseId(course_ID);
     }
 
     @Override

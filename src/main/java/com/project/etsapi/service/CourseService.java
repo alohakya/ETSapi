@@ -11,7 +11,7 @@ public interface CourseService {
 
     List<Student> getStudentListByCourseId(String course_ID, String authority);
 
-//    List<Student> getStudentListByCourseId(String course_ID);
+    List<Project>  getProjectListByCourseId(String course_ID);
 
     int addTakeCourse(TakeCourse takeCourse);
 
