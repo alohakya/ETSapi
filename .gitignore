@@ -22,6 +22,7 @@
 # package
 /.idea/
 /.mvn/
+/target/
 
 # config
 ExperimentTeachingSystemAPI.iml
