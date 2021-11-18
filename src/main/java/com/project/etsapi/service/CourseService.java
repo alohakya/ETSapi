@@ -9,9 +9,9 @@ public interface CourseService {
 
     List<Teacher> getTeacherListByCourseId(String course_ID);
 
-//    List<Student> getStudentListByCourseId(String course_ID, String authority);
+    List<Student> getStudentListByCourseId(String course_ID, String authority);
 
-    List<Student> getStudentListByCourseId(String course_ID);
+//    List<Student> getStudentListByCourseId(String course_ID);
 
     int addTakeCourse(TakeCourse takeCourse);
 

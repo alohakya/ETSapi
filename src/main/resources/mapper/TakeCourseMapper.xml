@@ -9,10 +9,10 @@
         VALUES (#{student_ID}, #{course_ID}, #{authority})
     </insert>
 
-    <select id="getStudentListByCourseId" parameterType="String" resultType="com.project.etsapi.entity.Student">
+    <select id="getStudentListByCourseId" parameterType="java.util.HashMap" resultType="com.project.etsapi.entity.Student">
         SELECT takecourse.student_ID, student.name
         FROM takecourse NATURAL JOIN student
-        WHERE takecourse.course_ID = #{course_ID}
+        WHERE takecourse.course_ID = #{course_ID} and takecourse.authority = #{authority}
     </select>
 
     <!--    get TakeCourse-->

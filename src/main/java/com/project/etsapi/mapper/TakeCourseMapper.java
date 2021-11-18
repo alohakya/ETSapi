@@ -16,11 +16,9 @@ import java.util.List;
 
 @Mapper
 public interface TakeCourseMapper {
-//    List<String> getStudentListByCourseId(HashMap<String, String> parameter);
+    List<Student> getStudentListByCourseId(HashMap<String, String> parameter);
 
-//    List<Student> getStudentListByCourseId(HashMap<String, String> parameter);
-
-    List<Student> getStudentListByCourseId(String course_ID);
+//    List<Student> getStudentListByCourseId(String course_ID);
 
     int addTakeCourse(TakeCourse takeCourse);
 

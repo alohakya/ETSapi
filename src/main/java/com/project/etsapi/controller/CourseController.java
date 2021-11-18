@@ -37,13 +37,13 @@ public class CourseController {
     }
 
     // get student list by course_ID
-    // http://localhost:8888/course/getStudentListByCourseId?course_ID=42024401
+    // http://localhost:8888/course/getStudentListByCourseId?course_ID=42024401&authority=1
     @GetMapping("/getStudentListByCourseId")
     @ResponseBody
-    public List<Student> getStudentListByCourseId(@RequestParam("course_ID")String course_ID){
-//        return courseService.getStudentListByCourseId(course_ID, authority);
+    public List<Student> getStudentListByCourseId(@RequestParam("course_ID")String course_ID, @RequestParam("authority")String authority){
+        return courseService.getStudentListByCourseId(course_ID, authority);
 //        ,@RequestParam("authority")String authority
-        return courseService.getStudentListByCourseId(course_ID);
+//        return courseService.getStudentListByCourseId(course_ID);
     }
 
     // 添加一位老师到一个课程
