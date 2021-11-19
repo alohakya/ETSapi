@@ -14,6 +14,13 @@
         SELECT * FROM course
     </select>
 
+<!--    List<StudentEmail> getListStudentEmail(String course_ID);-->
+    <select id="getListStudentEmail" resultType="com.project.etsapi.vo.StudentEmail" parameterType="String">
+        SELECT take.student_ID,name,account.email
+        FROM (takecourse NATURAL JOIN student) JOIN account
+        ON takecourse.student_ID=account_ID
+        WHERE takecourse.course_ID = #{course_ID}
+    </select>
 </mapper>
 
 

@@ -3,6 +3,7 @@ package com.project.etsapi.service.Implment;
 import com.project.etsapi.entity.*;
 import com.project.etsapi.mapper.*;
 import com.project.etsapi.service.CourseService;
+import com.project.etsapi.vo.StudentEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -104,6 +105,11 @@ public class CourseServiceImpl implements CourseService {
             courses.add(course.getCourse_ID());
         }
         return courses;
+    }
+
+    @Override
+    public List<StudentEmail> getListStudentEmail(String course_ID) {
+        return courseMapper.getListStudentEmail(course_ID);
     }
 
     @Override

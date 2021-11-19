@@ -2,6 +2,7 @@ package com.project.etsapi.controller;
 
 import com.project.etsapi.entity.*;
 import com.project.etsapi.service.CourseService;
+import com.project.etsapi.vo.StudentEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -116,4 +117,11 @@ public class CourseController {
         return courseService.getAllCourseId();
     }
 
+    // 根据课程ID获得列表，列表内容  学生ID，学生名字，账号邮箱
+    // http://localhost:8888/course/getListStudentEmailByCourseId?course_ID=42024401
+    @GetMapping("/getListStudentEmailByCourseId")
+    @ResponseBody
+    public List<StudentEmail> getListStudentEmail(@RequestParam("course_ID") String course_ID){
+        return courseService.getListStudentEmail(course_ID);
+    }
 }
