@@ -20,4 +20,19 @@ public interface ProjectMapper {
      * @return
      */
     List<Project> getProjectListByCourseId(String course_ID);
+
+    /**
+     * 教师发布新项目
+     * @param project
+     * @return
+     */
+    int addProject(Project project);
+
+    /**
+     * 根据课程编号获取项目列表
+     * @param project_ID
+     * @return
+     */
+
+    Project getProject(String project_ID);
 }

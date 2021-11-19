@@ -7,10 +7,15 @@ public class Project {
     private String project_ID;
     private String name;
     private String release_time;
+//    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//注意月和小时的格式为两个大写字母
+//    java.util.Date date = new Date();//获得当前时间
+//    String birthday = df.format(date);//将当前时间转换成特定格式的时间字符串，这样便可以插入到数据库中
+
     private String deadline;
     private String description;
     private int path_number;
     private String teacher_ID;
+    private String course_ID;
     private double percentage;
 
     public Project() {
@@ -93,5 +98,13 @@ public class Project {
 
     public void setPercentage(double percentage) {
         this.percentage = percentage;
+    }
+
+    public String getCourse_ID() {
+        return course_ID;
+    }
+
+    public void setCourse_ID(String course_ID) {
+        this.course_ID = course_ID;
     }
 }

@@ -7,6 +7,22 @@
         SELECT * FROM  project
         WHERE course_ID = #{course_ID}
     </select>
+
+<!--    int addProject(Project project);-->
+    <insert id="addProject" parameterType="com.project.etsapi.entity.Project">
+        INSERT INTO project(project_ID, name, release_time,
+                            deadline, description, path_number,
+                            percentage, teacher_ID, course_ID)
+        VALUES (#{project_ID}, #{name}, #{release_time}, #{deadline},
+                #{description}, #{path_number}, #{percentage},
+                #{teacher_ID}, #{course_ID})
+    </insert>
+
+<!--    Project getProject(String project_ID);-->
+    <select id="getProject" parameterType="String" resultType="com.project.etsapi.entity.Project">
+        SELECT * FROM project
+        WHERE project_ID = #{project_ID}
+    </select>
 </mapper>
 
 
