@@ -6,6 +6,7 @@ import com.project.etsapi.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,7 +60,16 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public List<Teacher> getAll() {
+    public List<Teacher> getAllTeacher() {
         return teacherMapper.getAll();
+    }
+
+    @Override
+    public List<String> getAllTeacherId() {
+        List<String> Ids = new ArrayList<>();
+        for(Teacher teacher : getAllTeacher()){
+            Ids.add(teacher.getTeacher_ID());
+        }
+        return Ids;
     }
 }

@@ -21,5 +21,7 @@ public interface TeacherService {
 
     Teacher getTeacher(String teacher_ID);
 
-    List<Teacher> getAll();
+    List<Teacher> getAllTeacher();
+
+    List<String> getAllTeacherId();
 }

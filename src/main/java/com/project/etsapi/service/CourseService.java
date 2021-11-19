@@ -20,4 +20,8 @@ public interface CourseService {
     TeachCourse getTeachCourse(String teacher_ID, String course_ID);
 
     TakeCourse getTakeCourse(String student_ID, String course_ID);
+
+    List<Course> getAllCourse();
+
+    List<String> getAllCourseId();
 }

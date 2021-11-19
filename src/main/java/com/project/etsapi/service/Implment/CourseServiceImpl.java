@@ -6,6 +6,7 @@ import com.project.etsapi.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -89,6 +90,20 @@ public class CourseServiceImpl implements CourseService {
         parameters.put("student_ID", student_ID);
         parameters.put("course_ID", course_ID);
         return takeCourseMapper.getTakeCourse(parameters);
+    }
+
+    @Override
+    public List<Course> getAllCourse() {
+        return courseMapper.getAll();
+    }
+
+    @Override
+    public ArrayList<String> getAllCourseId(){
+        ArrayList<String> courses = new ArrayList<>();
+        for(Course course : getAllCourse()){
+            courses.add(course.getCourse_ID());
+        }
+        return courses;
     }
 
     @Override

@@ -3,6 +3,8 @@ package com.project.etsapi.mapper;
 import com.project.etsapi.entity.Course;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CourseMapper {
     /**
@@ -12,4 +14,10 @@ public interface CourseMapper {
      */
     Course getCourse(String course_ID);
 
+    /**
+     * 获得所有课程
+     * @param
+     * @return
+     */
+    List<Course> getAll();
 }

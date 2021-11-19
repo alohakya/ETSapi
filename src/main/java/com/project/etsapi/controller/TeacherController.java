@@ -71,10 +71,19 @@ public class TeacherController {
     }
 
     // 打印所有老师信息
-    // http://localhost:8888/teacher/getAll
-    @GetMapping("/getAll")
+    // http://localhost:8888/teacher/getAllTeacher
+    @GetMapping("/getAllTeacher")
     @ResponseBody
-    public List<Teacher> getAll(){
-        return teacherService.getAll();
+    public List<Teacher> getAllTeacher(){
+        return teacherService.getAllTeacher();
     }
+
+    // 获得所有教师ID，供外码选择
+    // http://localhost:8888/teacher/getAllTeacherId
+    @GetMapping("/getAllTeacherId")
+    @ResponseBody
+    public List<String> getAllTeacherId(){
+        return teacherService.getAllTeacherId();
+    }
+
 }

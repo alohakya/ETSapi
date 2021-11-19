@@ -20,7 +20,7 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    //查找课程
+    // 根据课程ID获得课程
     // http://localhost:8888/course/get?course_ID=42024401
     @GetMapping( "/get")
     @ResponseBody
@@ -28,7 +28,7 @@ public class CourseController {
         return courseService.getCourse(course_ID);
     }
 
-    // get teacher list by course_ID
+    // 根据课程ID获得教师列表
     // http://localhost:8888/course/getTeacherListByCourseId?course_ID=42024401
     @GetMapping("/getTeacherListByCourseId")
     @ResponseBody
@@ -36,7 +36,7 @@ public class CourseController {
         return courseService.getTeacherListByCourseId(course_ID);
     }
 
-    // get student list by course_ID
+    // 根据课程ID和权限获得学生名单或助教名单
     // http://localhost:8888/course/getStudentListByCourseId?course_ID=42024401&authority=1
     @GetMapping("/getStudentListByCourseId")
     @ResponseBody
@@ -44,7 +44,7 @@ public class CourseController {
         return courseService.getStudentListByCourseId(course_ID, authority);
     }
 
-    // get project list by course_ID
+    // 根据课程ID获得项目列表
     // http://localhost:8888/course/getProjectListByCourseId?course_ID=42024401
     @GetMapping("/getProjectListByCourseId")
     @ResponseBody
@@ -100,6 +100,20 @@ public class CourseController {
         return courseService.getTeachCourse(teacher_ID, course_ID);
     }
 
+    // 获得所有课程
+    // http://localhost:8888/course/getAllCourse
+    @GetMapping("/getAllCourse")
+    @ResponseBody
+    public List<Course> getAllCourse(){
+        return courseService.getAllCourse();
+    }
 
+    // 获得所有课程ID,，供外码选择
+    // http://localhost:8888/course/getAllCourseId
+    @GetMapping("/getAllCourseId")
+    @ResponseBody
+    public List<String> getAllCourseId(){
+        return courseService.getAllCourseId();
+    }
 
 }
