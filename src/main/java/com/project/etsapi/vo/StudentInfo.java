@@ -1,5 +1,7 @@
 package com.project.etsapi.vo;
 
+import lombok.Data;
+
 /**
  * @Created by Intellij IDEA
  * @Description
@@ -8,16 +10,16 @@ package com.project.etsapi.vo;
  * @Time 18:50
  **/
 
-
-public class StudentEmail {
+@Data
+public class StudentInfo {
     private String student_ID;
     private String name;
     private String email;
 
-    public StudentEmail() {
+    public StudentInfo() {
     }
 
-    public StudentEmail(String student_ID, String name, String email) {
+    public StudentInfo(String student_ID, String name, String email) {
         this.student_ID = student_ID;
         this.name = name;
         this.email = email;

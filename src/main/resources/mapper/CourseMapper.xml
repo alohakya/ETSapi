@@ -14,12 +14,21 @@
         SELECT * FROM course
     </select>
 
-<!--    List<StudentEmail> getListStudentEmail(String course_ID);-->
-    <select id="getListStudentEmail" resultType="com.project.etsapi.vo.StudentEmail" parameterType="String">
-        SELECT take.student_ID,name,account.email
+
+<!--    List<StudentInfo> getListStudentInfo(HashMap<String, String> parameter);-->
+    <select id="getListStudentInfo" resultType="com.project.etsapi.vo.StudentInfo" parameterType="java.util.HashMap">
+        SELECT takecourse.student_ID,name,account.email
         FROM (takecourse NATURAL JOIN student) JOIN account
         ON takecourse.student_ID=account_ID
-        WHERE takecourse.course_ID = #{course_ID}
+        WHERE takecourse.course_ID = #{course_ID} AND takecourse.authority=#{authority}
+    </select>
+
+<!--    List<TeacherInfo> getListTeacherInfo(String course_ID);-->
+    <select id="getListTeacherInfo" resultType="com.project.etsapi.vo.TeacherInfo" parameterType="String">
+        SELECT teachcourse.teacher_ID,name,account.email
+        FROM (teachcourse NATURAL JOIN teacher) JOIN account
+        ON teachcourse.teacher_ID=account_ID
+        WHERE teachcourse.course_ID = #{course_ID}
     </select>
 </mapper>
 

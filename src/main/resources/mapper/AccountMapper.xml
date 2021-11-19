@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.etsapi.mapper.AccountMapper">
+<!--    Account getAccountById(String account_ID);-->
+    <select id="getAccountById" parameterType="String" resultType="com.project.etsapi.entity.Account">
+        SELECT * FROM account
+        WHERE account_ID = #{account_ID}
+    </select>
+</mapper>
+
+

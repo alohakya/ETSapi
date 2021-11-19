@@ -1,7 +1,8 @@
 package com.project.etsapi.service;
 
 import com.project.etsapi.entity.*;
-import com.project.etsapi.vo.StudentEmail;
+import com.project.etsapi.vo.StudentInfo;
+import com.project.etsapi.vo.TeacherInfo;
 
 import java.util.List;
 
@@ -26,5 +27,7 @@ public interface CourseService {
 
     List<String> getAllCourseId();
 
-    List<StudentEmail> getListStudentEmail(String course_ID);
+    List<StudentInfo> getListStudentInfo(String course_ID, String authority);
+
+    List<TeacherInfo> getListTeacherInfo(String course_ID);
 }

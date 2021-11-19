@@ -3,7 +3,8 @@ package com.project.etsapi.service.Implment;
 import com.project.etsapi.entity.*;
 import com.project.etsapi.mapper.*;
 import com.project.etsapi.service.CourseService;
-import com.project.etsapi.vo.StudentEmail;
+import com.project.etsapi.vo.StudentInfo;
+import com.project.etsapi.vo.TeacherInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -108,14 +109,22 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<StudentEmail> getListStudentEmail(String course_ID) {
-        return courseMapper.getListStudentEmail(course_ID);
+    public List<StudentInfo> getListStudentInfo(String course_ID, String authority) {
+        HashMap<String, String> parameters = new HashMap<>();
+        parameters.put("course_ID", course_ID);
+        parameters.put("authority", authority);
+        return courseMapper.getListStudentInfo(parameters);
+    }
+
+    @Override
+    public List<TeacherInfo> getListTeacherInfo(String course_ID) {
+        return courseMapper.getListTeacherInfo(course_ID);
     }
 
     @Override
     public int addTakeCourse(TakeCourse takeCourse) {
         if(this.getTakeCourse(takeCourse.getStudent_ID(), takeCourse.getCourse_ID()) != null){
-            if(this.getTakeCourse(takeCourse.getStudent_ID(),takeCourse.getCourse_ID()).getAuthority() == "1"){
+            if(this.getTakeCourse(takeCourse.getStudent_ID(),takeCourse.getCourse_ID()).getAuthority().equals("1")){
                 // 该助教已经参与该课程，返回-4
                 return -4;
             }
@@ -129,11 +138,11 @@ public class CourseServiceImpl implements CourseService {
         if(student != null && course != null){
             return takeCourseMapper.addTakeCourse(takeCourse);
         }
-        else if(student == null && takeCourse.getAuthority() =="0"){
+        else if(student == null && takeCourse.getAuthority().equals("0")){
             // 学生不存在，返回-1
             return -1;
         }
-        else if(student == null && takeCourse.getAuthority()=="1"){
+        else if(student == null && takeCourse.getAuthority().equals("1")){
             // 助教不存在，返回-2
             return -2;
         }

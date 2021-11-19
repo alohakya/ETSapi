@@ -1,9 +1,11 @@
 package com.project.etsapi.mapper;
 
 import com.project.etsapi.entity.Course;
-import com.project.etsapi.vo.StudentEmail;
+import com.project.etsapi.vo.StudentInfo;
+import com.project.etsapi.vo.TeacherInfo;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Mapper
@@ -27,5 +29,13 @@ public interface CourseMapper {
      * @param
      * @return
      */
-    List<StudentEmail> getListStudentEmail(String course_ID);
+
+    List<StudentInfo> getListStudentInfo(HashMap<String, String> parameter);
+
+    /**
+     * 根据课程ID获得列表，列表内容：教师ID，教师名字，账号邮箱
+     * @param
+     * @return
+     */
+    List<TeacherInfo> getListTeacherInfo(String course_ID);
 }

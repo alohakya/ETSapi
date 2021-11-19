@@ -2,7 +2,8 @@ package com.project.etsapi.controller;
 
 import com.project.etsapi.entity.*;
 import com.project.etsapi.service.CourseService;
-import com.project.etsapi.vo.StudentEmail;
+import com.project.etsapi.vo.StudentInfo;
+import com.project.etsapi.vo.TeacherInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -118,10 +119,18 @@ public class CourseController {
     }
 
     // 根据课程ID获得列表，列表内容  学生ID，学生名字，账号邮箱
-    // http://localhost:8888/course/getListStudentEmailByCourseId?course_ID=42024401
-    @GetMapping("/getListStudentEmailByCourseId")
+    // http://localhost:8888/course/getListStudentInfoByCourseId?course_ID=42024401&authority=1
+    @GetMapping("/getListStudentInfoByCourseId")
     @ResponseBody
-    public List<StudentEmail> getListStudentEmail(@RequestParam("course_ID") String course_ID){
-        return courseService.getListStudentEmail(course_ID);
+    public List<StudentInfo> getListStudentInfo(@RequestParam("course_ID") String course_ID, @RequestParam("authority")String authority){
+        return courseService.getListStudentInfo(course_ID, authority);
+    }
+
+    // 根据课程ID获得列表，列表内容  教师ID，教师名字，账号邮箱
+    // http://localhost:8888/course/getListTeacherInfoByCourseId?course_ID=42024401
+    @GetMapping("/getListTeacherInfoByCourseId")
+    @ResponseBody
+    public List<TeacherInfo> getListTeacherInfo(@RequestParam("course_ID") String course_ID){
+        return courseService.getListTeacherInfo(course_ID);
     }
 }

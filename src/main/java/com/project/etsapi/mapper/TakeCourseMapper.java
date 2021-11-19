@@ -18,8 +18,6 @@ import java.util.List;
 public interface TakeCourseMapper {
     List<Student> getStudentListByCourseId(HashMap<String, String> parameter);
 
-//    List<Student> getStudentListByCourseId(String course_ID);
-
     int addTakeCourse(TakeCourse takeCourse);
 
     TakeCourse getTakeCourse(HashMap<String, String> parameters);
