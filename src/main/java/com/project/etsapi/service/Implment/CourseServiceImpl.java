@@ -35,6 +35,19 @@ public class CourseServiceImpl implements CourseService {
     ProjectMapper projectMapper;
 
     @Override
+    public int addCourse(Course course) {
+        if(courseMapper.getCourse(course.getCourse_ID()) != null){
+            // 如果该课程已经存在，返回-1
+            return -1;
+        }
+        if(teacherMapper.getTeacher(course.getTeacher_ID()) == null){
+            // 该教师不存在，返回-2
+            return -2;
+        }
+        return courseMapper.addCourse(course);
+    }
+
+    @Override
     public Course getCourse(String course_ID) {
         return courseMapper.getCourse(course_ID);
     }

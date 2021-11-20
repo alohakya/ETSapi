@@ -22,6 +22,27 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+    // 创建课程（前端输入课程信息vo，后端生成课程ID）
+    public Course createCourse(){
+        return null;
+    }
+
+    // 添加课程
+    // http://localhost:8888/course/addCourse?course_ID=42024401&name=飞盘体育课&teacher_ID=10100&description=飞盘真好玩&attend_percentage=0.1
+    @GetMapping("/addCourse")
+    @ResponseBody
+    public String addCourse(Course course){
+        int result = courseService.addCourse(course);
+        switch(result){
+            case -1:
+                return "-1, 该课程已经存在！";
+            case -2:
+                return "-2，该教师不存在！";
+            default:
+                return "添加成功！";
+        }
+    }
+
     // 根据课程ID获得课程
     // http://localhost:8888/course/get?course_ID=42024401
     @GetMapping( "/get")

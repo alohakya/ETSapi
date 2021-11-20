@@ -7,6 +7,8 @@ import com.project.etsapi.vo.TeacherInfo;
 import java.util.List;
 
 public interface CourseService {
+    int addCourse(Course course);
+
     Course getCourse(String course_ID);
 
     List<Teacher> getTeacherListByCourseId(String course_ID);

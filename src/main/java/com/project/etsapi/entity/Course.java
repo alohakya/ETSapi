@@ -10,17 +10,21 @@ public class Course implements Serializable {
     private String name;
     private String teacher_ID;
     private String description;
+    private double attend_percentage;
+    private double project_percentage;
 
 
     public Course() {
 
     }
 
-    public Course(String course_ID, String name, String teacher_ID, String description) {
+    public Course(String course_ID, String name, String teacher_ID, String description, double attend_percentage, double project_percentage) {
         this.course_ID = course_ID;
         this.name = name;
         this.teacher_ID = teacher_ID;
         this.description = description;
+        this.attend_percentage = attend_percentage;
+        this.project_percentage = project_percentage;
     }
 
     public String getCourse_ID() {
@@ -53,5 +57,21 @@ public class Course implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getAttend_percentage() {
+        return attend_percentage;
+    }
+
+    public void setAttend_percentage(double attend_percentage) {
+        this.attend_percentage = attend_percentage;
+    }
+
+    public double getProject_percentage() {
+        return project_percentage;
+    }
+
+    public void setProject_percentage(double project_percentage) {
+        this.project_percentage = project_percentage;
     }
 }

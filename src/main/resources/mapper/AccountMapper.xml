@@ -2,7 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.project.etsapi.mapper.AccountMapper">
-<!--    Account getAccountById(String account_ID);-->
+
+    <!--    int addAccount(Account account);-->
+    <insert id="addAccount" parameterType="com.project.etsapi.entity.Account">
+        insert into account (account_ID, password, email, activation)
+        values (#{account_ID},
+                #{password,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR},
+                #{activation,jdbcType=BIT})
+    </insert>
+
+<!--    int deleteAccountById(String account_ID);-->
+    <delete id="deleteAccountById" parameterType="String">
+        delete from account
+        where account_ID = #{account_ID}
+    </delete>
+
+<!--    int updateAccount(Account record);-->
+    <update id="updateAccount" parameterType="com.project.mybatis.entity.Account">
+        update account
+        set password = #{password,jdbcType=VARCHAR},
+            email = #{email,jdbcType=VARCHAR},
+            activation = #{activation,jdbcType=BIT}
+        where account_ID = #{accountId,jdbcType=VARCHAR}
+    </update>
+
+    <!--    Account getAccountById(String account_ID);-->
     <select id="getAccountById" parameterType="String" resultType="com.project.etsapi.entity.Account">
         SELECT * FROM account
         WHERE account_ID = #{account_ID}

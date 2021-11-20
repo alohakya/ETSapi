@@ -2,6 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.project.etsapi.mapper.CourseMapper">
+<!--    int addCourse(Course course);-->
+    <insert id="addCourse" parameterType="com.project.etsapi.entity.Course">
+        insert into course (course_ID, name, teacher_ID, description, attend_percentage, project_percentage)
+        values (#{course_ID,jdbcType=VARCHAR},
+                #{name,jdbcType=VARCHAR},
+                #{teacher_ID,jdbcType=VARCHAR},
+                #{description,jdbcType=LONGVARCHAR},
+                #{attend_percentage},
+                #{project_percentage}
+                )
+    </insert>
+
+<!--    int deleteCourseById(String course_ID);-->
+    <delete id="deleteCourseById" parameterType="java.lang.String">
+        delete from course
+        where course_ID = #{course_ID,jdbcType=VARCHAR}
+    </delete>
+
+<!--    int updateCourse(Course course);-->
+    <update id="updateCourse" parameterType="com.project.etsapi.entity.Course">
+        update course
+        set name = #{name,jdbcType=VARCHAR},
+            teacher_ID = #{teacher_ID,jdbcType=VARCHAR},
+            description = #{description,jdbcType=LONGVARCHAR},
+            attend_percentage = #{attend_percentage},
+            project_percentage = #{project_percentage}
+        where course_ID = #{course_ID,jdbcType=VARCHAR}
+    </update>
 
     <!--查一个-->
     <select id="getCourse" parameterType="String" resultType="com.project.etsapi.entity.Course">

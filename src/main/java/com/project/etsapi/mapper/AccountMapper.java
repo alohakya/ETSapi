@@ -13,5 +13,12 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface AccountMapper {
+
+    int addAccount(Account account);
+
+    int deleteAccountById(String account_ID);
+
+    int updateAccount(Account record);
+
     Account getAccountById(String account_ID);
 }

@@ -11,6 +11,27 @@ import java.util.List;
 @Mapper
 public interface CourseMapper {
     /**
+     * 新增课程
+     * @param course
+     * @return
+     */
+    int addCourse(Course course);
+
+    /**
+     * 删除课程
+     * @param course_ID
+     * @return
+     */
+    int deleteCourseById(String course_ID);
+
+    /**
+     * 更新课程
+     * @param course
+     * @return
+     */
+    int updateCourse(Course course);
+
+    /**
      * 根据id查询课程信息
      * @param course_ID
      * @return Course
@@ -29,7 +50,6 @@ public interface CourseMapper {
      * @param
      * @return
      */
-
     List<StudentInfo> getListStudentInfo(HashMap<String, String> parameter);
 
     /**
@@ -38,4 +58,5 @@ public interface CourseMapper {
      * @return
      */
     List<TeacherInfo> getListTeacherInfo(String course_ID);
+
 }
