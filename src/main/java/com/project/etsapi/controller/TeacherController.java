@@ -27,10 +27,10 @@ public class TeacherController {
     public String addTeacher(Teacher teacher) {
         int result = teacherService.addTeacher(teacher);
         if( result >= 1){
-            return "添加成功";
+            return "1";
         }
         else{
-            return "添加失败！该老师已经存在！";
+            return "0";
         }
     }
 
@@ -41,10 +41,10 @@ public class TeacherController {
     public String deleteTeacher(@RequestParam("teacher_ID") String teacher_ID){
         int result = teacherService.deleteTeacher(teacher_ID);
         if(result >= 1){
-            return "删除成功";
+            return "1";
         }
         else{
-            return "删除失败！未找到该老师！";
+            return "0";
         }
     }
 
@@ -55,10 +55,10 @@ public class TeacherController {
     public String setTeacher(Teacher teacher) {
         int result = teacherService.setTeacher(teacher);
         if(result >= 1){
-            return "修改成功";
+            return "1";
         }
         else{
-            return "修改失败！未找到该老师！";
+            return "0";
         }
     }
 

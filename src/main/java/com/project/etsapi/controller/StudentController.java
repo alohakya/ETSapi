@@ -21,10 +21,10 @@ public class StudentController {
     public String addStudent(Student student) {
         int result = studentService.addStudent(student);
         if( result >= 1){
-            return "添加成功";
+            return "1";
         }
         else{
-            return "添加失败！该学生已经存在！";
+            return "0";
         }
     }
 
@@ -35,10 +35,10 @@ public class StudentController {
     public String deleteStudent(@RequestParam("student_ID") String student_ID){
         int result = studentService.deleteStudent(student_ID);
         if(result >= 1){
-            return "删除成功";
+            return "1";
         }
         else{
-            return "删除失败！未找到该学生！";
+            return "0";
         }
     }
 
@@ -49,10 +49,10 @@ public class StudentController {
     public String setStudent(Student student) {
         int result = studentService.setStudent(student);
         if(result >= 1){
-            return "修改成功";
+            return "1";
         }
         else{
-            return "修改失败！未找到该学生！";
+            return "0";
         }
     }
 

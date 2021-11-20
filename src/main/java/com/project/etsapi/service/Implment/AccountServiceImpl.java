@@ -27,6 +27,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Boolean idMatchPassword(String account_ID, String password) {
         Account account = accountMapper.getAccountById(account_ID);
+        if(account == null){
+            // 账号不存在，返回-1（账号或密码错误！）
+            return Boolean.FALSE;
+        }
         return account.getPassword().equals(password);
     }
 }

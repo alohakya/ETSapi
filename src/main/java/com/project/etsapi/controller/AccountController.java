@@ -32,8 +32,14 @@ public class AccountController {
     // http://localhost:8888/account/idMatchPassword?account_ID=10100&password=000000
     @PostMapping( "/idMatchPassword")
     @ResponseBody
-    public Boolean idMatchPassword(@RequestParam("account_ID") String account_ID, @RequestParam("password") String password){
-        return accountService.idMatchPassword(account_ID,password);
+    public String idMatchPassword(@RequestParam("account_ID") String account_ID, @RequestParam("password") String password){
+        Boolean result = accountService.idMatchPassword(account_ID,password);
+        if( result ){
+            return "true";
+        }
+        else{
+            return "false";
+        }
     }
 
 }

@@ -35,11 +35,11 @@ public class CourseController {
         int result = courseService.addCourse(course);
         switch(result){
             case -1:
-                return "-1, 该课程已经存在！";
+                return "-1";
             case -2:
-                return "-2，该教师不存在！";
+                return "-2";
             default:
-                return "添加成功！";
+                return "1";
         }
     }
 
@@ -83,13 +83,13 @@ public class CourseController {
         int result = courseService.addTeachCourse(teachCourse);
         switch(result){
             case -1:
-                return "-1，添加失败！该老师不存在！";
+                return "-1";
             case -2:
-                return "-2，添加失败！该课程不存在！";
+                return "-2";
             case -3:
-                return "-3，添加失败！该老师已经任教该课程！";
+                return "-3";
             default:
-                return "1，添加成功";
+                return "1";
         }
     }
 
@@ -101,17 +101,17 @@ public class CourseController {
         int result = courseService.addTakeCourse(takeCourse);
         switch(result){
             case -1:
-                return "-1，添加失败！该学生不存在！";
+                return "-1";
             case -2:
-                return "-2，添加失败！该助教不存在！";
+                return "-2";
             case -3:
-                return "-3，添加失败！该课程不存在！";
+                return "-3";
             case -4:
-                return "-4, 添加失败！该助教已经参与该课程！";
+                return "-4";
             case -5:
-                return "-5，添加失败！该学生已经参与该课程！";
+                return "-5";
             default:
-                return "1，添加成功";
+                return "1";
         }
     }
 

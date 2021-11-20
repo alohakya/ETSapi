@@ -31,10 +31,10 @@ public class ProjectController {
     public String addProject(Project project) {
         int result = projectService.addProject(project);
         if( result >= 1){
-            return "发布成功";
+            return "1";
         }
         else{
-            return "发布失败！该项目已经存在！";
+            return "0";
         }
     }
     // 教师发布新项目
