@@ -19,7 +19,7 @@
     </delete>
 
 <!--    int updateAccount(Account record);-->
-    <update id="updateAccount" parameterType="com.project.mybatis.entity.Account">
+    <update id="updateAccount" parameterType="com.project.etsapi.entity.Account">
         update account
         set password = #{password,jdbcType=VARCHAR},
             email = #{email,jdbcType=VARCHAR},
