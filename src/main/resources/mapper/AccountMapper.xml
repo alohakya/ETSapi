@@ -5,11 +5,11 @@
 
     <!--    int addAccount(Account account);-->
     <insert id="addAccount" parameterType="com.project.etsapi.entity.Account">
-        insert into account (account_ID, password, email, activation)
+        insert into account (account_ID, password, email, isActive)
         values (#{account_ID},
                 #{password,jdbcType=VARCHAR},
                 #{email,jdbcType=VARCHAR},
-                #{activation,jdbcType=BIT})
+                #{isActive,jdbcType=BIT})
     </insert>
 
 <!--    int deleteAccountById(String account_ID);-->
@@ -23,7 +23,7 @@
         update account
         set password = #{password,jdbcType=VARCHAR},
             email = #{email,jdbcType=VARCHAR},
-            activation = #{activation,jdbcType=BIT}
+            isActive = #{isActive,jdbcType=BIT}
         where account_ID = #{accountId,jdbcType=VARCHAR}
     </update>
 

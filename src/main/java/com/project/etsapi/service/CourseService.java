@@ -13,7 +13,7 @@ public interface CourseService {
 
     List<Teacher> getTeacherListByCourseId(String course_ID);
 
-    List<Student> getStudentListByCourseId(String course_ID, String authority);
+    List<Student> getStudentListByCourseId(String course_ID, String isStudent);
 
     List<Project>  getProjectListByCourseId(String course_ID);
 
@@ -29,7 +29,7 @@ public interface CourseService {
 
     List<String> getAllCourseId();
 
-    List<StudentInfo> getListStudentInfo(String course_ID, String authority);
+    List<StudentInfo> getListStudentInfo(String course_ID, String isStudent);
 
     List<TeacherInfo> getListTeacherInfo(String course_ID);
 }

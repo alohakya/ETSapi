@@ -60,11 +60,11 @@ public class CourseController {
     }
 
     // 根据课程ID和权限获得学生名单或助教名单
-    // http://localhost:8888/course/getStudentListByCourseId?course_ID=42024401&authority=1
+    // http://localhost:8888/course/getStudentListByCourseId?course_ID=42024401&isStudent=1
     @GetMapping("/getStudentListByCourseId")
     @ResponseBody
-    public List<Student> getStudentListByCourseId(@RequestParam("course_ID")String course_ID, @RequestParam("authority")String authority){
-        return courseService.getStudentListByCourseId(course_ID, authority);
+    public List<Student> getStudentListByCourseId(@RequestParam("course_ID")String course_ID, @RequestParam("isStudent")String isStudent){
+        return courseService.getStudentListByCourseId(course_ID, isStudent);
     }
 
     // 根据课程ID获得项目列表
@@ -94,25 +94,26 @@ public class CourseController {
     }
 
     // 添加一位学生或助教到一个课程
-    // http://localhost:8888/course/addTakeCourse?student_ID=1951014&course_ID=42024405&authority=0
+    // http://localhost:8888/course/addTakeCourse?student_ID=1951014&course_ID=42024405&isStudent=0
     @PostMapping( "/addTakeCourse")
     @ResponseBody
     public String addTakeCourse(TakeCourse takeCourse) {
-        int result = courseService.addTakeCourse(takeCourse);
-        switch(result){
-            case -1:
-                return "-1";
-            case -2:
-                return "-2";
-            case -3:
-                return "-3";
-            case -4:
-                return "-4";
-            case -5:
-                return "-5";
-            default:
-                return "1";
-        }
+        return Integer.toString(courseService.addTakeCourse(takeCourse));
+//        int result = courseService.addTakeCourse(takeCourse);
+//        switch(result){
+//            case -1:
+//                return "-1";
+//            case -2:
+//                return "-2";
+//            case -3:
+//                return "-3";
+//            case -4:
+//                return "-4";
+//            case -5:
+//                return "-5";
+//            default:
+//                return "1";
+//        }
     }
 
     // 查找TeachCourse
@@ -140,11 +141,12 @@ public class CourseController {
     }
 
     // 根据课程ID获得列表，列表内容  学生ID，学生名字，账号邮箱
-    // http://localhost:8888/course/getListStudentInfoByCourseId?course_ID=42024401&authority=1
+    // http://localhost:8888/course/getListStudentInfoByCourseId?course_ID=42024401&isStudent=1
     @GetMapping("/getListStudentInfoByCourseId")
     @ResponseBody
-    public List<StudentInfo> getListStudentInfo(@RequestParam("course_ID") String course_ID, @RequestParam("authority")String authority){
-        return courseService.getListStudentInfo(course_ID, authority);
+    public List<StudentInfo> getListStudentInfo(@RequestParam("course_ID") String course_ID,
+                                                @RequestParam("isStudent") String isStudent){
+        return courseService.getListStudentInfo(course_ID, isStudent);
     }
 
     // 根据课程ID获得列表，列表内容  教师ID，教师名字，账号邮箱

@@ -6,12 +6,12 @@ import lombok.Data;
 public class Project {
     private String project_ID;
     private String name;
-    private String release_time;
+    private String start_time;
 //    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//注意月和小时的格式为两个大写字母
 //    java.util.Date date = new Date();//获得当前时间
 //    String birthday = df.format(date);//将当前时间转换成特定格式的时间字符串，这样便可以插入到数据库中
 
-    private String deadline;
+    private String end_time;
     private String description;
     private int path_number;
     private String teacher_ID;
@@ -23,13 +23,13 @@ public class Project {
     }
 
 
-    public Project(String project_ID, String name, String release_time,
-                   String deadline, String description, int path_number,
+    public Project(String project_ID, String name, String start_time,
+                   String end_time, String description, int path_number,
                    String teacher_ID, double percentage) {
         this.project_ID = project_ID;
         this.name = name;
-        this.release_time = release_time;
-        this.deadline = deadline;
+        this.start_time = start_time;
+        this.end_time = end_time;
         this.description = description;
         this.path_number = path_number;
         this.teacher_ID = teacher_ID;
@@ -52,20 +52,20 @@ public class Project {
         this.name = name;
     }
 
-    public String getRelease_time() {
-        return release_time;
+    public String getStart_time() {
+        return start_time;
     }
 
-    public void setRelease_time(String release_time) {
-        this.release_time = release_time;
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
     }
 
-    public String getDeadline() {
-        return deadline;
+    public String getEnd_time() {
+        return end_time;
     }
 
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
     }
 
     public String getDescription() {

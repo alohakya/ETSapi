@@ -25,7 +25,7 @@ public class ProjectController {
     private StudentService studentService;
 
     // 教师发布新项目
-    // http://localhost:8888/project/add?project_ID=4202440103&name=实验三&release_time=2021-11-18 10:14:35&deadline=&description=&path_number=0&percentage=0.2&teacher_ID=10100&course_ID=42024401
+    // http://localhost:8888/project/add?project_ID=4202440103&name=实验三&start_time=2021-11-18 10:14:35&end_time=&description=&path_number=0&percentage=0.2&teacher_ID=10100&course_ID=42024401
     @PostMapping( "/add")
     @ResponseBody
     public String addProject(Project project) {
