@@ -9,16 +9,24 @@
         VALUES (#{student_ID}, #{course_ID}, #{is_student})
     </insert>
 
-    <select id="getStudentListByCourseId" parameterType="java.util.HashMap" resultType="com.project.etsapi.entity.Student">
+    <!--    get TakeCourse-->
+    <select id="getTakeCourse" resultType="com.project.etsapi.entity.TakeCourse">
+        SELECT * FROM takecourse
+        WHERE student_ID=#{student_ID} and course_ID=#{course_ID}
+    </select>
+
+    <select id="getStudentListByCourseId" resultType="com.project.etsapi.entity.Student">
         SELECT takecourse.student_ID, student.name
         FROM takecourse NATURAL JOIN student
         WHERE takecourse.course_ID = #{course_ID} and takecourse.is_student = #{is_student}
     </select>
 
-    <!--    get TakeCourse-->
-    <select id="getTakeCourse" parameterType="java.util.HashMap" resultType="com.project.etsapi.entity.TakeCourse">
-        SELECT * FROM takecourse
-        WHERE student_ID=#{student_ID} and course_ID=#{course_ID}
+    <!--    List<StudentInfo> getStudentInfoList(String course_ID,String is_student);-->
+    <select id="getStudentInfoListByCourseId" resultType="com.project.etsapi.vo.StudentInfo">
+        SELECT takecourse.student_ID,name,account.email
+        FROM (takecourse NATURAL JOIN student) JOIN account
+                                                    ON takecourse.student_ID=account_ID
+        WHERE takecourse.course_ID = #{course_ID} AND takecourse.is_student=#{is_student}
     </select>
 </mapper>
 

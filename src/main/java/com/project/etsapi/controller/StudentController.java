@@ -41,7 +41,6 @@ public class StudentController {
         return String.valueOf(studentService.deleteStudent(student_ID));
     }
 
-
     /**
      * @description: 更新学生信息
      * @path: "/student/set"

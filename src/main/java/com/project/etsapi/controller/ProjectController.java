@@ -6,6 +6,8 @@ import com.project.etsapi.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @Created by Intellij IDEA
  * @Description
@@ -20,9 +22,6 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @Autowired
-    private StudentService studentService;
-
     /**
      * @description: 添加新项目
      * @path: "/project/add"
@@ -36,7 +35,6 @@ public class ProjectController {
         return String.valueOf(projectService.addProject(project));
     }
 
-
     /**
      * @description: 根据项目id查询项目信息
      * @path: "/project/get"
@@ -48,5 +46,18 @@ public class ProjectController {
     @ResponseBody
     public Project getProject(String project_ID){
         return projectService.getProject(project_ID);
+    }
+
+     /**
+     * @description: 根据课程ID获得项目列表
+     * @path: "/project/getProjectListByCourseId"
+     * @param: course_ID 课程id
+     * @return: java.util.List<com.project.etsapi.entity.Project>
+     * @date: 2021/11/26 15:08
+     */
+    @GetMapping("/getProjectListByCourseId")
+    @ResponseBody
+    public List<Project> getProjectListByCourseId(String course_ID){
+        return projectService.getProjectListByCourseId(course_ID);
     }
 }

@@ -6,6 +6,8 @@ import com.project.etsapi.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName ProjectService
  * @Description
@@ -35,5 +37,10 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public Project getProject(String project_ID) {
         return projectMapper.getProject(project_ID);
+    }
+
+    @Override
+    public List<Project> getProjectListByCourseId(String course_ID) {
+        return projectMapper.getProjectListByCourseId(course_ID);
     }
 }

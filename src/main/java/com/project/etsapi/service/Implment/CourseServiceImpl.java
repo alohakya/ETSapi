@@ -51,6 +51,7 @@ public class CourseServiceImpl implements CourseService {
     public int deleteCourse(String course_ID) {
         Course course = courseMapper.getCourse(course_ID);
         if(course == null)
+            //课程不存在
             return -1;
         return courseMapper.deleteCourseById(course_ID);
     }
@@ -59,6 +60,7 @@ public class CourseServiceImpl implements CourseService {
     public int setCourseInfo(String course_ID, String name, String description) {
         Course course = courseMapper.getCourse(course_ID);
         if(course == null){
+            //课程不存在
             return -1;
         }
         return courseMapper.updateCourseInfo(course_ID,name,description);
@@ -68,6 +70,7 @@ public class CourseServiceImpl implements CourseService {
     public int setCourseGrade(String course_ID, double attend_percentage, double project_percentage) {
         Course course = courseMapper.getCourse(course_ID);
         if(course == null){
+            //课程不存在
             return -1;
         }
         return courseMapper.updateCourseGrade(course_ID,attend_percentage,project_percentage);
@@ -79,116 +82,8 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.getCourse(course_ID);
     }
 
-    @Override
-    public List<Teacher> getTeacherListByCourseId(String course_ID) {
-        return teachCourseMapper.getTeacherListByCourseId(course_ID);
-    }
-
-    @Override
-    public List<Student> getStudentListByCourseId(String course_ID, String is_student) {
-        HashMap<String, String> parameters = new HashMap<>();
-        parameters.put("course_ID", course_ID);
-        parameters.put("is_student", is_student);
-        return takeCourseMapper.getStudentListByCourseId(parameters);
-    }
-
-    @Override
-    public List<Project> getProjectListByCourseId(String course_ID) {
-        return projectMapper.getProjectListByCourseId(course_ID);
-    }
-
-    @Override
-    public int addTeachCourse(TeachCourse teachCourse) {
-        if(this.getTeachCourse(teachCourse.getTeacher_ID(), teachCourse.getCourse_ID()) != null){
-            // 该老师已经任教该课程，返回-3
-            return -3;
-        }
-        Teacher teacher = teacherMapper.getTeacher(teachCourse.getTeacher_ID());
-        Course course = courseMapper.getCourse(teachCourse.getCourse_ID());
-        if(teacher!=null && course!=null){
-            return teachCourseMapper.addTeachCourse(teachCourse);
-        }
-        else if(teacher == null){
-            // 老师不存在，返回-1
-            return -1;
-        }
-        else{
-            // 课程不存在，返回-2
-            return -2;
-        }
-    }
-
-    @Override
-    public TeachCourse getTeachCourse(String teacher_ID, String course_ID) {
-        HashMap<String, String> parameters = new HashMap<>();
-        parameters.put("teacher_ID", teacher_ID);
-        parameters.put("course_ID", course_ID);
-        return teachCourseMapper.getTeachCourse(parameters);
-    }
-
-    @Override
-    public TakeCourse getTakeCourse(String student_ID, String course_ID) {
-        HashMap<String, String> parameters = new HashMap<>();
-        parameters.put("student_ID", student_ID);
-        parameters.put("course_ID", course_ID);
-        return takeCourseMapper.getTakeCourse(parameters);
-    }
-
-    @Override
-    public List<Course> getAllCourse() {
-        return courseMapper.getAll();
-    }
-
-    @Override
-    public ArrayList<String> getAllCourseId(){
-        ArrayList<String> courses = new ArrayList<>();
-        for(Course course : getAllCourse()){
-            courses.add(course.getCourse_ID());
-        }
-        return courses;
-    }
-
-    @Override
-    public List<StudentInfo> getListStudentInfo(String course_ID, String is_student) {
-        HashMap<String, String> parameters = new HashMap<>();
-        parameters.put("course_ID", course_ID);
-        parameters.put("is_student", is_student);
-        return courseMapper.getListStudentInfo(parameters);
-    }
-
-    @Override
-    public List<TeacherInfo> getListTeacherInfo(String course_ID) {
-        return courseMapper.getListTeacherInfo(course_ID);
-    }
-
-    @Override
-    public int addTakeCourse(TakeCourse takeCourse) {
-        if(this.getTakeCourse(takeCourse.getStudent_ID(), takeCourse.getCourse_ID()) != null){
-            if(this.getTakeCourse(takeCourse.getStudent_ID(),takeCourse.getCourse_ID()).getIs_student().equals("1")){
-                // 该助教已经参与该课程，返回-4
-                return -4;
-            }
-            else{
-                // 该学生已经参与该课程，返回-5
-                return -5;
-            }
-        }
-        Student student = studentMapper.getStudent(takeCourse.getStudent_ID());
-        Course course = courseMapper.getCourse(takeCourse.getCourse_ID());
-        if(student != null && course != null){
-            return takeCourseMapper.addTakeCourse(takeCourse);
-        }
-        else if(student == null && takeCourse.getIs_student().equals("0")){
-            // 学生不存在，返回-1
-            return -1;
-        }
-        else if(student == null && takeCourse.getIs_student().equals("1")){
-            // 助教不存在，返回-2
-            return -2;
-        }
-        else{
-            // 课程不存在，返回-3
-            return -3;
-        }
-    }
+//    @Override
+//    public List<Project> getProjectListByCourseId(String course_ID) {
+//        return projectMapper.getProjectListByCourseId(course_ID);
+//    }
 }

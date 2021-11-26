@@ -17,25 +17,6 @@ public interface CourseService {
 
     Course getCourse(String course_ID);
 
-    List<Teacher> getTeacherListByCourseId(String course_ID);
+//    List<Project>  getProjectListByCourseId(String course_ID);
 
-    List<Student> getStudentListByCourseId(String course_ID, String is_student);
-
-    List<Project>  getProjectListByCourseId(String course_ID);
-
-    int addTakeCourse(TakeCourse takeCourse);
-
-    int addTeachCourse(TeachCourse teachCourse);
-
-    TeachCourse getTeachCourse(String teacher_ID, String course_ID);
-
-    TakeCourse getTakeCourse(String student_ID, String course_ID);
-
-    List<Course> getAllCourse();
-
-    List<String> getAllCourseId();
-
-    List<StudentInfo> getListStudentInfo(String course_ID, String is_student);
-
-    List<TeacherInfo> getListTeacherInfo(String course_ID);
 }

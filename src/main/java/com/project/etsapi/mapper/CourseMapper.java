@@ -24,8 +24,22 @@ public interface CourseMapper {
      */
     int deleteCourseById(String course_ID);
 
+    /**
+     * 更新课程介绍信息
+     * @param course_ID
+     * @param name
+     * @param description
+     * @return
+     */
     int updateCourseInfo(String course_ID,String name,String description);
 
+    /**
+     * 更新课程成绩占比
+     * @param course_ID
+     * @param attend_percentage
+     * @param project_percentage
+     * @return
+     */
     int updateCourseGrade(String course_ID,double attend_percentage,double project_percentage);
 
     /**
@@ -35,24 +49,17 @@ public interface CourseMapper {
      */
     Course getCourse(String course_ID);
 
-    /**
-     * 获得所有课程
-     * @param
-     * @return
-     */
-    List<Course> getAll();
-
-    /**
-     * 根据课程ID获得列表，列表内容：学生ID，学生名字，账号邮箱
-     * @param
-     * @return
-     */
-    List<StudentInfo> getListStudentInfo(HashMap<String, String> parameter);
-
-    /**
-     * 根据课程ID获得列表，列表内容：教师ID，教师名字，账号邮箱
-     * @param
-     * @return
-     */
-    List<TeacherInfo> getListTeacherInfo(String course_ID);
+//    /**
+//     * 根据课程ID获得列表，列表内容：学生ID，学生名字，账号邮箱
+//     * @param
+//     * @return
+//     */
+//    List<StudentInfo> getListStudentInfo(HashMap<String, String> parameter);
+//
+//    /**
+//     * 根据课程ID获得列表，列表内容：教师ID，教师名字，账号邮箱
+//     * @param
+//     * @return
+//     */
+//    List<TeacherInfo> getListTeacherInfo(String course_ID);
 }

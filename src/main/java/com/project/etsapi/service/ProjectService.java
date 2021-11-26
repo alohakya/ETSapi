@@ -2,6 +2,8 @@ package com.project.etsapi.service;
 
 import com.project.etsapi.entity.Project;
 
+import java.util.List;
+
 /**
  * @InterfaceName ProjectService
  * @Description
@@ -14,4 +16,6 @@ public interface ProjectService {
     int addProject(Project project);
 
     Project getProject(String project_ID);
+
+    List<Project> getProjectListByCourseId(String course_ID);
 }
