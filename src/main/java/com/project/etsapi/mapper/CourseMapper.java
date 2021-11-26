@@ -24,12 +24,9 @@ public interface CourseMapper {
      */
     int deleteCourseById(String course_ID);
 
-    /**
-     * 更新课程
-     * @param course
-     * @return
-     */
-    int updateCourse(Course course);
+    int updateCourseInfo(String course_ID,String name,String description);
+
+    int updateCourseGrade(String course_ID,double attend_percentage,double project_percentage);
 
     /**
      * 根据id查询课程信息
@@ -58,5 +55,4 @@ public interface CourseMapper {
      * @return
      */
     List<TeacherInfo> getListTeacherInfo(String course_ID);
-
 }

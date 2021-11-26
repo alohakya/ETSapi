@@ -20,15 +20,20 @@
         where course_ID = #{course_ID,jdbcType=VARCHAR}
     </delete>
 
-<!--    int updateCourse(Course course);-->
-    <update id="updateCourse" parameterType="com.project.etsapi.entity.Course">
-        update course
-        set name = #{name,jdbcType=VARCHAR},
-            teacher_ID = #{teacher_ID,jdbcType=VARCHAR},
-            description = #{description,jdbcType=LONGVARCHAR},
-            attend_percentage = #{attend_percentage},
+    <!--更新课程介绍-->
+    <update id="updateCourseInfo">
+        UPDATE course
+        SET name = #{name,jdbcType=VARCHAR},
+            description = #{description,jdbcType=LONGVARCHAR}
+        WHERE course_ID = #{course_ID,jdbcType=VARCHAR}
+    </update>
+
+    <!--更新课程成绩-->
+    <update id="updateCourseGrade">
+        UPDATE course
+        SET attend_percentage = #{attend_percentage},
             project_percentage = #{project_percentage}
-        where course_ID = #{course_ID,jdbcType=VARCHAR}
+        WHERE course_ID = #{course_ID,jdbcType=VARCHAR}
     </update>
 
     <!--查一个-->

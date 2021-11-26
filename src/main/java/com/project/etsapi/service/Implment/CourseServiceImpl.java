@@ -48,6 +48,33 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public int deleteCourse(String course_ID) {
+        Course course = courseMapper.getCourse(course_ID);
+        if(course == null)
+            return -1;
+        return courseMapper.deleteCourseById(course_ID);
+    }
+
+    @Override
+    public int setCourseInfo(String course_ID, String name, String description) {
+        Course course = courseMapper.getCourse(course_ID);
+        if(course == null){
+            return -1;
+        }
+        return courseMapper.updateCourseInfo(course_ID,name,description);
+    }
+
+    @Override
+    public int setCourseGrade(String course_ID, double attend_percentage, double project_percentage) {
+        Course course = courseMapper.getCourse(course_ID);
+        if(course == null){
+            return -1;
+        }
+        return courseMapper.updateCourseGrade(course_ID,attend_percentage,project_percentage);
+    }
+
+
+    @Override
     public Course getCourse(String course_ID) {
         return courseMapper.getCourse(course_ID);
     }

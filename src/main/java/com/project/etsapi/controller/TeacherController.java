@@ -20,70 +20,63 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService;
 
-    // 添加老师
-    // http://localhost:8888/teacher/add?teacher_ID=10100&name=aji
+    /**
+     * @description: 添加老师
+     * @path: "/teacher/add"
+     * @param: teacher 包含老师id，姓名
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：老师id已存在
+     * @date: 2021/11/26 15:57
+     */
     @PostMapping( "/add")
-    @ResponseBody
     public String addTeacher(Teacher teacher) {
-        int result = teacherService.addTeacher(teacher);
-        if( result >= 1){
-            return "1";
-        }
-        else{
-            return "0";
-        }
+        return String.valueOf(teacherService.addTeacher(teacher));
     }
 
-    // 删除老师
-    // http://localhost:8888/teacher/delete?teacher_ID=10100
+
+    /**
+     * @description: 根据老师id删除老师
+     * @path: "/teacher/delete"
+     * @param: teacher_ID
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：老师id不存在
+     * @date: 2021/11/26 15:59
+     */
     @PostMapping( "/delete")
     @ResponseBody
     public String deleteTeacher(@RequestParam("teacher_ID") String teacher_ID){
-        int result = teacherService.deleteTeacher(teacher_ID);
-        if(result >= 1){
-            return "1";
-        }
-        else{
-            return "0";
-        }
+        return String.valueOf(teacherService.deleteTeacher(teacher_ID));
     }
 
-    //根据工号更新老师信息
-    //http://localhost:8888/teacher/set?teacher_ID=10100&name=aji
+
+    /**
+     * @description: 根据老师id更新老师信息
+     * @path: "/teacher/set"
+     * @param: teacher
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：老师id不存在
+     * @date: 2021/11/26 16:00
+     */
     @PostMapping("/set")
     @ResponseBody
     public String setTeacher(Teacher teacher) {
-        int result = teacherService.setTeacher(teacher);
-        if(result >= 1){
-            return "1";
-        }
-        else{
-            return "0";
-        }
+        return String.valueOf(teacherService.setTeacher(teacher));
     }
 
-    //查找老师
-    // http://localhost:8888/teacher/get?teacher_ID=10100
+
+    /**
+     * @description: 根据老师id查询老师信息
+     * @path: "/teacher/get"
+     * @param: teacher_ID
+     * @return: com.project.etsapi.entity.Teacher
+     * @date: 2021/11/26 16:01
+     */
     @GetMapping( "/get")
     @ResponseBody
     public Teacher getTeacher(@RequestParam("teacher_ID") String teacher_ID){
         return teacherService.getTeacher(teacher_ID);
     }
-
-    // 打印所有老师信息
-    // http://localhost:8888/teacher/getAllTeacher
-    @GetMapping("/getAllTeacher")
-    @ResponseBody
-    public List<Teacher> getAllTeacher(){
-        return teacherService.getAllTeacher();
-    }
-
-    // 获得所有教师ID，供外码选择
-    // http://localhost:8888/teacher/getAllTeacherId
-    @GetMapping("/getAllTeacherId")
-    @ResponseBody
-    public List<String> getAllTeacherId(){
-        return teacherService.getAllTeacherId();
-    }
-
 }
