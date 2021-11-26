@@ -58,10 +58,10 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<Student> getStudentListByCourseId(String course_ID, String isStudent) {
+    public List<Student> getStudentListByCourseId(String course_ID, String is_student) {
         HashMap<String, String> parameters = new HashMap<>();
         parameters.put("course_ID", course_ID);
-        parameters.put("isStudent", isStudent);
+        parameters.put("is_student", is_student);
         return takeCourseMapper.getStudentListByCourseId(parameters);
     }
 
@@ -122,10 +122,10 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<StudentInfo> getListStudentInfo(String course_ID, String isStudent) {
+    public List<StudentInfo> getListStudentInfo(String course_ID, String is_student) {
         HashMap<String, String> parameters = new HashMap<>();
         parameters.put("course_ID", course_ID);
-        parameters.put("isStudent", isStudent);
+        parameters.put("is_student", is_student);
         return courseMapper.getListStudentInfo(parameters);
     }
 
@@ -137,7 +137,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public int addTakeCourse(TakeCourse takeCourse) {
         if(this.getTakeCourse(takeCourse.getStudent_ID(), takeCourse.getCourse_ID()) != null){
-            if(this.getTakeCourse(takeCourse.getStudent_ID(),takeCourse.getCourse_ID()).getIsStudent().equals("1")){
+            if(this.getTakeCourse(takeCourse.getStudent_ID(),takeCourse.getCourse_ID()).getIs_student().equals("1")){
                 // 该助教已经参与该课程，返回-4
                 return -4;
             }
@@ -151,11 +151,11 @@ public class CourseServiceImpl implements CourseService {
         if(student != null && course != null){
             return takeCourseMapper.addTakeCourse(takeCourse);
         }
-        else if(student == null && takeCourse.getIsStudent().equals("0")){
+        else if(student == null && takeCourse.getIs_student().equals("0")){
             // 学生不存在，返回-1
             return -1;
         }
-        else if(student == null && takeCourse.getIsStudent().equals("1")){
+        else if(student == null && takeCourse.getIs_student().equals("1")){
             // 助教不存在，返回-2
             return -2;
         }

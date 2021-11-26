@@ -48,7 +48,7 @@
         SELECT takecourse.student_ID,name,account.email
         FROM (takecourse NATURAL JOIN student) JOIN account
         ON takecourse.student_ID=account_ID
-        WHERE takecourse.course_ID = #{course_ID} AND takecourse.isStudent=#{isStudent}
+        WHERE takecourse.course_ID = #{course_ID} AND takecourse.is_student=#{is_student}
     </select>
 
 <!--    List<TeacherInfo> getListTeacherInfo(String course_ID);-->

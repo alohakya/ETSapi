@@ -60,11 +60,11 @@ public class CourseController {
     }
 
     // 根据课程ID和权限获得学生名单或助教名单
-    // http://localhost:8888/course/getStudentListByCourseId?course_ID=42024401&isStudent=1
+    // http://localhost:8888/course/getStudentListByCourseId?course_ID=42024401&is_student=1
     @GetMapping("/getStudentListByCourseId")
     @ResponseBody
-    public List<Student> getStudentListByCourseId(@RequestParam("course_ID")String course_ID, @RequestParam("isStudent")String isStudent){
-        return courseService.getStudentListByCourseId(course_ID, isStudent);
+    public List<Student> getStudentListByCourseId(@RequestParam("course_ID")String course_ID, @RequestParam("is_student")String is_student){
+        return courseService.getStudentListByCourseId(course_ID, is_student);
     }
 
     // 根据课程ID获得项目列表
@@ -94,7 +94,7 @@ public class CourseController {
     }
 
     // 添加一位学生或助教到一个课程
-    // http://localhost:8888/course/addTakeCourse?student_ID=1951014&course_ID=42024405&isStudent=0
+    // http://localhost:8888/course/addTakeCourse?student_ID=1951014&course_ID=42024405&is_student=0
     @PostMapping( "/addTakeCourse")
     @ResponseBody
     public String addTakeCourse(TakeCourse takeCourse) {
@@ -141,12 +141,12 @@ public class CourseController {
     }
 
     // 根据课程ID获得列表，列表内容  学生ID，学生名字，账号邮箱
-    // http://localhost:8888/course/getListStudentInfoByCourseId?course_ID=42024401&isStudent=1
+    // http://localhost:8888/course/getListStudentInfoByCourseId?course_ID=42024401&is_student=1
     @GetMapping("/getListStudentInfoByCourseId")
     @ResponseBody
     public List<StudentInfo> getListStudentInfo(@RequestParam("course_ID") String course_ID,
-                                                @RequestParam("isStudent") String isStudent){
-        return courseService.getListStudentInfo(course_ID, isStudent);
+                                                @RequestParam("is_student") String is_student){
+        return courseService.getListStudentInfo(course_ID, is_student);
     }
 
     // 根据课程ID获得列表，列表内容  教师ID，教师名字，账号邮箱

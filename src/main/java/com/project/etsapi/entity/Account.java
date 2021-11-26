@@ -7,17 +7,17 @@ public class Account {
     private String account_ID;
     private String password;
     private String email;
-    private String isActive;
+    private String is_active;
 
     Account(){
 
     }
 
-    public Account(String account_ID, String password, String email, String isActive) {
+    public Account(String account_ID, String password, String email, String is_active) {
         this.account_ID = account_ID;
         this.password = password;
         this.email = email;
-        this.isActive = isActive;
+        this.is_active = is_active;
     }
 
     public String getAccount_ID() {
@@ -32,8 +32,8 @@ public class Account {
         return email;
     }
 
-    public String getIsActive() {
-        return isActive;
+    public String getIs_active() {
+        return is_active;
     }
 
     public void setAccount_ID(String account_ID) {
@@ -48,7 +48,7 @@ public class Account {
         this.email = email;
     }
 
-    public void setIsActive(String isActive) {
-        this.isActive = isActive;
+    public void setIs_active(String is_active) {
+        this.is_active = is_active;
     }
 }

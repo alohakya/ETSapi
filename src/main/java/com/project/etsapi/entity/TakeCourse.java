@@ -6,12 +6,12 @@ import lombok.Data;
 public class TakeCourse {
     private String student_ID;
     private String course_ID;
-    private String isStudent;
+    private String is_student;
 
-    public TakeCourse(String student_ID, String course_ID, String isStudent) {
+    public TakeCourse(String student_ID, String course_ID, String is_student) {
         this.student_ID = student_ID;
         this.course_ID = course_ID;
-        this.isStudent = isStudent;
+        this.is_student = is_student;
     }
 
     public TakeCourse() {
@@ -35,11 +35,11 @@ public class TakeCourse {
     }
 
 
-    public String getIsStudent() {
-        return isStudent;
+    public String getIs_student() {
+        return is_student;
     }
 
-    public void setIsStudent(String isStudent) {
-        this.isStudent = isStudent;
+    public void setIs_student(String is_student) {
+        this.is_student = is_student;
     }
 }

@@ -5,14 +5,14 @@
 
     <!--    add takeCourse-->
     <insert id="addTakeCourse" parameterType="com.project.etsapi.entity.TakeCourse">
-        INSERT INTO takecourse(student_ID, course_ID, isStudent)
-        VALUES (#{student_ID}, #{course_ID}, #{isStudent})
+        INSERT INTO takecourse(student_ID, course_ID, is_student)
+        VALUES (#{student_ID}, #{course_ID}, #{is_student})
     </insert>
 
     <select id="getStudentListByCourseId" parameterType="java.util.HashMap" resultType="com.project.etsapi.entity.Student">
         SELECT takecourse.student_ID, student.name
         FROM takecourse NATURAL JOIN student
-        WHERE takecourse.course_ID = #{course_ID} and takecourse.isStudent = #{isStudent}
+        WHERE takecourse.course_ID = #{course_ID} and takecourse.is_student = #{is_student}
     </select>
 
     <!--    get TakeCourse-->
