@@ -5,13 +5,13 @@ import lombok.Data;
 @Data
 public class Attend {
     private String course_ID;
-    private int number;
+    private String start_time;
     private String student_ID;
     private String attend_time;
 
-    public Attend(String course_ID, int number, String student_ID, String attend_time) {
+    public Attend(String course_ID, String start_time, String student_ID, String attend_time) {
         this.course_ID = course_ID;
-        this.number = number;
+        this.start_time = start_time;
         this.student_ID = student_ID;
         this.attend_time = attend_time;
     }
@@ -27,12 +27,12 @@ public class Attend {
         this.course_ID = course_ID;
     }
 
-    public int getNumber() {
-        return number;
+    public String getStart_time() {
+        return start_time;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
     }
 
     public String getStudent_ID() {

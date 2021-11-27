@@ -21,6 +21,7 @@ public class AccountController {
 
     /**
      * @description: 根据账号ID获得账户
+     * @type: post
      * @path: "/account/get"
      * @param: account_ID
      * @return: com.project.etsapi.entity.Account
@@ -35,7 +36,8 @@ public class AccountController {
 
     /**
      * @description: 验证账号密码是否正确
-     * @path: "/account/idMatchPassword
+     * @type: post
+     * @path: "/account/login"
      * @param: account_ID
      * @param: password
      * @return: java.lang.String

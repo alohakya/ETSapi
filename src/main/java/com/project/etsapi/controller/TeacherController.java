@@ -22,6 +22,7 @@ public class TeacherController {
 
     /**
      * @description: 添加老师
+     * @type: post
      * @path: "/teacher/add"
      * @param: teacher 包含老师id，姓名
      * @return: java.lang.String
@@ -37,6 +38,7 @@ public class TeacherController {
 
     /**
      * @description: 根据老师id删除老师
+     * @type: post
      * @path: "/teacher/delete"
      * @param: teacher_ID
      * @return: java.lang.String
@@ -53,6 +55,7 @@ public class TeacherController {
 
     /**
      * @description: 根据老师id更新老师信息
+     * @type: post
      * @path: "/teacher/set"
      * @param: teacher
      * @return: java.lang.String
@@ -69,6 +72,7 @@ public class TeacherController {
 
     /**
      * @description: 根据老师id查询老师信息
+     * @type: get
      * @path: "/teacher/get"
      * @param: teacher_ID
      * @return: com.project.etsapi.entity.Teacher

@@ -23,6 +23,7 @@ public class CourseController {
 
     /**
      * @description: 根据课程名称、老师id创建新课程，课程id随机数生成
+     * @type: post
      * @path: "/course/addCourse"
      * @param: teacher_ID
      * @param: name
@@ -44,6 +45,7 @@ public class CourseController {
 
     /**
      * @description: 根据课程id删除课程
+     * @type: post
      * @path: "/course/deleteCourse"
      * @param: course_ID
      * @return: java.lang.String
@@ -58,6 +60,7 @@ public class CourseController {
 
     /**
      * @description: 设置课程介绍信息
+     * @type: post
      * @path: "/course/setInfo"
      * @param: course_ID  课程id
      * @param: name  课程名称
@@ -73,6 +76,7 @@ public class CourseController {
 
     /**
      * @description: 设置课程成绩占比
+     * @type: post
      * @path: "/course/setGrade"
      * @param: course_ID
      * @param: attend_percentage

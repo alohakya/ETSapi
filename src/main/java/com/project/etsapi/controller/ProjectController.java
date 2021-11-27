@@ -24,6 +24,7 @@ public class ProjectController {
 
     /**
      * @description: 添加新项目
+     * @type: post
      * @path: "/project/add"
      * @param: project
      * @return: java.lang.String
@@ -37,6 +38,7 @@ public class ProjectController {
 
     /**
      * @description: 根据项目id查询项目信息
+     * @type: get
      * @path: "/project/get"
      * @param: project_ID
      * @return: com.project.etsapi.entity.Project
@@ -50,6 +52,7 @@ public class ProjectController {
 
      /**
      * @description: 根据课程ID获得项目列表
+     * @type: get
      * @path: "/project/getProjectListByCourseId"
      * @param: course_ID 课程id
      * @return: java.util.List<com.project.etsapi.entity.Project>

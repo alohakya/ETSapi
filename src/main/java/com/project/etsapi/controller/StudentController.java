@@ -14,6 +14,7 @@ public class StudentController {
 
     /**
      * @description: 添加学生
+     * @type: post
      * @path: "/student/add"
      * @param: student 包含学生id、姓名
      * @return: java.lang.String
@@ -29,6 +30,7 @@ public class StudentController {
 
     /**
      * @description: 根据学生id删除学生
+     * @type: post
      * @path: "/student/delete"
      * @param: student_ID
      * @return: java.lang.String
@@ -43,6 +45,7 @@ public class StudentController {
 
     /**
      * @description: 更新学生信息
+     * @type: post
      * @path: "/student/set"
      * @param: student
      * @return: java.lang.String
@@ -57,6 +60,7 @@ public class StudentController {
 
     /**
      * @description: 根据学生id查找学生
+     * @type: get
      * @path: "/student/get"
      * @param: student_ID
      * @return: com.project.etsapi.entity.Student

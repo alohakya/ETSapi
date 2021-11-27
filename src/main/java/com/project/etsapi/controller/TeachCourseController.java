@@ -17,6 +17,7 @@ public class TeachCourseController {
 
     /**
      * @description: 添加一位老师到一个课程
+     * @type: post
      * @path: "/teach/addTeachCourse"
      * @param: teachCourse 包含teacher_ID 与 course_ID
      * @return: java.lang.String
@@ -34,6 +35,7 @@ public class TeachCourseController {
 
     /**
      * @description: 删除指定id课程的一位老师
+     * @type: post
      * @path: "/teach/deletaTeachCourse"
      * @param: teachCourse
      * @return: java.lang.String
@@ -46,6 +48,7 @@ public class TeachCourseController {
 
     /**
      * @description: 根据课程id获得教师列表
+     * @type: get
      * @path: "/teach/getTeacherList"
      * @param: course_ID 课程id
      * @return: java.util.List<com.project.etsapi.entity.Teacher>
@@ -59,6 +62,7 @@ public class TeachCourseController {
 
     /**
      * @description: 根据课程id获得老师信息列表，包含id，姓名，邮箱
+     * @type: get
      * @path: "/teach/getTeacherInfoList"
      * @param: course_ID
      * @return: java.util.List<com.project.etsapi.vo.TeacherInfo>

@@ -17,6 +17,7 @@ public class TakeCourseController {
 
     /**
      * @description: 添加一位学生或助教到一个课程
+     * @type: post
      * @path: "/take/addTakeCourse"
      * @param: takeCourse 包含student_ID,course_ID,is_student
      * @return: java.lang.String
@@ -33,6 +34,7 @@ public class TakeCourseController {
 
     /**
      * @description: 删除指定课程的一名学生或助教
+     * @type: post
      * @path: "/take/deleteTakeCourse"
      * @param: takeCourse
      * @return: java.lang.String
@@ -45,6 +47,7 @@ public class TakeCourseController {
 
     /**
      * @description: 根据课程ID和权限参与身份获得学生名单或助教名单
+     * @type: get
      * @path: "/take/getStudentList"
      * @param: course_ID 课程id
      * @param: is_student 是否是学生
@@ -60,6 +63,7 @@ public class TakeCourseController {
 
     /**
      * @description: 根据课程id获得学生或助教信息列表，包含id，姓名，邮箱
+     * @type: get
      * @path: "/course/getStudentInfoList"
      * @param: course_ID
      * @param: is_student

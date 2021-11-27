@@ -23,15 +23,10 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public int addProject(Project project) {
-        if(projectMapper.getProject(project.getProject_ID()) == null){
-            // 新建项目的名下文件个数设为0
-            project.setPath_number(0);
-            return projectMapper.addProject(project);
-        }
-        else{
-            // 返回-1，该项目已存在
+        if(projectMapper.getProject(project.getProject_ID()) != null){
             return -1;
         }
+        return projectMapper.addProject(project);
     }
 
     @Override

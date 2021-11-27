@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.etsapi.mapper.AttendMapper">
+
+    <insert id="addAttendance" parameterType="com.project.etsapi.entity.Attendance">
+        insert into attendance (course_ID,start_time,end_time)
+        values (#{course_ID},
+                #{start_time},
+                #{end_time})
+    </insert>
+
+    <select id="getAttendance" resultType="com.project.etsapi.entity.Attendance">
+        select *
+        from attendance
+        where course_ID = #{course_ID} and start_time = #{start_time}
+    </select>
+
+    <select id="getAttendanceListByCourseId" resultType="com.project.etsapi.entity.Attendance">
+        select *
+        from attendance
+        where course_ID = #{course_ID}
+    </select>
+    
+</mapper>
