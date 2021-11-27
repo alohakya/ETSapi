@@ -9,8 +9,14 @@
         VALUES (#{teacher_ID}, #{course_ID})
     </insert>
 
+<!--    删除指定的一条-->
+    <delete id="deleteTeachCourse" parameterType="com.project.etsapi.entity.TeachCourse">
+        DELETE FROM teachcourse
+        WHERE teacher_ID=#{teacher_ID} and course_ID=#{course_ID}
+    </delete>
+
 <!--    get TeachCourse-->
-    <select id="getTeachCourse" resultType="com.project.etsapi.entity.TeachCourse">
+    <select id="getTeachCourse" parameterType="com.project.etsapi.entity.TeachCourse" resultType="com.project.etsapi.entity.TeachCourse">
         SELECT * FROM teachcourse
         WHERE teacher_ID=#{teacher_ID} and course_ID=#{course_ID}
     </select>

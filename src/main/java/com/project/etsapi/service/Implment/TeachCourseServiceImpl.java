@@ -24,7 +24,7 @@ public class TeachCourseServiceImpl implements TeachCourseService {
 
     @Override
     public int addTeachCourse(TeachCourse teachCourse) {
-        if(this.getTeachCourse(teachCourse.getTeacher_ID(), teachCourse.getCourse_ID()) != null){
+        if(this.getTeachCourse(teachCourse) != null){
             // 该老师已经任教该课程，返回-3
             return -3;
         }
@@ -44,8 +44,14 @@ public class TeachCourseServiceImpl implements TeachCourseService {
     }
 
     @Override
-    public TeachCourse getTeachCourse(String teacher_ID, String course_ID) {
-        return teachCourseMapper.getTeachCourse(teacher_ID,course_ID);
+    public int deleteTeachCourse(TeachCourse teachCourse) {
+        return teachCourseMapper.getTeachCourse(teachCourse) == null?
+                -1:teachCourseMapper.deleteTeachCourse(teachCourse);
+    }
+
+    @Override
+    public TeachCourse getTeachCourse(TeachCourse teachCourse) {
+        return teachCourseMapper.getTeachCourse(teachCourse);
     }
 
     @Override

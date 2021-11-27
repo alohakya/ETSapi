@@ -31,6 +31,19 @@ public class TeachCourseController {
         return String.valueOf(teachCourseService.addTeachCourse(teachCourse));
     }
 
+
+    /**
+     * @description: 删除指定id课程的一位老师
+     * @path: "/teach/deletaTeachCourse"
+     * @param: teachCourse
+     * @return: java.lang.String
+     * @date: 2021/11/27 10:36
+     */
+    @PostMapping("/deleteTeachCourse")
+    public String deleteTeachCourse(TeachCourse teachCourse){
+        return String.valueOf(teachCourseService.deleteTeachCourse(teachCourse));
+    }
+
     /**
      * @description: 根据课程id获得教师列表
      * @path: "/teach/getTeacherList"

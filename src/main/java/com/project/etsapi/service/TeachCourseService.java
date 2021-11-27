@@ -9,7 +9,9 @@ import java.util.List;
 public interface TeachCourseService {
     int addTeachCourse(TeachCourse teachCourse);
 
-    TeachCourse getTeachCourse(String teacher_ID,String course_ID);
+    int deleteTeachCourse(TeachCourse teachCourse);
+
+    TeachCourse getTeachCourse(TeachCourse teachCourse);
 
     List<Teacher> getTeacherListByCourseId(String course_ID);
 

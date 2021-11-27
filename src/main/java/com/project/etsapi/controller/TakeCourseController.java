@@ -22,15 +22,25 @@ public class TakeCourseController {
      * @return: java.lang.String
      * 返回1：成功
      * 返回-1：学生id不存在
-     * 返回-2：助教id不存在
-     * 返回-3：课程id不存在
-     * 返回-4：助教已参与该课程
-     * 返回-5：学生已参与该课程
+     * 返回-2：课程id不存在
+     * 返回-3：已参与该课程
      * @date: 2021/11/26 15:13
      */
     @PostMapping( "/addTakeCourse")
     public String addTakeCourse(TakeCourse takeCourse) {
         return String.valueOf(takeCourseService.addTakeCourse(takeCourse));
+    }
+
+    /**
+     * @description: 删除指定课程的一名学生或助教
+     * @path: "/take/deleteTakeCourse"
+     * @param: takeCourse
+     * @return: java.lang.String
+     * @date: 2021/11/27 11:31
+     */
+    @PostMapping("/deleteTakeCourse")
+    public String deleteTakeCourse(TakeCourse takeCourse){
+        return String.valueOf(takeCourseService.deleteTakeCourse(takeCourse));
     }
 
     /**
@@ -43,7 +53,8 @@ public class TakeCourseController {
      */
     @GetMapping("/getStudentList")
     @ResponseBody
-    public List<Student> getStudentList(@RequestParam("course_ID")String course_ID, @RequestParam("is_student")String is_student){
+    public List<Student> getStudentList(@RequestParam("course_ID")String course_ID,
+                                        @RequestParam("is_student")String is_student){
         return takeCourseService.getStudentListByCourseId(course_ID, is_student);
     }
 

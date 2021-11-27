@@ -18,6 +18,8 @@ import java.util.List;
 public interface TakeCourseMapper {
     int addTakeCourse(TakeCourse takeCourse);
 
+    int deleteTakeCourse(TakeCourse takeCourse);
+
     TakeCourse getTakeCourse(String student_ID,String course_ID);
 
     List<Student> getStudentListByCourseId(String course_ID,String is_student);
