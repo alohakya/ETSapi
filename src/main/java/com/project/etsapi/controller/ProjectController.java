@@ -3,6 +3,7 @@ package com.project.etsapi.controller;
 import com.project.etsapi.entity.Project;
 import com.project.etsapi.service.ProjectService;
 import com.project.etsapi.service.StudentService;
+import com.project.etsapi.vo.ProjectInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,5 +63,18 @@ public class ProjectController {
     @ResponseBody
     public List<Project> getProjectListByCourseId(String course_ID){
         return projectService.getProjectListByCourseId(course_ID);
+    }
+
+    /**
+     * @description: 根据课程ID获得项目信息列表
+     * @path: "/project/getProjectInfoListByCourseId"
+     * @param: course_ID 课程id
+     * @return: java.util.List<com.project.etsapi.vo.ProjectInfo>
+     * @date: 2021/11/26 15:08
+     */
+    @GetMapping("/getProjectInfoListByCourseId")
+    @ResponseBody
+    public List<ProjectInfo> getProjectInfoListByCourseId(String course_ID){
+        return projectService.getProjectInfoListByCourseId(course_ID);
     }
 }
