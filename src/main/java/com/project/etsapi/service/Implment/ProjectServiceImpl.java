@@ -9,7 +9,9 @@ import com.project.etsapi.vo.ProjectInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,6 +63,27 @@ public class ProjectServiceImpl implements ProjectService {
                     project.getPath_number(), teacher.getName(),
                     course_ID, project.getPercentage());
             infos.add(info);
+        }
+        return infos;
+    }
+
+    @Override
+    public List<ProjectInfo> getToDoProjectInfoListByCourseId(String course_ID) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        // new Date()为获取当前系统时间
+        String now_time = df.format(new Date());
+        List<ProjectInfo> infos = new ArrayList<>();
+        List<Project> projects = projectMapper.getProjectListByCourseId(course_ID);
+        for(Project project: projects){
+            // 截止时间在当前时间之后,开始时间在当前时间之前
+            if(project.getEnd_time().compareTo(now_time) > 0 && project.getStart_time().compareTo(now_time) < 0){
+                Teacher teacher = teacherMapper.getTeacher(project.getTeacher_ID());
+                ProjectInfo info = new ProjectInfo(project.getProject_ID(), project.getName(),
+                        project.getStart_time(), project.getEnd_time(), project.getDescription(),
+                        project.getPath_number(), teacher.getName(),
+                        course_ID, project.getPercentage());
+                infos.add(info);
+            }
         }
         return infos;
     }

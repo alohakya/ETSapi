@@ -21,4 +21,6 @@ public interface ProjectService {
     List<Project> getProjectListByCourseId(String course_ID);
 
     List<ProjectInfo> getProjectInfoListByCourseId(String course_ID);
+
+    List<ProjectInfo> getToDoProjectInfoListByCourseId(String course_ID);
 }

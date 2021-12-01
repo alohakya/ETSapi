@@ -77,4 +77,17 @@ public class ProjectController {
     public List<ProjectInfo> getProjectInfoListByCourseId(String course_ID){
         return projectService.getProjectInfoListByCourseId(course_ID);
     }
+
+    /**
+     * @description: 根据课程ID获得待完成项目信息列表
+     * @path: "/project/getToDoProjectInfoListByCourseId"
+     * @param: course_ID 课程id
+     * @return: java.util.List<com.project.etsapi.vo.ProjectInfo>
+     * @date: 2021/11/26 15:08
+     */
+    @GetMapping("/getToDoProjectInfoListByCourseId")
+    @ResponseBody
+    public List<ProjectInfo> getToDoProjectInfoListByCourseId(String course_ID){
+        return projectService.getToDoProjectInfoListByCourseId(course_ID);
+    }
 }
