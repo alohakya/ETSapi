@@ -1,13 +1,9 @@
 package com.project.etsapi.controller;
 
-import com.project.etsapi.entity.*;
+import com.project.etsapi.entity.Course;
 import com.project.etsapi.service.CourseService;
-import com.project.etsapi.vo.StudentInfo;
-import com.project.etsapi.vo.TeacherInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * @ClassName CourseController
@@ -56,8 +52,6 @@ public class CourseController {
         return String.valueOf(courseService.deleteCourse(course_ID));
     }
 
-
-
     /**
      * @description: 设置课程介绍信息
      * @type: post
@@ -72,7 +66,6 @@ public class CourseController {
     public String setCourseInfo(String course_ID,String name,String description){
         return String.valueOf(courseService.setCourseInfo(course_ID,name,description));
     }
-
 
     /**
      * @description: 设置课程成绩占比
@@ -104,6 +97,4 @@ public class CourseController {
     public Course getCourse(@RequestParam("course_ID") String course_ID){
         return courseService.getCourse(course_ID);
     }
-
-
 }

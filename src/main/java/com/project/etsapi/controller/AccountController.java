@@ -29,7 +29,8 @@ public class AccountController {
      */
     @PostMapping( "/get")
     @ResponseBody
-    public Account getAccount(@RequestParam("account_ID") String account_ID){
+    public Account getAccount(
+           @RequestParam("account_ID") String account_ID){
         return accountService.getAccountById(account_ID);
     }
 

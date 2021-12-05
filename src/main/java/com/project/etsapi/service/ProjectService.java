@@ -14,13 +14,15 @@ import java.util.List;
 
 
 public interface ProjectService {
-    int addProject(Project project);
+    Boolean addProject(Project project);
 
-    Project getProject(String project_ID);
+    Project getProject(String course_ID,String name);
 
     List<Project> getProjectListByCourseId(String course_ID);
 
     List<ProjectInfo> getProjectInfoListByCourseId(String course_ID);
 
     List<ProjectInfo> getToDoProjectInfoListByCourseId(String course_ID);
+
+    int deleteProject(Project project);
 }

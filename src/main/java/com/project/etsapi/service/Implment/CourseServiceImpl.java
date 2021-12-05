@@ -52,7 +52,9 @@ public class CourseServiceImpl implements CourseService {
         Course course = courseMapper.getCourse(course_ID);
         if(course == null)
             //课程不存在
+        {
             return -1;
+        }
         return courseMapper.deleteCourseById(course_ID);
     }
 

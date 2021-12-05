@@ -6,6 +6,7 @@ import com.project.etsapi.mapper.ProjectMapper;
 import com.project.etsapi.mapper.TeacherMapper;
 import com.project.etsapi.service.ProjectService;
 import com.project.etsapi.vo.ProjectInfo;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,21 +31,19 @@ public class ProjectServiceImpl implements ProjectService {
     TeacherMapper teacherMapper;
 
     @Override
-    public int addProject(Project project) {
-        if(projectMapper.getProject(project.getProject_ID()) == null){
-            // 新建项目的名下文件个数设为0
-            project.setPath_number(0);
-            return projectMapper.addProject(project);
+    public Boolean addProject(Project project) {
+        try{
+            return projectMapper.addProject(project) == 1;
         }
-        else{
-            // 返回-1，该项目已存在
-            return -1;
+        catch (Exception e){
+            e.printStackTrace();
+            return false;
         }
     }
 
     @Override
-    public Project getProject(String project_ID) {
-        return projectMapper.getProject(project_ID);
+    public Project getProject(String course_ID, String name) {
+        return projectMapper.getProject(course_ID,name);
     }
 
     @Override
@@ -58,10 +57,7 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> projects = projectMapper.getProjectListByCourseId(course_ID);
         for(Project project: projects){
             Teacher teacher = teacherMapper.getTeacher(project.getTeacher_ID());
-            ProjectInfo info = new ProjectInfo(project.getProject_ID(), project.getName(),
-                    project.getStart_time(), project.getEnd_time(), project.getDescription(),
-                    project.getPath_number(), teacher.getName(),
-                    course_ID, project.getPercentage());
+            ProjectInfo info = project.projectToProjectInfo(teacher.getName());
             infos.add(info);
         }
         return infos;
@@ -78,14 +74,16 @@ public class ProjectServiceImpl implements ProjectService {
             // 截止时间在当前时间之后,开始时间在当前时间之前
             if(project.getEnd_time().compareTo(now_time) > 0 && project.getStart_time().compareTo(now_time) < 0){
                 Teacher teacher = teacherMapper.getTeacher(project.getTeacher_ID());
-                ProjectInfo info = new ProjectInfo(project.getProject_ID(), project.getName(),
-                        project.getStart_time(), project.getEnd_time(), project.getDescription(),
-                        project.getPath_number(), teacher.getName(),
-                        course_ID, project.getPercentage());
+                ProjectInfo info = project.projectToProjectInfo(teacher.getName());
                 infos.add(info);
             }
         }
         return infos;
+    }
+
+    @Override
+    public int deleteProject(Project project) {
+        return projectMapper.deleteProject(project.getCourse_ID(),project.getName());
     }
 
 

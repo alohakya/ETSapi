@@ -2,23 +2,26 @@ package com.project.etsapi.entity;
 
 import lombok.Data;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Data
 public class File {
     private String course_ID;
-    private int number;
-    private String name;
+    private String file_name;
     private String path;
     private String submit_time;
-    private String project_ID;
+    private String project_name;
 
-    public File(String course_ID, int number, String name,
-                String path, String submit_time, String project_ID) {
+    public File(String course_ID, String file_name, String path, String project_name) {
         this.course_ID = course_ID;
-        this.number = number;
-        this.name = name;
+        this.file_name = file_name;
         this.path = path;
-        this.submit_time = submit_time;
-        this.project_ID = project_ID;
+        this.project_name = project_name;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date date = new Date();
+        this.submit_time = df.format(date);
     }
 
     public File() {
@@ -32,20 +35,12 @@ public class File {
         this.course_ID = course_ID;
     }
 
-    public int getNumber() {
-        return number;
+    public String getFile_name() {
+        return file_name;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFile_name(String file_name) {
+        this.file_name = file_name;
     }
 
     public String getPath() {
@@ -64,11 +59,11 @@ public class File {
         this.submit_time = submit_time;
     }
 
-    public String getProject_ID() {
-        return project_ID;
+    public String getProject_name() {
+        return project_name;
     }
 
-    public void setProject_ID(String project_ID) {
-        this.project_ID = project_ID;
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
     }
 }

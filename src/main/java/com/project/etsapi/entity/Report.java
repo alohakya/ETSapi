@@ -5,16 +5,16 @@ import lombok.Data;
 @Data
 public class Report {
     private String student_ID;
-    private String project_ID;
+    private String project_name;
     private String path;
     private int score;
     private String submit_time;
     private String correct_time;
 
-    public Report(String student_ID, String project_ID, String path,
+    public Report(String student_ID, String project_name, String path,
                   int score, String submit_time, String correct_time) {
         this.student_ID = student_ID;
-        this.project_ID = project_ID;
+        this.project_name = project_name;
         this.path = path;
         this.score = score;
         this.submit_time = submit_time;
@@ -32,12 +32,12 @@ public class Report {
         this.student_ID = student_ID;
     }
 
-    public String getProject_ID() {
-        return project_ID;
+    public String getProject_name() {
+        return project_name;
     }
 
-    public void setProject_ID(String project_ID) {
-        this.project_ID = project_ID;
+    public void setProject_name(String project_name) {
+        this.project_name = project_name;
     }
 
     public String getPath() {

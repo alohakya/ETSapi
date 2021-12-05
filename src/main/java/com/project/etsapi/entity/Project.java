@@ -1,32 +1,29 @@
 package com.project.etsapi.entity;
 
+import com.project.etsapi.vo.ProjectInfo;
 import lombok.Data;
 
 @Data
 public class Project {
-    private String project_ID;
+    private String course_ID;
     private String name;
     private String start_time;
+    private String end_time;
+    private String description;
+    private String teacher_ID;
+    private int path_number;
+    private double percentage;
 //    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//注意月和小时的格式为两个大写字母
 //    java.util.Date date = new Date();//获得当前时间
 //    String birthday = df.format(date);//将当前时间转换成特定格式的时间字符串，这样便可以插入到数据库中
-
-    private String end_time;
-    private String description;
-    private int path_number;
-    private String teacher_ID;
-    private String course_ID;
-    private double percentage;
 
     public Project() {
 
     }
 
-
-    public Project(String project_ID, String name, String start_time,
-                   String end_time, String description, int path_number,
-                   String teacher_ID, double percentage) {
-        this.project_ID = project_ID;
+    public Project(String course_ID,String name, String start_time, String end_time,
+                   String description, int path_number, String teacher_ID, double percentage) {
+        this.course_ID = course_ID;
         this.name = name;
         this.start_time = start_time;
         this.end_time = end_time;
@@ -36,12 +33,16 @@ public class Project {
         this.percentage = percentage;
     }
 
-    public String getProject_ID() {
-        return project_ID;
-    }
-
-    public void setProject_ID(String project_ID) {
-        this.project_ID = project_ID;
+    public ProjectInfo projectToProjectInfo(String teacherName){
+        ProjectInfo projectInfo= new ProjectInfo();
+        projectInfo.setName(this.name);
+        projectInfo.setCourse_ID(this.getCourse_ID());
+        projectInfo.setTeacher_name(teacherName);
+        projectInfo.setPercentage(this.percentage);
+        projectInfo.setPath_number(this.path_number);
+        projectInfo.setStart_time(this.start_time);
+        projectInfo.setEnd_time(this.end_time);
+        return projectInfo;
     }
 
     public String getName() {

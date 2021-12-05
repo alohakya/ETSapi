@@ -10,19 +10,24 @@
 
 <!--    int addProject(Project project);-->
     <insert id="addProject" parameterType="com.project.etsapi.entity.Project">
-        INSERT INTO project(project_ID, name, start_time,
+        INSERT INTO project(course_ID, name, start_time,
                             end_time, description, path_number,
-                            percentage, teacher_ID, course_ID)
-        VALUES (#{project_ID}, #{name}, #{start_time}, #{end_time},
-                #{description}, #{path_number}, #{percentage},
-                #{teacher_ID}, #{course_ID})
+                            percentage, teacher_ID)
+        VALUES (#{course_ID}, #{name},#{start_time},
+                #{end_time},#{description}, #{path_number},
+                #{percentage},#{teacher_ID})
     </insert>
 
-<!--    Project getProject(String project_ID);-->
-    <select id="getProject" parameterType="String" resultType="com.project.etsapi.entity.Project">
+<!--    Project getProject(String course_ID,String name);-->
+    <select id="getProject" resultType="com.project.etsapi.entity.Project">
         SELECT * FROM project
-        WHERE project_ID = #{project_ID}
+        WHERE course_ID = #{course_ID} and name = #{name}
     </select>
+
+    <delete id="deleteProject">
+        DELETE FROM project
+        WHERE course_ID=#{course_ID} and name = #{name}
+    </delete>
 </mapper>
 
 

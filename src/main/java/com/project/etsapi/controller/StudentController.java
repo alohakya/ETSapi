@@ -27,7 +27,6 @@ public class StudentController {
         return String.valueOf(studentService.addStudent(student));
     }
 
-
     /**
      * @description: 根据学生id删除学生
      * @type: post

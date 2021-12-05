@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.etsapi.mapper.FileMapper">
+    <insert id="addFile" parameterType="com.project.etsapi.entity.File">
+        insert into file (course_ID,file_name,project_name,path,submit_time)
+        values (#{course_ID},#{file_name},#{project_name},#{path},#{submit_time})
+    </insert>
+
+    <select id="getFile">
+        SELECT * FROM file
+        WHERE course_ID = #{course_ID} and file_name = #{file_name} and path = #{path}
+    </select>
+
+    <delete id="deleteFileByProject">
+        DELETE FROM file
+        WHERE course_ID=#{course_ID} and project_name=#{project_name}
+    </delete>
+
+</mapper>

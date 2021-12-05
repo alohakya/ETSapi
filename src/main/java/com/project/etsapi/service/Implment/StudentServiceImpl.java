@@ -15,22 +15,17 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public int addStudent(Student student){
-        if(studentMapper.getStudent(student.getStudent_ID()) != null){
-            // 已经存在，返回-1
-            return -1;
-        }
-        else{
+        try {
             return studentMapper.addStudent(student);
+        }
+        catch (Exception e){
+            return -1;
         }
     }
 
     @Override
     public int deleteStudent(String student_ID){
-        if(studentMapper.getStudent(student_ID)!=null){
-            return studentMapper.deleteStudent(student_ID);
-        }
-        // 不存在则返回-1
-        else return -1;
+        return studentMapper.deleteStudent(student_ID);
     }
 
     @Override
@@ -39,7 +34,9 @@ public class StudentServiceImpl implements StudentService {
             return studentMapper.setStudent(student);
         }
         // 不存在则返回-1
-        else return -1;
+        else {
+            return -1;
+        }
     }
 
     @Override

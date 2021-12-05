@@ -30,8 +30,11 @@ public interface ProjectMapper {
 
     /**
      * 根据课程编号获取项目列表
-     * @param project_ID
+     * @param course_ID
+     * @param name
      * @return
      */
-    Project getProject(String project_ID);
+    Project getProject(String course_ID,String name);
+
+    int deleteProject(String course_ID,String name);
 }
