@@ -15,7 +15,7 @@ public class FileServiceImpl implements FileService {
 
     @Autowired
     private FileMapper fileMapper;
-    private final String basePath = "C:/ETS/";
+    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
 //    private final String basePath = "E:/PC/Desktop/";
 
     @Override
