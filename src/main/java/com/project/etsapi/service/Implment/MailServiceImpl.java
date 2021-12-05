@@ -12,7 +12,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import java.util.Random;
 
 @Service
 public class MailServiceImpl implements MailService {
@@ -33,19 +32,15 @@ public class MailServiceImpl implements MailService {
     private TeacherMapper teacherMapper;
 
     @Override
-    public String sendSimpleMail(String account_ID,String email, HttpSession session){
+    public String sendSimpleMail(String account_ID,String email,String title, String content){
         if(studentMapper.getStudent(account_ID) == null && teacherMapper.getTeacher(account_ID) == null)
             return "-1";
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            String code = String.valueOf(new Random().nextInt(899999) + 100000);
-            session.setAttribute("account_ID",account_ID);
-            session.setAttribute("code",code);
-            session.setAttribute("email", email);
             message.setFrom(from);
             message.setTo(email);
-            message.setSubject("验证码邮件");
-            message.setText("您的验证码为：" + code + "，十分钟内有效！");
+            message.setSubject(title);
+            message.setText(content);
             mailSender.send(message);
             System.out.println("邮件发送成功");
             return "1";
@@ -58,25 +53,23 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public String register(RegisterInfo registerInfo, HttpSession session) {
-        String account_ID = (String) session.getAttribute("account_ID");
-        String email = (String) session.getAttribute("email");
-        String code = (String) session.getAttribute("code");
-
-        //id与之前填写的不一样
-        if(!account_ID.equals(registerInfo.getAccount_ID())){
-            return "-1";
-        }
-        //邮箱与之前填写的不一样
-        if(!email.equals(registerInfo.getEmail())){
-            return "-2";
-        }
-        //验证码与之前填写的不一样
-        if(!code.equals(registerInfo.getCode())){
-            return "-3";
-        }
-
         //更新数据库
         try{
+            String account_ID = (String) session.getAttribute("account_ID");
+            String email = (String) session.getAttribute("email");
+            String code = (String) session.getAttribute("code");
+            //id与之前填写的不一样
+            if(!account_ID.equals(registerInfo.getAccount_ID())){
+                return "-1";
+            }
+            //邮箱与之前填写的不一样
+            if(!email.equals(registerInfo.getEmail())){
+                return "-2";
+            }
+            //验证码与之前填写的不一样
+            if(!code.equals(registerInfo.getCode())){
+                return "-3";
+            }
             return accountMapper.addAccount(registerInfo.toAccount()) == 1? "1" : "-4";
         }
         catch (Exception e){

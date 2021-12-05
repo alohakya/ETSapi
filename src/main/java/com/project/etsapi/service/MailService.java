@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 public interface MailService {
 
-    public String sendSimpleMail(String account_ID,String email, HttpSession session);
+    public String sendSimpleMail(String account_ID,String email,String title, String content);
 
     public String register(RegisterInfo registerInfo, HttpSession session);
 }
