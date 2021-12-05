@@ -1,12 +1,7 @@
 package com.project.etsapi.mapper;
 
 import com.project.etsapi.entity.Course;
-import com.project.etsapi.vo.StudentInfo;
-import com.project.etsapi.vo.TeacherInfo;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.HashMap;
-import java.util.List;
 
 @Mapper
 public interface CourseMapper {

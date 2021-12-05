@@ -1,6 +1,5 @@
 package com.project.etsapi.service;
 
-import com.project.etsapi.entity.Attend;
 import com.project.etsapi.entity.Attendance;
 
 import java.util.List;

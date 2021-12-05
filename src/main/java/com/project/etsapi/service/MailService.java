@@ -1,6 +1,5 @@
 package com.project.etsapi.service;
 
-import com.project.etsapi.entity.Account;
 import com.project.etsapi.vo.RegisterInfo;
 
 import javax.servlet.http.HttpSession;

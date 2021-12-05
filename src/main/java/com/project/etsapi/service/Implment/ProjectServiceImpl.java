@@ -6,7 +6,6 @@ import com.project.etsapi.mapper.ProjectMapper;
 import com.project.etsapi.mapper.TeacherMapper;
 import com.project.etsapi.service.ProjectService;
 import com.project.etsapi.vo.ProjectInfo;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

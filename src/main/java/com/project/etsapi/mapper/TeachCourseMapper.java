@@ -5,7 +5,6 @@ import com.project.etsapi.entity.Teacher;
 import com.project.etsapi.vo.TeacherInfo;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**

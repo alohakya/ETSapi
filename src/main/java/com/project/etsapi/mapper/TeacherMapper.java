@@ -1,6 +1,5 @@
 package com.project.etsapi.mapper;
 
-import com.project.etsapi.entity.Student;
 import com.project.etsapi.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 

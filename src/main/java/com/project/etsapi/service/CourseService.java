@@ -1,10 +1,6 @@
 package com.project.etsapi.service;
 
-import com.project.etsapi.entity.*;
-import com.project.etsapi.vo.StudentInfo;
-import com.project.etsapi.vo.TeacherInfo;
-
-import java.util.List;
+import com.project.etsapi.entity.Course;
 
 public interface CourseService {
     int addCourse(Course course);

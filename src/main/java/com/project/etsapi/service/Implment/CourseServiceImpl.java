@@ -1,16 +1,10 @@
 package com.project.etsapi.service.Implment;
 
-import com.project.etsapi.entity.*;
+import com.project.etsapi.entity.Course;
 import com.project.etsapi.mapper.*;
 import com.project.etsapi.service.CourseService;
-import com.project.etsapi.vo.StudentInfo;
-import com.project.etsapi.vo.TeacherInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @ClassName CourseServiceImpl

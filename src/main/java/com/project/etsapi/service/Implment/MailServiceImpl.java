@@ -1,6 +1,5 @@
 package com.project.etsapi.service.Implment;
 
-import com.project.etsapi.entity.Account;
 import com.project.etsapi.mapper.AccountMapper;
 import com.project.etsapi.mapper.StudentMapper;
 import com.project.etsapi.mapper.TeacherMapper;

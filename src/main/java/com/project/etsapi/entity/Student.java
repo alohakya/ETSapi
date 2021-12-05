@@ -1,6 +1,6 @@
 package com.project.etsapi.entity;
 
-import lombok.*;
+import lombok.Data;
 
 import java.io.Serializable;
 
