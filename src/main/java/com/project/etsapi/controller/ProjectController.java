@@ -36,41 +36,32 @@ public class ProjectController {
      * @path: "/project/add"
      * @param: request，实验项目信息表单，除实验项目分数占比外所有实验项目信息，及文件列表
      * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：实验项目添加失败
+     * 返回-2：文件上传失败
      * @date: 2021/11/26 15:41
      */
     @PostMapping( "/add")
     @ResponseBody
     public String addProject(HttpServletRequest request,Project project){
-        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
+        List<MultipartFile> fileList = ((MultipartHttpServletRequest) request).getFiles("file");
         project.setPercentage(0);
+        //增加实验项目
         if (!projectService.addProject(project)) {
-            return "false";
+            return "-1";
         }
-        //写文件到本地
-        for(MultipartFile file:files){
-            //写文件
-            File filePath = new File("E:/PC/Desktop/" +
-                    project.getCourse_ID() + "/实验项目/" + project.getName());
-            if(!filePath.exists()) {
-                filePath.mkdirs();
-            }
-            try {
-                //写文件到目标路径
-                String fileName = file.getOriginalFilename();
-                file.transferTo(new File(filePath + "/" + fileName));
-                //将文件记录写到数据库
-                com.project.etsapi.entity.File dbFile = new com.project.etsapi.entity.File(
-                        project.getCourse_ID(),fileName,filePath.toString(),project.getName());
-                fileService.addFile(dbFile);
-            } catch (Exception e) {
-                //写数据库出错或写文件出错，手动回滚
-                e.printStackTrace();
-                projectService.deleteProject(project);
-                fileService.deleteFileByProject(project);
-                return "false";
-            }
+        //上传文件
+        try{
+            fileService.saveFiles(project, fileList);
         }
-        return "true";
+        catch (Exception e){
+            //出错，手动回滚
+            e.printStackTrace();
+            projectService.deleteProject(project);
+            fileService.deleteFileByProject(project);
+            return "-2";
+        }
+        return "1";
     }
 
     /**

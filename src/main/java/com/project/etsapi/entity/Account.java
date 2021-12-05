@@ -9,7 +9,7 @@ public class Account {
     private String email;
     private String is_active;
 
-    Account(){
+    public Account(){
 
     }
 

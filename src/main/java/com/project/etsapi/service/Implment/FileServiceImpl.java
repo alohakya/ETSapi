@@ -6,12 +6,16 @@ import com.project.etsapi.mapper.FileMapper;
 import com.project.etsapi.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Service
 public class FileServiceImpl implements FileService {
 
     @Autowired
     private FileMapper fileMapper;
+    private final String basePath = "E:/PC/Desktop/";
 
     @Override
     public Boolean addFile(File file) {
@@ -32,5 +36,20 @@ public class FileServiceImpl implements FileService {
     @Override
     public int deleteFileByProject(Project project) {
         return fileMapper.deleteFileByProject(project.getCourse_ID(),project.getName());
+    }
+
+    @Override
+    public String saveFiles(Project project,List<MultipartFile> fileList) throws Exception{
+        for(MultipartFile file:fileList){
+            java.io.File filePath = new java.io.File(basePath +
+                    project.getCourse_ID() + "/Projects/" + project.getName());
+            if(!filePath.exists()) {
+                filePath.mkdirs();
+            }
+            String fileName = file.getOriginalFilename();
+            file.transferTo(new java.io.File(filePath + "/" + fileName));
+            fileMapper.addFile(new File(project.getCourse_ID(),fileName,filePath.toString(),project.getName()));
+        }
+        return "1";
     }
 }
