@@ -1,8 +1,10 @@
 package com.project.etsapi.service.Implment;
 
+import com.project.etsapi.entity.Attend;
 import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.mapper.AttendMapper;
 import com.project.etsapi.service.AttendService;
+import com.project.etsapi.vo.AttendInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +43,34 @@ public class AttendServiceImpl implements AttendService {
             if(attendance.getStart_time().compareTo(now_time)<0 && attendance.getEnd_time().compareTo(now_time)>0){
                 result.add(attendance);
             }
+        }
+        return result;
+    }
+
+    @Override
+    public List<AttendInfo> getAttendInfoList(String course_ID, String student_ID) {
+        List<Attendance> totalTmp = attendMapper.getAttendanceListByCourseId(course_ID);
+        List<Attend> stuTmp = attendMapper.getAttendList(course_ID,student_ID);
+        List<AttendInfo> result = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while (i < totalTmp.size() && j < stuTmp.size()){
+            //出勤
+            if(totalTmp.get(i).getStart_time().equals(stuTmp.get(j).getStart_time())){
+                result.add(totalTmp.get(i).toAttendInfo(student_ID,Boolean.TRUE));
+                i++;
+                j++;
+            }
+            //缺勤
+            else{
+                result.add(totalTmp.get(i).toAttendInfo(student_ID,Boolean.FALSE));
+                i++;
+            }
+        }
+        //在数据库不出错的情况下，totalTmp的长度一定 ≥ stuTmp，所以下述为缺勤
+        while (i < totalTmp.size()){
+            result.add(totalTmp.get(i).toAttendInfo(student_ID,Boolean.FALSE));
+            i++;
         }
         return result;
     }

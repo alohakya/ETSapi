@@ -2,6 +2,7 @@ package com.project.etsapi.controller;
 
 import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.service.AttendService;
+import com.project.etsapi.vo.AttendInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -52,5 +53,10 @@ public class AttendController {
     @GetMapping("/getOnGoingAttendanceListByCourseId")
     public List<Attendance> getOnGoingAttendanceListByCourseId(String course_ID){
         return attendService.getOnGoingAttendanceListByCourseId(course_ID);
+    }
+
+    @GetMapping("/getAttendInfoList")
+    public List<AttendInfo> getAttendInfoList(String course_ID, String student_ID){
+        return attendService.getAttendInfoList(course_ID,student_ID);
     }
 }

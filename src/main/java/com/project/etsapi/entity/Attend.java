@@ -7,13 +7,11 @@ public class Attend {
     private String course_ID;
     private String start_time;
     private String student_ID;
-    private String attend_time;
 
-    public Attend(String course_ID, String start_time, String student_ID, String attend_time) {
+    public Attend(String course_ID, String start_time, String student_ID) {
         this.course_ID = course_ID;
         this.start_time = start_time;
         this.student_ID = student_ID;
-        this.attend_time = attend_time;
     }
 
     public Attend() {
@@ -43,11 +41,4 @@ public class Attend {
         this.student_ID = student_ID;
     }
 
-    public String getAttend_time() {
-        return attend_time;
-    }
-
-    public void setAttend_time(String attend_time) {
-        this.attend_time = attend_time;
-    }
 }

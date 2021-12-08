@@ -63,6 +63,7 @@ public class FileServiceImpl implements FileService {
                     project.getCourse_ID() + project.getProjectPath());
             if(!filePath.exists()) {
                 filePath.mkdirs();
+                //保存实验项目文件夹
                 fileMapper.addFile(new File(project.getCourse_ID(), project.getName(),
                         "/实验资料",project.getName()));
             }

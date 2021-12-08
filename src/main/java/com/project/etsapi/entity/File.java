@@ -20,8 +20,7 @@ public class File {
         this.path = path;
         this.project_name = project_name;
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        java.util.Date date = new Date();
-        this.submit_time = df.format(date);
+        this.submit_time = df.format(new Date());
     }
 
     public File() {

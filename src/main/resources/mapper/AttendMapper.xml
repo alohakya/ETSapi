@@ -21,5 +21,10 @@
         from attendance
         where course_ID = #{course_ID}
     </select>
-    
+
+    <select id="getAttendList" resultType="com.project.etsapi.entity.Attend">
+        select * from attend
+        where course_ID = #{course_ID} and student_ID = #{student_ID}
+    </select>
+
 </mapper>
