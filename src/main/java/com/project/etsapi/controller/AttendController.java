@@ -41,4 +41,16 @@ public class AttendController {
     public List<Attendance> getAttendanceListByCourseId(String course_ID){
         return attendService.getAttendanceListByCourseId(course_ID);
     }
+
+    /**
+     * @description: 传入课程id查询该课程所有考勤
+     * @path: "/attend/getOnGoingAttendanceListByCourseId"
+     * @param: course_ID
+     * @return: java.util.List<com.project.etsapi.entity.Attendance>
+     * @date: 2021/11/28 0:02
+     */
+    @GetMapping("/getOnGoingAttendanceListByCourseId")
+    public List<Attendance> getOnGoingAttendanceListByCourseId(String course_ID){
+        return attendService.getOnGoingAttendanceListByCourseId(course_ID);
+    }
 }
