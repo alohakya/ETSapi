@@ -46,6 +46,16 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public List<String> getProjectNameListByCourseId(String course_ID) {
+        List<String> result = new ArrayList<>();
+        List<Project> tmp = projectMapper.getProjectListByCourseId(course_ID);
+        for (Project p:tmp) {
+            result.add(p.getName());
+        }
+        return result;
+    }
+
+    @Override
     public List<Project> getProjectListByCourseId(String course_ID) {
         return projectMapper.getProjectListByCourseId(course_ID);
     }

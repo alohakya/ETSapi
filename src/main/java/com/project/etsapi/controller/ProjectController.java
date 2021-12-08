@@ -93,6 +93,7 @@ public class ProjectController {
 
     /**
      * @description: 根据课程ID获得项目信息列表
+     * @type: get
      * @path: "/project/getProjectInfoListByCourseId"
      * @param: course_ID 课程id
      * @return: java.util.List<com.project.etsapi.vo.ProjectInfo>
@@ -106,6 +107,7 @@ public class ProjectController {
 
     /**
      * @description: 根据课程ID获得待完成项目信息列表
+     * @type: get
      * @path: "/project/getToDoProjectInfoListByCourseId"
      * @param: course_ID 课程id
      * @return: java.util.List<com.project.etsapi.vo.ProjectInfo>

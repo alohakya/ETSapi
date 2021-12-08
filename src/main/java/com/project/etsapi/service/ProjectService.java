@@ -18,6 +18,8 @@ public interface ProjectService {
 
     Project getProject(String course_ID,String name);
 
+    List<String> getProjectNameListByCourseId(String course_ID);
+
     List<Project> getProjectListByCourseId(String course_ID);
 
     List<ProjectInfo> getProjectInfoListByCourseId(String course_ID);

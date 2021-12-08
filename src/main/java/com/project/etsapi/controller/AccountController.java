@@ -55,6 +55,8 @@ public class AccountController {
      * @param: account_ID
      * @param: password
      * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：账号或密码错误
      * @date: 2021/11/26 15:37
      */
     @PostMapping( "/login")
@@ -65,10 +67,11 @@ public class AccountController {
 
     /**
      * @description: 发送邮件
+     * @type: post
      * @path: "/account/sendEmail"
-     * @param: account_ID
+     * @param: account_ID 传入学号或工号account_ID，以及邮箱email
      * @param: email
-     * @param: session
+     * @param: request
      * @return: java.lang.String
      * 返回1：发送成功
      * 返回-1：account_ID不存在
@@ -94,8 +97,9 @@ public class AccountController {
 
     /**
      * @description: 核对注册信息、验证码
+     * @type: post
      * @path: "/account/register"
-     * @param: registerInfo
+     * @param: registerInfo 传入学号或工号account_ID、邮箱email、密码password、验证码code
      * @param: session
      * @return: java.lang.String
      * 返回1：成功

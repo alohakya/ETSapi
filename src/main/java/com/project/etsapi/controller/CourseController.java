@@ -5,6 +5,8 @@ import com.project.etsapi.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Random;
+
 /**
  * @ClassName CourseController
  * @Description
@@ -35,7 +37,7 @@ public class CourseController {
         Course course = new Course();
         course.setTeacher_ID(teacher_ID);
         course.setName(name);
-        course.setCourse_ID(String.valueOf((int) (10000000+Math.random()*(100000000 - 10000000))));
+        course.setCourse_ID(String.valueOf(new Random().nextInt(89999999) + 10000000));
         return String.valueOf(courseService.addCourse(course));
     }
 
@@ -87,6 +89,7 @@ public class CourseController {
 
     /**
      * @description: 根据课程id获得课程信息
+     * @type: get
      * @path: "/course/getCourse"
      * @param: course_ID 课程id
      * @return: com.project.etsapi.entity.Course

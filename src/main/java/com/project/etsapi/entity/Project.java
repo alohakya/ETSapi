@@ -21,6 +21,10 @@ public class Project {
 
     }
 
+    public String getProjectPath(){
+        return "/实验资料/" + this.getName();
+    }
+
     public Project(String course_ID,String name, String start_time, String end_time,
                    String description, int path_number, String teacher_ID, double percentage) {
         this.course_ID = course_ID;

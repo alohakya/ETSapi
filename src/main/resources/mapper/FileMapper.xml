@@ -12,6 +12,11 @@
         WHERE course_ID = #{course_ID} and file_name = #{file_name} and path = #{path}
     </select>
 
+    <select id="getFiles" resultType="com.project.etsapi.vo.FileInfo">
+        SELECT file_name,submit_time FROM file
+        WHERE course_ID = #{course_ID} and path = #{path}
+    </select>
+
     <delete id="deleteFileByProject">
         DELETE FROM file
         WHERE course_ID=#{course_ID} and project_name=#{project_name}
