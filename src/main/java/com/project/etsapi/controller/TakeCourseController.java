@@ -64,7 +64,7 @@ public class TakeCourseController {
     /**
      * @description: 根据课程id获得学生或助教信息列表，包含id，姓名，邮箱
      * @type: get
-     * @path: "/course/getStudentInfoList"
+     * @path: "/take/getStudentInfoList"
      * @param: course_ID
      * @param: is_student
      * @return: java.util.List<com.project.etsapi.vo.StudentInfo>

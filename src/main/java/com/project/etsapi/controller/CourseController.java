@@ -90,7 +90,7 @@ public class CourseController {
     /**
      * @description: 根据课程id获得课程信息
      * @type: get
-     * @path: "/course/getCourse"
+     * @path: "/course/get"
      * @param: course_ID 课程id
      * @return: com.project.etsapi.entity.Course
      * @date: 2021/11/26 15:03
