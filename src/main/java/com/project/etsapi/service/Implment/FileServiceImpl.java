@@ -5,10 +5,18 @@ import com.project.etsapi.entity.Project;
 import com.project.etsapi.mapper.FileMapper;
 import com.project.etsapi.service.FileService;
 import com.project.etsapi.vo.FileInfo;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,6 +98,14 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    public void removeFile(String course_ID, String path, String file_name) throws Exception {
+        java.io.File file = new java.io.File(basePath + course_ID + path + '/' + file_name);
+        if(file.exists()){
+            file.delete();
+        }
+    }
+
+    @Override
     public List<File> getFiles(String course_ID, String isProject) {
         return fileMapper.getFileList(course_ID,isProject.equals("1")?projectPath:coursePath);
     }
@@ -107,8 +123,20 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public void savePhoto(MultipartFile file, String course_ID) throws Exception {
-        saveFile(file,course_ID,photoPath);
+    public String savePhoto(MultipartFile file, String course_ID){
+        //先删除头像记录
+        List<File> tmp = fileMapper.getFileList(course_ID,photoPath);
+        try {
+            if (tmp.size() != 0) {
+                fileMapper.deleteFile(course_ID, photoPath, tmp.get(0).getFile_name());
+                removeFile(course_ID, photoPath, tmp.get(0).getFile_name());
+            }
+            saveFile(file, course_ID, photoPath);
+            return "1";
+        }
+        catch (Exception e){
+            return "-1";
+        }
     }
 
     @Override
@@ -122,5 +150,36 @@ public class FileServiceImpl implements FileService {
         }
     }
 
+    @Override
+    public String deleteFile(String course_ID, String path, String file_name){
+        try {
+            removeFile(course_ID,path,file_name);
+            return fileMapper.deleteFile(course_ID,path,file_name)==1?"1":"-1";
+        } catch (Exception e) {
+            return "-1";
+        }
+    }
 
+    @Override
+    public String downloadFile(HttpServletResponse response,String course_ID, String path, String file_name) {
+        java.io.File file = new java.io.File(basePath + course_ID + path + '/' + file_name);
+        try {
+            if(file.exists()){
+                FileInputStream is = new FileInputStream(file);
+                response.setContentType("text/plain");
+                response.setCharacterEncoding("UTF-8");
+                response.setHeader("Content-Disposition", "attachment;filename="
+                        + URLEncoder.encode(file_name,"UTF-8"));
+                ServletOutputStream os = response.getOutputStream();
+                IOUtils.copy(is, os);
+                is.close();
+                return "1";
+            }
+            return "-1";
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return "-1";
+        }
+    }
 }

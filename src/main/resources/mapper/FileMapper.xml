@@ -12,6 +12,11 @@
         WHERE course_ID = #{course_ID} and file_name = #{file_name} and path = #{path}
     </select>
 
+    <select id="getPhoto" resultType="com.project.etsapi.entity.File">
+        SELECT * FROM file
+        WHERE course_ID = #{course_ID} and path = #{path}
+    </select>
+
     <select id="getFileInfoList" resultType="com.project.etsapi.vo.FileInfo">
         SELECT file_name,submit_time FROM file
         WHERE course_ID = #{course_ID} and path = #{path}
@@ -23,6 +28,11 @@
     </select>
 
     <delete id="deleteFile">
+        DELETE FROM file
+        WHERE course_ID=#{course_ID} and path=#{path} and file_name = #{file_name}
+    </delete>
+
+    <delete id="deleteFiles">
         DELETE FROM file
         WHERE course_ID=#{course_ID} and path=#{path}
     </delete>

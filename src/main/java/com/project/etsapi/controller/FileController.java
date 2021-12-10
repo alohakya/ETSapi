@@ -70,24 +70,30 @@ public class FileController {
             for(MultipartFile file:files){
                 fileService.saveFile(file,course_ID,path);
             }
+            return "1";
         }
         catch (Exception e){
             return "-1";
         }
-        return "1";
     }
 
     @PostMapping("/uploadPhoto")
     public String uploadPhoto(HttpServletRequest request,String course_ID){
         MultipartFile file = ((MultipartHttpServletRequest) request).getFile("photo");
-        try {
-            fileService.savePhoto(file,course_ID);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            return "-1";
-        }
-        return "1";
+        return fileService.savePhoto(file,course_ID);
+    }
+
+    @PostMapping("/deleteFile")
+    public String deleteFile(String course_ID,String path,String file_name){
+        return fileService.deleteFile(course_ID,path,file_name);
+    }
+
+    @PostMapping("/downloadFile")
+    public String downloadFile(HttpServletRequest request,HttpServletResponse response){
+        String course_ID = request.getParameter("course_ID");
+        String path = request.getParameter("path");
+        String file_name = request.getParameter("file_name");
+        return fileService.downloadFile(response,course_ID,path,file_name);
     }
 
     @PostMapping("/getPhoto")
