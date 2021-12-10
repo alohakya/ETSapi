@@ -11,7 +11,6 @@ public class Project {
     private String end_time;
     private String description;
     private String teacher_ID;
-    private int path_number;
     private double percentage;
 //    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//注意月和小时的格式为两个大写字母
 //    java.util.Date date = new Date();//获得当前时间
@@ -26,13 +25,12 @@ public class Project {
     }
 
     public Project(String course_ID,String name, String start_time, String end_time,
-                   String description, int path_number, String teacher_ID, double percentage) {
+                   String description, String teacher_ID, double percentage) {
         this.course_ID = course_ID;
         this.name = name;
         this.start_time = start_time;
         this.end_time = end_time;
         this.description = description;
-        this.path_number = path_number;
         this.teacher_ID = teacher_ID;
         this.percentage = percentage;
     }
@@ -43,7 +41,6 @@ public class Project {
         projectInfo.setCourse_ID(this.getCourse_ID());
         projectInfo.setTeacher_name(teacherName);
         projectInfo.setPercentage(this.percentage);
-        projectInfo.setPath_number(this.path_number);
         projectInfo.setStart_time(this.start_time);
         projectInfo.setEnd_time(this.end_time);
         return projectInfo;
@@ -79,14 +76,6 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getPath_number() {
-        return path_number;
-    }
-
-    public void setPath_number(int path_number) {
-        this.path_number = path_number;
     }
 
     public String getTeacher_ID() {

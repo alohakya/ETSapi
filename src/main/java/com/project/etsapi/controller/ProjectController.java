@@ -51,7 +51,7 @@ public class ProjectController {
         }
         //上传文件
         try{
-            fileService.saveFiles(project, fileList);
+            fileService.saveProjectFiles(project, fileList);
         }
         catch (Exception e){
             //出错，手动回滚

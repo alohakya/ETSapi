@@ -19,6 +19,9 @@ public class FileServiceImpl implements FileService {
     private FileMapper fileMapper;
 //    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
     private final String basePath = "E:/PC/Desktop/";
+    private final String projectPath = "/实验资料";
+    private final String coursePath = "/课程资料";
+    private final String photoPath = "/课程头像";
 
     @Override
     public Boolean addFile(File file) {
@@ -37,41 +40,87 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public List<FileInfo> getFileInfoList(String course_ID, String path) {
-        return fileMapper.getFiles(course_ID,path);
+    public List<FileInfo> getFileInfoListByPath(String course_ID, String path) {
+        return fileMapper.getFileInfoList(course_ID,path);
     }
 
     @Override
-    public List<String> getFileNameList(String course_ID, String path) {
+    public List<String> getFileNameListByPath(String course_ID, Boolean isProject) {
         List<String> result = new ArrayList<>();
-        List<FileInfo> tmp = this.getFileInfoList(course_ID,path);
-        for (FileInfo f:tmp) {
-            result.add(f.getFile_name());
+        List<FileInfo> tmpFile = this.getFileInfoListByPath(course_ID,isProject?projectPath:coursePath);
+        for (FileInfo file:tmpFile) {
+            result.add(file.getFile_name());
         }
         return result;
     }
 
     @Override
     public int deleteFileByProject(Project project) {
-        return fileMapper.deleteFileByProject(project.getCourse_ID(),project.getName());
+        return 0;
+//        fileMapper.deleteFile(project.getCourse_ID(), project.getProjectPath());
+//        return fileMapper.deleteFile(project.getCourse_ID(),project.getName());
     }
 
     @Override
-    public String saveFiles(Project project,List<MultipartFile> fileList) throws Exception{
+    public void saveProjectFiles(Project project, List<MultipartFile> fileList) throws Exception{
         for(MultipartFile file:fileList){
             java.io.File filePath = new java.io.File(basePath +
                     project.getCourse_ID() + project.getProjectPath());
             if(!filePath.exists()) {
                 filePath.mkdirs();
                 //保存实验项目文件夹
-                fileMapper.addFile(new File(project.getCourse_ID(), project.getName(),
-                        "/实验资料",project.getName()));
+                fileMapper.addFile(new File(project.getCourse_ID(), project.getName(),projectPath));
             }
             String fileName = file.getOriginalFilename();
             file.transferTo(new java.io.File(filePath + "/" + fileName));
-            fileMapper.addFile(new File(project.getCourse_ID(),fileName,
-                    project.getProjectPath(),project.getName()));
+            //保存实验附带文件
+            fileMapper.addFile(new File(project.getCourse_ID(),fileName, project.getProjectPath()));
         }
-        return "1";
     }
+
+    @Override
+    public void saveFile(MultipartFile file, String course_ID, String path) throws Exception {
+        java.io.File filePath = new java.io.File(basePath + course_ID + path);
+        if(!filePath.exists()) {
+            filePath.mkdirs();
+        }
+        String fileName = file.getOriginalFilename();
+        file.transferTo(new java.io.File(filePath + "/" + fileName));
+        fileMapper.addFile(new File(course_ID,fileName, path));
+    }
+
+    @Override
+    public List<File> getFiles(String course_ID, String isProject) {
+        return fileMapper.getFileList(course_ID,isProject.equals("1")?projectPath:coursePath);
+    }
+
+    @Override
+    public List<String> getFileNameByFolder(String folder, List<File> files) {
+        List<String> result = new ArrayList<>();
+        for (File file : files) {
+            String[] tmp = file.getPath().split("/");
+            if(tmp[tmp.length-1].equals(folder)){
+                result.add(file.getFile_name());
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public void savePhoto(MultipartFile file, String course_ID) throws Exception {
+        saveFile(file,course_ID,photoPath);
+    }
+
+    @Override
+    public MultipartFile getPhoto(String course_ID) {
+        List<File> photo = fileMapper.getFileList(course_ID,photoPath);
+        if(photo == null){
+            return null;
+        }
+        else{
+            return null;
+        }
+    }
+
+
 }

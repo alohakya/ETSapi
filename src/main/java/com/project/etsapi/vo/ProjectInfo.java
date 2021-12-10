@@ -18,7 +18,6 @@ public class ProjectInfo {
     private String end_time;
     private String description;
     private String teacher_name;
-    private int path_number;
     private double percentage;
 
     public ProjectInfo() {

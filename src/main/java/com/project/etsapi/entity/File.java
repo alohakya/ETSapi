@@ -12,18 +12,14 @@ public class File {
     private String file_name;
     private String path;
     private String submit_time;
-    private String project_name;
 
-    public File(String course_ID, String file_name, String path, String project_name) {
+    //文件
+    public File(String course_ID, String file_name, String path) {
         this.course_ID = course_ID;
         this.file_name = file_name;
         this.path = path;
-        this.project_name = project_name;
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.submit_time = df.format(new Date());
-    }
-
-    public File() {
     }
 
     public String getCourse_ID() {
@@ -58,11 +54,4 @@ public class File {
         this.submit_time = submit_time;
     }
 
-    public String getProject_name() {
-        return project_name;
-    }
-
-    public void setProject_name(String project_name) {
-        this.project_name = project_name;
-    }
 }

@@ -1,5 +1,6 @@
 package com.project.etsapi.controller;
 
+import com.project.etsapi.entity.Attend;
 import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.service.AttendService;
 import com.project.etsapi.vo.AttendInfo;
@@ -55,8 +56,37 @@ public class AttendController {
         return attendService.getOnGoingAttendanceListByCourseId(course_ID);
     }
 
+    /**
+     * @description: 获得一个学生在一门课程中的考勤信息
+     * @path: "/attend/getAttendInfoList"
+     * @type: get
+     * @param: course_ID
+     * @param: student_ID
+     * @return: java.util.List<com.project.etsapi.vo.AttendInfo>
+     * @date: 2021/12/8 23:39
+     */
     @GetMapping("/getAttendInfoList")
     public List<AttendInfo> getAttendInfoList(String course_ID, String student_ID){
         return attendService.getAttendInfoList(course_ID,student_ID);
+    }
+
+    /**
+     * @description: 学生考勤
+     * @path: "/attend/addAttend"
+     * @type: post
+     * @param: attend
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：已考勤
+     * 返回-2：数据库操作失败，可能course_ID 或 start_time 或 student_ID不存在
+     * @date: 2021/12/8 23:26
+     */
+    @PostMapping("/addAttend")
+    public String addAttend(Attend attend){
+        try {
+            return String.valueOf(attendService.addAttend(attend));
+        } catch (Exception e) {
+            return "-2";
+        }
     }
 }

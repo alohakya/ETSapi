@@ -1,5 +1,6 @@
 package com.project.etsapi.service;
 
+import com.project.etsapi.entity.Attend;
 import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.vo.AttendInfo;
 
@@ -15,6 +16,8 @@ public interface AttendService {
     List<Attendance> getOnGoingAttendanceListByCourseId(String course_ID);
 
     List<AttendInfo> getAttendInfoList(String course_ID, String student_ID);
+
+    int addAttend(Attend attend) throws Exception;
 
 //    //获得考勤列表
 //    List<Attend> getAttendListByCourseId(String course_ID);

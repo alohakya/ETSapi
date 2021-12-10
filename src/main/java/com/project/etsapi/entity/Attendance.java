@@ -3,7 +3,6 @@ package com.project.etsapi.entity;
 import com.project.etsapi.vo.AttendInfo;
 import lombok.Data;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

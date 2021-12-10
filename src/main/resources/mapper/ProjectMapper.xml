@@ -11,10 +11,10 @@
 <!--    int addProject(Project project);-->
     <insert id="addProject" parameterType="com.project.etsapi.entity.Project">
         INSERT INTO project(course_ID, name, start_time,
-                            end_time, description, path_number,
+                            end_time, description,
                             percentage, teacher_ID)
         VALUES (#{course_ID}, #{name},#{start_time},
-                #{end_time},#{description}, #{path_number},
+                #{end_time},#{description},
                 #{percentage},#{teacher_ID})
     </insert>
 

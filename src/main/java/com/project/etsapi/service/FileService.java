@@ -12,11 +12,21 @@ public interface FileService {
 
     File getFile(String course_ID,String file_name,String path);
 
-    List<FileInfo> getFileInfoList(String course_ID, String path);
+    List<FileInfo> getFileInfoListByPath(String course_ID, String path);
 
-    List<String> getFileNameList(String course_ID, String path);
+    List<String> getFileNameListByPath(String course_ID, Boolean isProject);
 
     int deleteFileByProject(Project project);
 
-    String saveFiles(Project project,List<MultipartFile> fileList) throws Exception;
+    void saveProjectFiles(Project project, List<MultipartFile> fileList) throws Exception;
+
+    void saveFile(MultipartFile file,String course_ID,String path) throws Exception;
+
+    List<File> getFiles(String course_ID, String isProject);
+
+    List<String> getFileNameByFolder(String folder, List<File> files);
+
+    void savePhoto(MultipartFile file, String course_ID) throws Exception;
+
+    MultipartFile getPhoto(String course_ID);
 }

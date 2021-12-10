@@ -74,4 +74,12 @@ public class AttendServiceImpl implements AttendService {
         }
         return result;
     }
+
+    @Override
+    public int addAttend(Attend attend) throws Exception {
+        if (attendMapper.getAttend(attend) != null){
+            return -1;
+        }
+        return attendMapper.addAttend(attend);
+    }
 }

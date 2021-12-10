@@ -10,6 +10,13 @@
                 #{end_time})
     </insert>
 
+    <insert id="addAttend" parameterType="com.project.etsapi.entity.Attend">
+        insert into attend (course_ID,start_time,student_ID)
+        values (#{course_ID},
+                #{start_time},
+                #{student_ID})
+    </insert>
+
     <select id="getAttendance" resultType="com.project.etsapi.entity.Attendance">
         select *
         from attendance
@@ -25,6 +32,12 @@
     <select id="getAttendList" resultType="com.project.etsapi.entity.Attend">
         select * from attend
         where course_ID = #{course_ID} and student_ID = #{student_ID}
+    </select>
+
+    <select id="getAttend" parameterType="com.project.etsapi.entity.Attend"
+            resultType="com.project.etsapi.entity.Attend">
+        select * from attend
+        where course_ID = #{course_ID} and start_time = #{start_time} and student_ID = #{student_ID}
     </select>
 
 </mapper>
