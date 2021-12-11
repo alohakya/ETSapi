@@ -29,28 +29,56 @@ public class FileController {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping("/getTotalFiles")
+    /**
+     * @description: 获得二级目录文件名
+     * @path: "/file/getTotalFolders
+     * @type: get
+     * @param: course_ID
+     * @return: java.util.List<java.util.List < java.lang.String>>
+     * 返回1：成功
+     * 返回-1：失败
+     * @date: 2021/12/11 9:34
+     */
+    @GetMapping("/getTotalFolders")
     @ResponseBody
-    public List<List<String>> getTotalFiles(@RequestParam("course_ID") String course_ID){
-        List<String> list1 = fileService.getFileNameListByPath(course_ID,false);
-        List<String> list2 = fileService.getFileNameListByPath(course_ID,true);
+    public List<List<String>> getTotalFolders(@RequestParam("course_ID") String course_ID){
+        List<String> list1 = fileService.getFolderNameListByType(course_ID,false);
+        List<String> list2 = fileService.getFolderNameListByType(course_ID,true);
         List<List<String>> result = new ArrayList<>();
         result.add(list1);
         result.add(list2);
         return result;
     }
 
+    /**
+     * @description: 返回指定课程指定路径的文件信息列表
+     * @path: "/file/getFileList"
+     * @type: get
+     * @param: course_ID
+     * @param: path
+     * @return: java.util.List<com.project.etsapi.vo.FileInfo>
+     * @date: 2021/12/11 9:35
+     */
     @GetMapping("/getFileList")
     public List<FileInfo> getFiles(@RequestParam("course_ID") String course_ID,
                                    @RequestParam("path") String path){
         return fileService.getFileInfoListByPath(course_ID, path);
     }
 
+    /**
+     * @description: 获得所有二级目录和各目录下的文件信息
+     * @path: "/file/getDirectoryFiles"
+     * @type: get
+     * @param: course_ID
+     * @param: isProject
+     * @return: java.util.List<com.project.etsapi.vo.DirectoryFileInfo>
+     * @date: 2021/12/11 9:49
+     */
     @GetMapping("/getDirectoryFiles")
     public List<DirectoryFileInfo> getDirectoryFiles(String course_ID, String isProject){
         //查询所有文件夹
         List<DirectoryFileInfo> result = new ArrayList<>();
-        List<String> folders = fileService.getFileNameListByPath(course_ID,isProject.equals("1"));
+        List<String> folders = fileService.getFolderNameListByType(course_ID,isProject.equals("1"));
         List<File> files = fileService.getFiles(course_ID,isProject);
         for (String folder : folders) {
             DirectoryFileInfo tmp = new DirectoryFileInfo();
@@ -61,6 +89,16 @@ public class FileController {
         return result;
     }
 
+    /**
+     * @description: 上传文件,支持多文件上传
+     * @path: "/file/uploadFile"
+     * @type: post
+     * @param: request
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：失败
+     * @date: 2021/12/11 9:40
+     */
     @PostMapping("/uploadFile")
     public String uploadFile(HttpServletRequest request){
         List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
@@ -77,17 +115,47 @@ public class FileController {
         }
     }
 
+    /**
+     * @description: 上传照片
+     * @path: "file/uploadPhot"
+     * @type: post
+     * @param: request
+     * @param: course_ID
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：失败
+     * @date: 2021/12/11 9:42
+     */
     @PostMapping("/uploadPhoto")
     public String uploadPhoto(HttpServletRequest request,String course_ID){
         MultipartFile file = ((MultipartHttpServletRequest) request).getFile("photo");
         return fileService.savePhoto(file,course_ID);
     }
 
+    /**
+     * @description: 删除文件
+     * @path: "/file/deleteFile"
+     * @type: post
+     * @param: course_ID
+     * @param: path
+     * @param: file_name
+     * @return: java.lang.String
+     * @date: 2021/12/11 9:44
+     */
     @PostMapping("/deleteFile")
     public String deleteFile(String course_ID,String path,String file_name){
         return fileService.deleteFile(course_ID,path,file_name);
     }
 
+    /**
+     * @description: 下载文件
+     * @path: "file/downloadFile
+     * @type:
+     * @param: request 表单上传，需要 course_ID path file_name
+     * @param: response
+     * @return: java.lang.String
+     * @date: 2021/12/11 9:45
+     */
     @PostMapping("/downloadFile")
     public String downloadFile(HttpServletRequest request,HttpServletResponse response){
         String course_ID = request.getParameter("course_ID");

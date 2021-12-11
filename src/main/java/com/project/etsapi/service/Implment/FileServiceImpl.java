@@ -12,10 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +50,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public List<String> getFileNameListByPath(String course_ID, Boolean isProject) {
+    public List<String> getFolderNameListByType(String course_ID, Boolean isProject) {
         List<String> result = new ArrayList<>();
         List<FileInfo> tmpFile = this.getFileInfoListByPath(course_ID,isProject?projectPath:coursePath);
         for (FileInfo file:tmpFile) {

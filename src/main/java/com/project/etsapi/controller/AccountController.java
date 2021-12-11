@@ -71,8 +71,9 @@ public class AccountController {
      * @param: request
      * @return: java.lang.String
      * 返回1：发送成功
-     * 返回-1：account_ID不存在
-     * 返回-2：发送失败
+     * 返回-1：account_ID已注册
+     * 返回-2：account_ID不存在
+     * 返回-3：总之就是失败了
      * @date: 2021/12/5 15:01
      */
     @PostMapping("/sendEmail")

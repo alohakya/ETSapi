@@ -15,7 +15,7 @@ public interface FileService {
 
     List<FileInfo> getFileInfoListByPath(String course_ID, String path);
 
-    List<String> getFileNameListByPath(String course_ID, Boolean isProject);
+    List<String> getFolderNameListByType(String course_ID, Boolean isProject);
 
     int deleteFileByProject(Project project);
 

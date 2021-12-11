@@ -33,8 +33,10 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public String sendSimpleMail(String account_ID,String email,String title, String content){
-        if(studentMapper.getStudent(account_ID) == null && teacherMapper.getTeacher(account_ID) == null)
+        if(accountMapper.getAccountById(account_ID) != null)
             return "-1";
+        if(studentMapper.getStudent(account_ID) == null && teacherMapper.getTeacher(account_ID) == null)
+            return "-2";
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(from);
@@ -47,7 +49,7 @@ public class MailServiceImpl implements MailService {
         }
         catch (Exception e){
             e.printStackTrace();
-            return "-2";
+            return "-3";
         }
     }
 

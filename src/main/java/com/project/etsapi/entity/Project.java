@@ -43,6 +43,7 @@ public class Project {
         projectInfo.setPercentage(this.percentage);
         projectInfo.setStart_time(this.start_time);
         projectInfo.setEnd_time(this.end_time);
+        projectInfo.setDescription(this.description);
         return projectInfo;
     }
 
