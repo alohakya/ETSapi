@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.project.etsapi.mapper.FileMapper">
     <insert id="addFile" parameterType="com.project.etsapi.entity.File">
-        insert into file (course_ID,file_name,path,submit_time)
-        values (#{course_ID},#{file_name},#{path},#{submit_time})
+        insert into file (course_ID,file_name,path,submit_time,file_size)
+        values (#{course_ID},#{file_name},#{path},#{submit_time},#{file_size})
     </insert>
 
     <select id="getFile">
@@ -17,14 +17,9 @@
         WHERE course_ID = #{course_ID} and path = #{path}
     </select>
 
-    <select id="getFileInfoList" resultType="com.project.etsapi.vo.FileInfo">
-        SELECT file_name,submit_time FROM file
-        WHERE course_ID = #{course_ID} and path = #{path}
-    </select>
-
     <select id="getFileList" parameterType="java.lang.String" resultType="com.project.etsapi.entity.File">
         SELECT * FROM file
-        WHERE course_ID = #{course_ID} and path != #{path}
+        WHERE course_ID = #{course_ID} and path = #{path}
     </select>
 
     <delete id="deleteFile">
@@ -32,7 +27,7 @@
         WHERE course_ID=#{course_ID} and path=#{path} and file_name = #{file_name}
     </delete>
 
-    <delete id="deleteFiles">
+    <delete id="deleteFilesByPath">
         DELETE FROM file
         WHERE course_ID=#{course_ID} and path=#{path}
     </delete>

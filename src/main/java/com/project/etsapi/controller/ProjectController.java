@@ -56,8 +56,12 @@ public class ProjectController {
         catch (Exception e){
             //出错，手动回滚
             e.printStackTrace();
+            //数据库删除实验
             projectService.deleteProject(project);
+            //数据库删除实验已记录的文件
             fileService.deleteFileByProject(project);
+            //删除服务器上的文件存档
+            fileService.removeFileByProject(project,fileList);
             return "-2";
         }
         return "1";

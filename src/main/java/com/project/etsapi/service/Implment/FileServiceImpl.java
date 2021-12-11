@@ -46,7 +46,12 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public List<FileInfo> getFileInfoListByPath(String course_ID, String path) {
-        return fileMapper.getFileInfoList(course_ID,path);
+        List<FileInfo> result = new ArrayList<>();
+        List<File> tmp = fileMapper.getFileList(course_ID,path);
+        for (File file : tmp) {
+            result.add(file.toFileInfo());
+        }
+        return result;
     }
 
     @Override
@@ -60,10 +65,8 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public int deleteFileByProject(Project project) {
-        return 0;
-//        fileMapper.deleteFile(project.getCourse_ID(), project.getProjectPath());
-//        return fileMapper.deleteFile(project.getCourse_ID(),project.getName());
+    public void deleteFileByProject(Project project) {
+        fileMapper.deleteFilesByPath(project.getCourse_ID(),project.getProjectPath());
     }
 
     @Override
@@ -74,12 +77,12 @@ public class FileServiceImpl implements FileService {
             if(!filePath.exists()) {
                 filePath.mkdirs();
                 //保存实验项目文件夹
-                fileMapper.addFile(new File(project.getCourse_ID(), project.getName(),projectPath));
+                fileMapper.addFile(new File(project.getCourse_ID(), project.getName(),projectPath,file.getSize()));
             }
             String fileName = file.getOriginalFilename();
             file.transferTo(new java.io.File(filePath + "/" + fileName));
             //保存实验附带文件
-            fileMapper.addFile(new File(project.getCourse_ID(),fileName, project.getProjectPath()));
+            fileMapper.addFile(new File(project.getCourse_ID(),fileName, project.getProjectPath(),file.getSize()));
         }
     }
 
@@ -91,7 +94,7 @@ public class FileServiceImpl implements FileService {
         }
         String fileName = file.getOriginalFilename();
         file.transferTo(new java.io.File(filePath + "/" + fileName));
-        fileMapper.addFile(new File(course_ID,fileName, path));
+        fileMapper.addFile(new File(course_ID,fileName, path,file.getSize()));
     }
 
     @Override
@@ -99,6 +102,19 @@ public class FileServiceImpl implements FileService {
         java.io.File file = new java.io.File(basePath + course_ID + path + '/' + file_name);
         if(file.exists()){
             file.delete();
+        }
+    }
+
+    @Override
+    public void removeFileByProject(Project project, List<MultipartFile> fileList) {
+        try{
+            for (MultipartFile file : fileList) {
+                this.removeFile(project.getCourse_ID(), project.getProjectPath(), file.getOriginalFilename());
+            }
+            this.removeFile(project.getCourse_ID(),projectPath,project.getName());
+        }
+        catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -163,7 +179,7 @@ public class FileServiceImpl implements FileService {
         try {
             if(file.exists()){
                 FileInputStream is = new FileInputStream(file);
-                response.setContentType("text/plain");
+                response.setContentType(this.getServletContext(file_name));
                 response.setCharacterEncoding("UTF-8");
                 response.setHeader("Content-Disposition", "attachment;filename="
                         + URLEncoder.encode(file_name,"UTF-8"));
@@ -177,6 +193,38 @@ public class FileServiceImpl implements FileService {
         catch (Exception e){
             e.printStackTrace();
             return "-1";
+        }
+    }
+
+    private String getServletContext(String file_name) {
+        String[] tmp = file_name.split("\\.");
+        switch (tmp[tmp.length - 1]) {
+            case "doc":
+                return "application/msword";
+            case "ppt":
+                return "application/vnd.ms-powerpoint";
+            case "pdf":
+                return "application/pdf";
+            case "png":
+                return "image/png";
+            case "txt":
+                return "text/plain";
+            case "jpg":
+            case "jpeg":
+                return "image/jpeg";
+            case "html":
+            case "htm":
+                return "text/html";
+            case "xsl":
+            case "xml":
+                return "text/xml";
+            case "bin":
+            case "exe":
+            case "so":
+            case "dll":
+                return "application/octet-stream";
+            default:
+                return null;
         }
     }
 }

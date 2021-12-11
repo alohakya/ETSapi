@@ -17,7 +17,7 @@ public interface FileService {
 
     List<String> getFolderNameListByType(String course_ID, Boolean isProject);
 
-    int deleteFileByProject(Project project);
+    void deleteFileByProject(Project project);
 
     void saveProjectFiles(Project project, List<MultipartFile> fileList) throws Exception;
 
@@ -36,4 +36,6 @@ public interface FileService {
     String deleteFile(String course_ID, String path, String file_name);
 
     String downloadFile(HttpServletResponse response, String course_ID, String path, String file_name);
+
+    void removeFileByProject(Project project, List<MultipartFile> fileList);
 }

@@ -1,7 +1,6 @@
 package com.project.etsapi.mapper;
 
 import com.project.etsapi.entity.File;
-import com.project.etsapi.vo.FileInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,9 +13,7 @@ public interface FileMapper {
 
     File getPhoto(String course_ID,String path);
 
-    int deleteFiles(String course_ID, String path);
-
-    List<FileInfo> getFileInfoList(String course_ID, String path);
+    void deleteFilesByPath(String course_ID, String path);
 
     List<File> getFileList(String course_ID, String path);
 
