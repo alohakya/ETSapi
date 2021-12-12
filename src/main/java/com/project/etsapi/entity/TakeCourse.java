@@ -7,6 +7,8 @@ public class TakeCourse {
     private String student_ID;
     private String course_ID;
     private String is_student;
+    private String project_score;
+    private String attend_score;
 
     public TakeCourse(String student_ID, String course_ID, String is_student) {
         this.student_ID = student_ID;
@@ -41,5 +43,21 @@ public class TakeCourse {
 
     public void setIs_student(String is_student) {
         this.is_student = is_student;
+    }
+
+    public String getAttend_score() {
+        return attend_score;
+    }
+
+    public String getProject_score() {
+        return project_score;
+    }
+
+    public void setProject_score(String project_score) {
+        this.project_score = project_score;
+    }
+
+    public void setAttend_score(String attend_score) {
+        this.attend_score = attend_score;
     }
 }

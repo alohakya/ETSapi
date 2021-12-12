@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.etsapi.mapper.ReportMapper">
+    <select id="getProjectScoreInfoList" resultType="com.project.etsapi.vo.ProjectScoreInfo">
+        SELECT project_name,AVG(score) as avg_score,MAX(score) as max_score,MIN(score) as min_score
+        FROM report
+        WHERE course_ID = #{course_ID}
+        GROUP BY project_name
+    </select>
+
+</mapper>

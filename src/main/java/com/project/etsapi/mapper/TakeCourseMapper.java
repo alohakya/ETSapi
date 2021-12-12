@@ -2,6 +2,7 @@ package com.project.etsapi.mapper;
 
 import com.project.etsapi.entity.Student;
 import com.project.etsapi.entity.TakeCourse;
+import com.project.etsapi.vo.ScoreInfo;
 import com.project.etsapi.vo.StudentInfo;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -25,4 +26,6 @@ public interface TakeCourseMapper {
     List<Student> getStudentListByCourseId(String course_ID,String is_student);
 
     List<StudentInfo> getStudentInfoListByCourseId(String course_ID, String is_student);
+
+    List<ScoreInfo> getTotalScoreList(String course_ID);
 }

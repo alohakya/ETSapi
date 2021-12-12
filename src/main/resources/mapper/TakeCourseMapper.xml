@@ -34,6 +34,12 @@
                                                     ON takecourse.student_ID=account_ID
         WHERE takecourse.course_ID = #{course_ID} AND takecourse.is_student=#{is_student}
     </select>
+
+    <select id="getTotalScoreList" resultType="com.project.etsapi.vo.ScoreInfo">
+        select student_ID,name,project_score,attend_score
+        from student natural join takecourse
+        where course_ID = #{course_ID} and is_student = "1"
+    </select>
 </mapper>
 
 
