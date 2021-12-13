@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.project.etsapi.mapper.ReportMapper">
+
+    <insert id="addReport" parameterType="com.project.etsapi.entity.Report">
+        INSERT INTO report(course_ID, project_name, student_ID,
+                            report_name, score,submit_time, correct_time)
+        VALUES (#{course_ID}, #{project_name},#{student_ID},
+                #{report_name},#{score},#{submit_time},#{correct_time})
+    </insert>
+
+    <update id="updateReport" parameterType="com.project.etsapi.entity.Report">
+        UPDATE report
+        SET report_name = #{report_name},
+            score = #{score},
+            submit_time = #{submit_time},
+            correct_time = #{correct_time}
+        WHERE course_ID = #{course_ID}
+          and project_name = #{project_name}
+          and student_ID = #{student_ID}
+    </update>
+
     <select id="getProjectScoreInfoList" resultType="com.project.etsapi.vo.ProjectScoreInfo">
         SELECT project_name,AVG(score) as avg_score,MAX(score) as max_score,MIN(score) as min_score
         FROM report
@@ -9,4 +28,11 @@
         GROUP BY project_name
     </select>
 
+    <select id="getReport" resultType="com.project.etsapi.entity.Report">
+        select *
+        from report
+        where course_ID = #{course_ID}
+          and project_name = #{project_name}
+          and student_ID = #{student_ID}
+    </select>
 </mapper>

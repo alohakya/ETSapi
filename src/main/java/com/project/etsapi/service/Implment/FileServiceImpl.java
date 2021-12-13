@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,22 +28,17 @@ public class FileServiceImpl implements FileService {
     private final String projectPath = "/实验资料";
     private final String coursePath = "/课程资料";
     private final String photoPath = "/课程头像";
-    private final String reportPath = "/实验报告";
+    private final String reportPath = "/实验报告/";
 
     @Override
-    public Boolean addFile(File file) {
-        try{
-            return fileMapper.addFile(file) == 1;
+    public void addFile(File file){
+        if(fileMapper.getFile(file.getCourse_ID(),file.getFile_name(),file.getPath()) != null){
+            System.out.println("!null");
+            fileMapper.updateFile(file);
         }
-        catch (Exception e){
-            e.printStackTrace();
-            return false;
+        else {
+            fileMapper.addFile(file);
         }
-    }
-
-    @Override
-    public File getFile(String course_ID, String file_name,String path) {
-        return fileMapper.getFile(course_ID,file_name,path);
     }
 
     @Override
@@ -71,31 +67,67 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    public String deleteFile(String course_ID, String path, String file_name){
+        try {
+            removeFile(course_ID,path,file_name);
+            return fileMapper.deleteFile(course_ID,path,file_name)==1?"1":"-1";
+        } catch (Exception e) {
+            return "-1";
+        }
+    }
+
+    @Override
     public void saveProjectFiles(Project project, List<MultipartFile> fileList) throws Exception{
+        java.io.File filePath = new java.io.File(basePath +
+                project.getCourse_ID() + project.getProjectPath());
+        if(!filePath.exists()) {
+            filePath.mkdirs();
+            this.addFile(new File(project.getCourse_ID(), project.getName(),projectPath));
+        }
+        //保存所有文件
         for(MultipartFile file:fileList){
-            java.io.File filePath = new java.io.File(basePath +
-                    project.getCourse_ID() + project.getProjectPath());
-            if(!filePath.exists()) {
-                filePath.mkdirs();
-                //保存实验项目文件夹
-                fileMapper.addFile(new File(project.getCourse_ID(), project.getName(),projectPath,file.getSize()));
-            }
-            String fileName = file.getOriginalFilename();
-            file.transferTo(new java.io.File(filePath + "/" + fileName));
-            //保存实验附带文件
-            fileMapper.addFile(new File(project.getCourse_ID(),fileName, project.getProjectPath(),file.getSize()));
+            file.transferTo(new java.io.File(filePath + "/" + file.getOriginalFilename()));
+            this.addFile(new File(project.getCourse_ID(),file.getOriginalFilename(),
+                    project.getProjectPath(),file.getSize()));
         }
     }
 
     @Override
     public void saveFile(MultipartFile file, String course_ID, String path) throws Exception {
+        String fileName = file.getOriginalFilename();
         java.io.File filePath = new java.io.File(basePath + course_ID + path);
+        java.io.File fileFile = new java.io.File(filePath + "/" + fileName);
         if(!filePath.exists()) {
             filePath.mkdirs();
         }
-        String fileName = file.getOriginalFilename();
-        file.transferTo(new java.io.File(filePath + "/" + fileName));
-        fileMapper.addFile(new File(course_ID,fileName, path,file.getSize()));
+        else if(fileFile.exists()){
+            fileFile.delete();
+        }
+        file.transferTo(fileFile);
+    }
+
+    @Override
+    public void saveReport(String course_ID, String project_name,
+                           MultipartFile report) throws Exception{
+        saveFile(report,course_ID,this.reportPath + project_name);
+    }
+
+    @Override
+    public String savePhoto(MultipartFile file, String course_ID){
+        //先删除头像记录
+        List<File> tmp = fileMapper.getFileList(course_ID,photoPath);
+        try {
+            if (tmp.size() != 0) {
+                fileMapper.deleteFile(course_ID, photoPath, tmp.get(0).getFile_name());
+                removeFile(course_ID, photoPath, tmp.get(0).getFile_name());
+            }
+            saveFile(file, course_ID, photoPath);
+            this.addFile(new File(course_ID, file.getOriginalFilename(), photoPath,file.getSize()));
+            return "1";
+        }
+        catch (Exception e){
+            return "-1";
+        }
     }
 
     @Override
@@ -120,39 +152,8 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String saveReport(String course_ID, String student_ID, String project_name, MultipartFile report) {
-        return null;
-    }
-
-    @Override
-    public String savePhoto(MultipartFile file, String course_ID){
-        //先删除头像记录
-        List<File> tmp = fileMapper.getFileList(course_ID,photoPath);
-        try {
-            if (tmp.size() != 0) {
-                fileMapper.deleteFile(course_ID, photoPath, tmp.get(0).getFile_name());
-                removeFile(course_ID, photoPath, tmp.get(0).getFile_name());
-            }
-            saveFile(file, course_ID, photoPath);
-            return "1";
-        }
-        catch (Exception e){
-            return "-1";
-        }
-    }
-
-    @Override
-    public String deleteFile(String course_ID, String path, String file_name){
-        try {
-            removeFile(course_ID,path,file_name);
-            return fileMapper.deleteFile(course_ID,path,file_name)==1?"1":"-1";
-        } catch (Exception e) {
-            return "-1";
-        }
-    }
-
-    @Override
-    public String downloadFile(HttpServletResponse response,String course_ID, String path, String file_name) {
+    public String downloadFile(HttpServletResponse response,
+                               String course_ID, String path, String file_name) {
         java.io.File file = new java.io.File(basePath + course_ID + path + '/' + file_name);
         try {
             if(file.exists()){

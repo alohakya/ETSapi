@@ -20,4 +20,6 @@ public interface FileMapper {
     int deleteFile(String course_ID,String path,String file_name);
 
     List<String> getFileNameListByPath(String course_ID, String path);
+
+    void updateFile(File file);
 }

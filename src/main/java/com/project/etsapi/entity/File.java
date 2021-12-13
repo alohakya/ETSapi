@@ -30,6 +30,14 @@ public class File {
         this.submit_time = df.format(new Date());
     }
 
+    public File(String course_ID, String name, String path) {
+        this.course_ID = course_ID;
+        this.file_name = file_name;
+        this.path = path;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.submit_time = df.format(new Date());
+    }
+
     public FileInfo toFileInfo() {
         FileInfo result = new FileInfo();
         result.setFile_name(this.file_name);

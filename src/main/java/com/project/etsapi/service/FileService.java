@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface FileService {
-    Boolean addFile(File file);
 
-    File getFile(String course_ID,String file_name,String path);
+    void addFile(File file);
 
     List<FileInfo> getFileInfoListByPath(String course_ID, String path);
 
@@ -31,7 +30,7 @@ public interface FileService {
 
     String savePhoto(MultipartFile file, String course_ID);
 
-    String saveReport(String course_ID, String student_ID, String project_name, MultipartFile report);
+    void saveReport(String course_ID, String project_name, MultipartFile report) throws Exception;
 
     void removeFile(String course_ID,String path,String file_name) throws Exception;
 
