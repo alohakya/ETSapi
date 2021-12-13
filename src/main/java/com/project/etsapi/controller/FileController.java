@@ -76,14 +76,13 @@ public class FileController {
      */
     @GetMapping("/getDirectoryFiles")
     public List<DirectoryFileInfo> getDirectoryFiles(String course_ID, String isProject){
-        //查询所有文件夹
         List<DirectoryFileInfo> result = new ArrayList<>();
+        //查询所有二级文件夹
         List<String> folders = fileService.getFolderNameListByType(course_ID,isProject.equals("1"));
-        List<File> files = fileService.getFiles(course_ID,isProject);
         for (String folder : folders) {
             DirectoryFileInfo tmp = new DirectoryFileInfo();
             tmp.setFolderName(folder);
-            tmp.setFileName(fileService.getFileNameByFolder(folder,files));
+            tmp.setFileName(fileService.getFileNameListByPath(course_ID,"/" + folder,isProject.equals("1")));
             result.add(tmp);
         }
         return result;
@@ -162,6 +161,15 @@ public class FileController {
         String path = request.getParameter("path");
         String file_name = request.getParameter("file_name");
         return fileService.downloadFile(response,course_ID,path,file_name);
+    }
+
+    @PostMapping("/uploadReport")
+    public String uploadReport(HttpServletRequest request){
+        String course_ID = request.getParameter("course_ID");
+        String student_ID = request.getParameter("student_ID");
+        String project_name = request.getParameter("project_name");
+        MultipartFile report = ((MultipartHttpServletRequest)request).getFile("file");
+        return fileService.saveReport(course_ID,student_ID,project_name,report);
     }
 
     @PostMapping("/getPhoto")

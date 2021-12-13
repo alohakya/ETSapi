@@ -18,4 +18,6 @@ public interface FileMapper {
     List<File> getFileList(String course_ID, String path);
 
     int deleteFile(String course_ID,String path,String file_name);
+
+    List<String> getFileNameListByPath(String course_ID, String path);
 }

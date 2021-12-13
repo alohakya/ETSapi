@@ -22,6 +22,12 @@
         WHERE course_ID = #{course_ID} and path = #{path}
     </select>
 
+    <select id="getFileNameListByPath" resultType="java.lang.String">
+        select file_name
+        from file
+        where course_ID = #{course_ID} and path = #{path}
+    </select>
+
     <delete id="deleteFile">
         DELETE FROM file
         WHERE course_ID=#{course_ID} and path=#{path} and file_name = #{file_name}

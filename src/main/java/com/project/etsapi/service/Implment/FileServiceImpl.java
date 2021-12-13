@@ -27,6 +27,7 @@ public class FileServiceImpl implements FileService {
     private final String projectPath = "/实验资料";
     private final String coursePath = "/课程资料";
     private final String photoPath = "/课程头像";
+    private final String reportPath = "";
 
     @Override
     public Boolean addFile(File file) {
@@ -55,13 +56,13 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    public List<String> getFileNameListByPath(String course_ID, String path, Boolean isProject) {
+        return fileMapper.getFileNameListByPath(course_ID,isProject?projectPath + path:coursePath + path);
+    }
+
+    @Override
     public List<String> getFolderNameListByType(String course_ID, Boolean isProject) {
-        List<String> result = new ArrayList<>();
-        List<FileInfo> tmpFile = this.getFileInfoListByPath(course_ID,isProject?projectPath:coursePath);
-        for (FileInfo file:tmpFile) {
-            result.add(file.getFile_name());
-        }
-        return result;
+        return fileMapper.getFileNameListByPath(course_ID,isProject?projectPath:coursePath);
     }
 
     @Override
@@ -119,20 +120,13 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public List<File> getFiles(String course_ID, String isProject) {
-        return fileMapper.getFileList(course_ID,isProject.equals("1")?projectPath:coursePath);
+    public String saveReport(String course_ID, String student_ID, String project_name, MultipartFile report) {
+        return null;
     }
 
     @Override
-    public List<String> getFileNameByFolder(String folder, List<File> files) {
-        List<String> result = new ArrayList<>();
-        for (File file : files) {
-            String[] tmp = file.getPath().split("/");
-            if(tmp[tmp.length-1].equals(folder)){
-                result.add(file.getFile_name());
-            }
-        }
-        return result;
+    public List<File> getFiles(String course_ID, String isProject) {
+        return fileMapper.getFileList(course_ID,isProject.equals("1")?projectPath:coursePath);
     }
 
     @Override

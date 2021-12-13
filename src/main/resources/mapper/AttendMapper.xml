@@ -40,4 +40,17 @@
         where course_ID = #{course_ID} and start_time = #{start_time} and student_ID = #{student_ID}
     </select>
 
+    <select id="getAttendanceInfoList" resultType="com.project.etsapi.vo.AttendanceInfo">
+        WITH total_student AS
+            (SELECT course_ID, count(student_ID) AS total
+            FROM
+                 (SELECT *
+                 FROM takecourse
+                 WHERE is_student = "1") AS tmp
+            GROUP BY course_ID)
+        SELECT start_time, end_time, COUNT( student_ID ) AS number, total
+        FROM attend NATURAL JOIN attendance NATURAL JOIN total_student
+        WHERE course_ID = #{course_ID}
+        GROUP BY start_time, course_ID
+    </select>
 </mapper>

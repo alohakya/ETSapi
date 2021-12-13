@@ -4,11 +4,9 @@ import com.project.etsapi.entity.Attend;
 import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.service.AttendService;
 import com.project.etsapi.vo.AttendInfo;
+import com.project.etsapi.vo.AttendanceInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -88,5 +86,10 @@ public class AttendController {
         } catch (Exception e) {
             return "-2";
         }
+    }
+
+    @GetMapping("/getAttendanceInfoList")
+    public List<AttendanceInfo> getAttendanceInfoList(@RequestParam("course_ID") String course_ID){
+        return attendService.getAttendanceInfoList(course_ID);
     }
 }

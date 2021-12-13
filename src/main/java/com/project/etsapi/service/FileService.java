@@ -15,6 +15,8 @@ public interface FileService {
 
     List<FileInfo> getFileInfoListByPath(String course_ID, String path);
 
+    List<String> getFileNameListByPath(String course_ID,String path,Boolean isProject);
+
     List<String> getFolderNameListByType(String course_ID, Boolean isProject);
 
     void deleteFileByProject(Project project);
@@ -27,8 +29,6 @@ public interface FileService {
 
     List<File> getFiles(String course_ID, String isProject);
 
-    List<String> getFileNameByFolder(String folder, List<File> files);
-
     String savePhoto(MultipartFile file, String course_ID);
 
     MultipartFile getPhoto(String course_ID);
@@ -38,4 +38,6 @@ public interface FileService {
     String downloadFile(HttpServletResponse response, String course_ID, String path, String file_name);
 
     void removeFileByProject(Project project, List<MultipartFile> fileList);
+
+    String saveReport(String course_ID, String student_ID, String project_name, MultipartFile report);
 }
