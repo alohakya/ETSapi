@@ -89,6 +89,21 @@ public class FileController {
     }
 
     /**
+     * @description: 删除文件
+     * @path: "/file/deleteFile"
+     * @type: post
+     * @param: course_ID
+     * @param: path
+     * @param: file_name
+     * @return: java.lang.String
+     * @date: 2021/12/11 9:44
+     */
+    @PostMapping("/deleteFile")
+    public String deleteFile(String course_ID,String path,String file_name){
+        return fileService.deleteFile(course_ID,path,file_name);
+    }
+
+    /**
      * @description: 上传文件,支持多文件上传
      * @path: "/file/uploadFile"
      * @type: post
@@ -132,21 +147,6 @@ public class FileController {
     }
 
     /**
-     * @description: 删除文件
-     * @path: "/file/deleteFile"
-     * @type: post
-     * @param: course_ID
-     * @param: path
-     * @param: file_name
-     * @return: java.lang.String
-     * @date: 2021/12/11 9:44
-     */
-    @PostMapping("/deleteFile")
-    public String deleteFile(String course_ID,String path,String file_name){
-        return fileService.deleteFile(course_ID,path,file_name);
-    }
-
-    /**
      * @description: 下载文件
      * @path: "file/downloadFile
      * @type:
@@ -170,55 +170,5 @@ public class FileController {
         String project_name = request.getParameter("project_name");
         MultipartFile report = ((MultipartHttpServletRequest)request).getFile("file");
         return fileService.saveReport(course_ID,student_ID,project_name,report);
-    }
-
-    @PostMapping("/getPhoto")
-    public String getPhoto(HttpServletResponse response, String course_ID) throws Exception{
-        //要下载的文件路径
-        java.io.File file = new java.io.File("E:\\PC\\Desktop\\42024401\\课程头像\\1.jpg");
-        //下载后的文件名
-        String fileName = "1.jpg";
-        if (file.exists()) {
-            // 配置文件下载
-            response.setHeader("content-type", "application/octet-stream");
-            response.setContentType("application/octet-stream");
-            // 下载文件能正常显示中文
-            response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
-            response.setHeader("Content-Length",""+file.length());
-            // 实现文件下载
-            byte[] buffer = new byte[1024];
-            FileInputStream fis = null;
-            BufferedInputStream bis = null;
-            try {
-                fis = new FileInputStream(file);
-                bis = new BufferedInputStream(fis);
-                OutputStream os = response.getOutputStream();
-                int i = bis.read(buffer);
-                while (i != -1) {
-                    os.write(buffer, 0, i);
-                    i = bis.read(buffer);
-                }
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-            finally {
-                if (bis != null) {
-                    try {
-                        bis.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                if (fis != null) {
-                    try {
-                        fis.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }
-        return "1";
     }
 }

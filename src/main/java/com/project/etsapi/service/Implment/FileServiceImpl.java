@@ -27,7 +27,7 @@ public class FileServiceImpl implements FileService {
     private final String projectPath = "/实验资料";
     private final String coursePath = "/课程资料";
     private final String photoPath = "/课程头像";
-    private final String reportPath = "";
+    private final String reportPath = "/实验报告";
 
     @Override
     public Boolean addFile(File file) {
@@ -125,11 +125,6 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public List<File> getFiles(String course_ID, String isProject) {
-        return fileMapper.getFileList(course_ID,isProject.equals("1")?projectPath:coursePath);
-    }
-
-    @Override
     public String savePhoto(MultipartFile file, String course_ID){
         //先删除头像记录
         List<File> tmp = fileMapper.getFileList(course_ID,photoPath);
@@ -143,17 +138,6 @@ public class FileServiceImpl implements FileService {
         }
         catch (Exception e){
             return "-1";
-        }
-    }
-
-    @Override
-    public MultipartFile getPhoto(String course_ID) {
-        List<File> photo = fileMapper.getFileList(course_ID,photoPath);
-        if(photo == null){
-            return null;
-        }
-        else{
-            return null;
         }
     }
 

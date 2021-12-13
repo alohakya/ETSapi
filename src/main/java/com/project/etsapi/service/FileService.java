@@ -21,23 +21,19 @@ public interface FileService {
 
     void deleteFileByProject(Project project);
 
-    void saveProjectFiles(Project project, List<MultipartFile> fileList) throws Exception;
-
-    void saveFile(MultipartFile file,String course_ID,String path) throws Exception;
-
-    void removeFile(String course_ID,String path,String file_name) throws Exception;
-
-    List<File> getFiles(String course_ID, String isProject);
-
-    String savePhoto(MultipartFile file, String course_ID);
-
-    MultipartFile getPhoto(String course_ID);
-
     String deleteFile(String course_ID, String path, String file_name);
 
     String downloadFile(HttpServletResponse response, String course_ID, String path, String file_name);
 
-    void removeFileByProject(Project project, List<MultipartFile> fileList);
+    void saveProjectFiles(Project project, List<MultipartFile> fileList) throws Exception;
+
+    void saveFile(MultipartFile file,String course_ID,String path) throws Exception;
+
+    String savePhoto(MultipartFile file, String course_ID);
 
     String saveReport(String course_ID, String student_ID, String project_name, MultipartFile report);
+
+    void removeFile(String course_ID,String path,String file_name) throws Exception;
+
+    void removeFileByProject(Project project, List<MultipartFile> fileList);
 }
