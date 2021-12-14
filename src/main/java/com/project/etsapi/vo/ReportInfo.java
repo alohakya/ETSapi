@@ -2,6 +2,14 @@ package com.project.etsapi.vo;
 
 public class ReportInfo {
     private String student_ID;
+    private String name;
+    private String submit_time;
+    private String correct_time;
+    private String score;
+
+    public ReportInfo(){
+
+    }
 
     public String getStudent_ID() {
         return student_ID;
@@ -43,14 +51,6 @@ public class ReportInfo {
         this.score = score;
     }
 
-    private String name;
-    private String submit_time;
-    private String correct_time;
-    private String score;
-
-    public ReportInfo(){
-
-    }
 
 
 }

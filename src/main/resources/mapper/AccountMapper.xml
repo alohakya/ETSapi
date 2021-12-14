@@ -13,24 +13,39 @@
     </insert>
 
 <!--    int deleteAccountById(String account_ID);-->
-    <delete id="deleteAccountById" parameterType="String">
+    <delete id="deleteAccount" parameterType="String">
         delete from account
         where account_ID = #{account_ID}
     </delete>
 
-<!--    int updateAccount(Account record);-->
-    <update id="updateAccount" parameterType="com.project.etsapi.entity.Account">
+    <update id="updateActive" parameterType="java.lang.String">
         update account
-        set password = #{password,jdbcType=VARCHAR},
-            email = #{email,jdbcType=VARCHAR},
-            is_active = #{is_active,jdbcType=BIT}
-        where account_ID = #{accountId,jdbcType=VARCHAR}
+        set is_active = #{is_active}
+        where account_ID = #{account_ID}
+    </update>
+
+    <update id="updatePassword">
+        update account
+        set password = #{password}
+        where account_ID = #{account_ID}
     </update>
 
     <!--    Account getAccountById(String account_ID);-->
     <select id="getAccountById" parameterType="String" resultType="com.project.etsapi.entity.Account">
         SELECT * FROM account
         WHERE account_ID = #{account_ID}
+    </select>
+
+    <select id="getAllTeacherAccount" resultType="com.project.etsapi.vo.AccountInfo">
+        select account_ID,name,email,is_active
+        from account join teacher
+        where account_ID = teacher_ID
+    </select>
+
+    <select id="getAllStudentAccount" resultType="com.project.etsapi.vo.AccountInfo">
+        select account_ID,name,email,is_active
+        from account join student
+        where account_ID = student_ID
     </select>
 </mapper>
 

@@ -2,6 +2,7 @@ package com.project.etsapi.mapper;
 
 import com.project.etsapi.entity.Report;
 import com.project.etsapi.vo.ProjectScoreInfo;
+import com.project.etsapi.vo.ReportInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface ReportMapper {
     Report getReport(String course_ID, String student_ID, String project_name);
 
     void updateReport(Report report);
+
+    List<ReportInfo> getTotalReportList(String course_ID, String project_name);
 }

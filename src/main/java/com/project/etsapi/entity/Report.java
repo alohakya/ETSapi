@@ -9,12 +9,24 @@ import java.util.Date;
 @Data
 public class Report {
     private String course_ID;
-    private String student_ID;
     private String project_name;
+    private String student_ID;
     private String report_name;
     private Double score;
     private String submit_time;
     private String correct_time;
+
+    public Report(String course_ID, String project_name,
+                  String student_ID, String report_name,
+                  Double score, String submit_time, String correct_time) {
+        this.course_ID = course_ID;
+        this.project_name = project_name;
+        this.student_ID = student_ID;
+        this.report_name = report_name;
+        this.score = score;
+        this.submit_time = submit_time;
+        this.correct_time = correct_time;
+    }
 
     public Report() {
     }

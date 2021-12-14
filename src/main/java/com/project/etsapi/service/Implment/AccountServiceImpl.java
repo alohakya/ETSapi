@@ -3,8 +3,11 @@ package com.project.etsapi.service.Implment;
 import com.project.etsapi.entity.Account;
 import com.project.etsapi.mapper.AccountMapper;
 import com.project.etsapi.service.AccountService;
+import com.project.etsapi.vo.AccountInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Created by Intellij IDEA
@@ -32,5 +35,47 @@ public class AccountServiceImpl implements AccountService {
             return Boolean.FALSE;
         }
         return account.getPassword().equals(password);
+    }
+
+    @Override
+    public List<AccountInfo> getAllTeacherAccount() {
+        return accountMapper.getAllTeacherAccount();
+    }
+
+    @Override
+    public List<AccountInfo> getAllStudentAccount() {
+        return accountMapper.getAllStudentAccount();
+    }
+
+    @Override
+    public String banAccount(String account_ID) {
+        if(accountMapper.getAccountById(account_ID) == null){
+            return "-1";
+        }
+        return String.valueOf(accountMapper.updateActive(account_ID,"0"));
+    }
+
+    @Override
+    public String activeAccount(String account_ID) {
+        if(accountMapper.getAccountById(account_ID) == null){
+            return "-1";
+        }
+        return String.valueOf(accountMapper.updateActive(account_ID,"1"));
+    }
+
+    @Override
+    public String deleteAccount(String account_ID) {
+        if(accountMapper.getAccountById(account_ID) == null){
+            return "-1";
+        }
+        return String.valueOf(accountMapper.deleteAccount(account_ID));
+    }
+
+    @Override
+    public String resetPassword(String account_ID) {
+        if(accountMapper.getAccountById(account_ID) == null){
+            return "-1";
+        }
+        return String.valueOf(accountMapper.updatePassword(account_ID,"111111"));
     }
 }

@@ -1,6 +1,9 @@
 package com.project.etsapi.service;
 
 import com.project.etsapi.entity.Account;
+import com.project.etsapi.vo.AccountInfo;
+
+import java.util.List;
 
 /**
  * @Created by Intellij IDEA
@@ -15,4 +18,16 @@ public interface AccountService {
     Account getAccountById(String account_ID);
 
     Boolean idMatchPassword(String account_ID, String password);
+
+    List<AccountInfo> getAllTeacherAccount();
+
+    List<AccountInfo> getAllStudentAccount();
+
+    String banAccount(String account_ID);
+
+    String activeAccount(String account_ID);
+
+    String deleteAccount(String account_ID);
+
+    String resetPassword(String account_ID);
 }

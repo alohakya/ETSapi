@@ -3,14 +3,15 @@ package com.project.etsapi.controller;
 import com.project.etsapi.entity.Account;
 import com.project.etsapi.service.AccountService;
 import com.project.etsapi.service.MailService;
+import com.project.etsapi.vo.AccountInfo;
 import com.project.etsapi.vo.RegisterInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Random;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * @Created by Intellij IDEA
@@ -28,7 +29,6 @@ public class AccountController {
 
     @Autowired
     MailService mailService;
-    private ScheduledExecutorService scheduledExecutorService;
 
     /**
      * @description: 根据账号ID获得账户
@@ -61,6 +61,91 @@ public class AccountController {
         return String.valueOf(accountService.idMatchPassword(account_ID,password));
     }
 
+    /**
+     * @description: 删除账号
+     * @path: "/account/delete"
+     * @type: post
+     * @param: account_ID
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：没有这个account_ID
+     * @date: 2021/12/14 19:06
+     */
+    @PostMapping("/delete")
+    public String deleteAccount(String account_ID){
+        return accountService.deleteAccount(account_ID);
+    }
+
+    /**
+     * @description: 重置密码
+     * @path: "/account/resetPassword"
+     * @type: post
+     * @param: account_ID
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：没有这个account_ID
+     * @date: 2021/12/14 19:11
+     */
+    @PostMapping("/resetPassword")
+    public String resetPassword(String account_ID){
+        return accountService.resetPassword(account_ID);
+    }
+
+    /**
+     * @description: 获得所有老师账号
+     * @path:
+     * @type:
+     * @param:
+     * @return: java.util.List<com.project.etsapi.vo.AccountInfo>
+     * @date: 2021/12/14 18:33
+     */
+    @GetMapping("/getAllTeacherAccount")
+    public List<AccountInfo> getAllTeacherAccount(){
+        return accountService.getAllTeacherAccount();
+    }
+
+    /**
+     * @description: 获得所有学生账号
+     * @path: "/account/"
+     * @type:
+     * @param:
+     * @return: java.util.List<com.project.etsapi.vo.AccountInfo>
+     * @date: 2021/12/14 18:33
+     */
+    @GetMapping("/getAllStudentAccount")
+    public List<AccountInfo> getAllStudentAccount(){
+        return accountService.getAllStudentAccount();
+    }
+
+    /**
+     * @description: 封禁账户
+     * @path: "/account/ban"
+     * @type: post
+     * @param: account_ID
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：没有这个account_ID
+     * @date: 2021/12/14 18:40
+     */
+    @PostMapping("/ban")
+    public String banAccount(String account_ID){
+        return accountService.banAccount(account_ID);
+    }
+
+    /**
+     * @description: 激活账户
+     * @path: "/account/active"
+     * @type: post
+     * @param: account_ID
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：没有这个account_ID
+     * @date: 2021/12/14 18:40
+     */
+    @PostMapping("/active")
+    public String activeAccount(String account_ID){
+        return accountService.activeAccount(account_ID);
+    }
 
     /**
      * @description: 发送邮件
@@ -91,7 +176,6 @@ public class AccountController {
         }
         return result;
     }
-
 
     /**
      * @description: 核对注册信息、验证码
