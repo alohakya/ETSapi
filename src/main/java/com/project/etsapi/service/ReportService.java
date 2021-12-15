@@ -6,6 +6,7 @@ import com.project.etsapi.vo.ProjectScoreInfo;
 import com.project.etsapi.vo.ReportInfo;
 import com.project.etsapi.vo.StuProScore;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface ReportService {

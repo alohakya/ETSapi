@@ -151,27 +151,28 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String downloadFile(HttpServletResponse response,
-                               String course_ID, String path, String file_name) {
+    public void downloadFile(HttpServletResponse response,
+                               String course_ID, String path, String file_name) throws Exception {
         java.io.File file = new java.io.File(basePath + course_ID + path + '/' + file_name);
-        try {
-            if(file.exists()){
-                FileInputStream is = new FileInputStream(file);
-                response.setContentType(this.getServletContext(file_name));
-                response.setCharacterEncoding("UTF-8");
-                response.setHeader("Content-Disposition", "attachment;filename="
-                        + URLEncoder.encode(file_name,"UTF-8"));
-                ServletOutputStream os = response.getOutputStream();
-                IOUtils.copy(is, os);
-                is.close();
-                return "1";
-            }
-            return "-1";
+        if(file.exists()){
+            FileInputStream is = new FileInputStream(file);
+            System.out.println(this.getServletContext(file_name));
+            response.setContentType(this.getServletContext(file_name));
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename="
+                    + URLEncoder.encode(file_name,"UTF-8"));
+            ServletOutputStream os = response.getOutputStream();
+            IOUtils.copy(is, os);
+            is.close();
         }
-        catch (Exception e){
-            e.printStackTrace();
-            return "-1";
+        else{
+            throw new Exception();
         }
+    }
+
+    @Override
+    public void downloadReport(HttpServletResponse response, String course_ID, String project_name, String report_name) throws Exception {
+        downloadFile(response, course_ID, reportPath + project_name, report_name);
     }
 
     private String getServletContext(String file_name) {
@@ -196,13 +197,14 @@ public class FileServiceImpl implements FileService {
             case "xsl":
             case "xml":
                 return "text/xml";
+            case"docx":
+                return "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
             case "bin":
             case "exe":
             case "so":
             case "dll":
-                return "application/octet-stream";
             default:
-                return null;
+                return "application/octet-stream";
         }
     }
 }

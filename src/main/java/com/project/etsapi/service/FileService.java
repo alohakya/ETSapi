@@ -22,7 +22,9 @@ public interface FileService {
 
     String deleteFile(String course_ID, String path, String file_name);
 
-    String downloadFile(HttpServletResponse response, String course_ID, String path, String file_name);
+    void downloadFile(HttpServletResponse response, String course_ID, String path, String file_name) throws Exception;
+
+    void downloadReport(HttpServletResponse response, String course_ID, String project_name, String student_ID) throws Exception;
 
     void saveProjectFiles(Project project, List<MultipartFile> fileList) throws Exception;
 

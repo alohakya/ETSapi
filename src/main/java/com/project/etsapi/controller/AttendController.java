@@ -5,6 +5,7 @@ import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.service.AttendService;
 import com.project.etsapi.vo.AttendInfo;
 import com.project.etsapi.vo.AttendanceInfo;
+import com.project.etsapi.vo.StuAttend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,5 +92,10 @@ public class AttendController {
     @GetMapping("/getAttendanceInfoList")
     public List<AttendanceInfo> getAttendanceInfoList(@RequestParam("course_ID") String course_ID){
         return attendService.getAttendanceInfoList(course_ID);
+    }
+
+    @GetMapping("/getStuAttendList")
+    public List<StuAttend> getStuAttendList(String course_ID, String start_time){
+        return attendService.getStuAttendList(course_ID,start_time);
     }
 }

@@ -6,6 +6,7 @@ import com.project.etsapi.mapper.AttendMapper;
 import com.project.etsapi.service.AttendService;
 import com.project.etsapi.vo.AttendInfo;
 import com.project.etsapi.vo.AttendanceInfo;
+import com.project.etsapi.vo.StuAttend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -87,5 +88,10 @@ public class AttendServiceImpl implements AttendService {
     @Override
     public List<AttendanceInfo> getAttendanceInfoList(String course_ID) {
         return attendMapper.getAttendanceInfoList(course_ID);
+    }
+
+    @Override
+    public List<StuAttend> getStuAttendList(String course_ID, String start_time) {
+        return attendMapper.getStuAttendList(course_ID,start_time);
     }
 }

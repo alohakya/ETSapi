@@ -46,9 +46,14 @@
     </select>
 
     <select id="getTotalReportList" resultType="com.project.etsapi.vo.ReportInfo">
-        select student_ID,name,report_name,submit_time,correct_time,score
-        from report natural join student
-        where course_ID = #{course_ID} and project_name = #{project_name}
+        SELECT a.student_ID,a.name,report_name,submit_time,correct_time,score
+        FROM
+            ( SELECT course_ID, student_ID, name
+            FROM takecourse NATURAL JOIN student
+            WHERE course_ID = #{course_ID} AND is_student = "1" ) AS a
+                LEFT JOIN (SELECT * FROM report
+                WHERE course_ID = #{course_ID} and project_name = #{project_name}) AS b
+                    ON a.course_ID = b.course_ID AND a.student_ID = b.student_ID
     </select>
 
     <select id="getStuProScoreList" resultType="com.project.etsapi.vo.StuProScore">

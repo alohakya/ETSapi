@@ -3,6 +3,7 @@ package com.project.etsapi.mapper;
 import com.project.etsapi.entity.Attend;
 import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.vo.AttendanceInfo;
+import com.project.etsapi.vo.StuAttend;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -55,4 +56,6 @@ public interface AttendMapper {
     Attend getAttend(Attend attend);
 
     List<AttendanceInfo> getAttendanceInfoList(String course_ID);
+
+    List<StuAttend> getStuAttendList(String course_ID, String start_time);
 }

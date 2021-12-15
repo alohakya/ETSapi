@@ -148,6 +148,9 @@ public class FileController {
      * @param: request 表单上传，需要 course_ID path file_name
      * @param: response
      * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：文件传输失败，下载失败
+     * 返回-2：没有这个文件，下载失败
      * @date: 2021/12/11 9:45
      */
     @PostMapping("/downloadFile")
@@ -155,6 +158,26 @@ public class FileController {
         String course_ID = request.getParameter("course_ID");
         String path = request.getParameter("path");
         String file_name = request.getParameter("file_name");
-        return fileService.downloadFile(response,course_ID,path,file_name);
+        try{
+            fileService.downloadFile(response,course_ID,path,file_name);
+            return "1";
+        }
+        catch (Exception e){
+            return "-1";
+        }
+    }
+
+    @PostMapping("/downloadReport")
+    public String downloadReport(HttpServletRequest request, HttpServletResponse response){
+        String course_ID = request.getParameter("course_ID");
+        String project_name = request.getParameter("project_name");
+        String report_name = request.getParameter("report_name");
+        try {
+            fileService.downloadReport(response,course_ID,project_name,report_name);
+            return "1";
+        }
+        catch (Exception e){
+            return "-1";
+        }
     }
 }

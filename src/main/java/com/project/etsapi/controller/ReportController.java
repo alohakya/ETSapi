@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -22,6 +23,17 @@ public class ReportController {
     @Autowired
     FileService fileService;
 
+    /**
+     * @description: 上传报告
+     * @path: "/report/add"
+     * @type: post
+     * @param: request
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：文件上传失败
+     * 返回-2：没有报告文件
+     * @date: 2021/12/15 19:40
+     */
     @PostMapping("/add")
     public String uploadReport(HttpServletRequest request){
         String course_ID = request.getParameter("course_ID");
@@ -42,15 +54,41 @@ public class ReportController {
         }
     }
 
+    /**
+     * @description: 获得指定课程的某一实验的所有学生实验信息
+     * @path: "/report/getTotalReport
+     * @type: get
+     * @param: course_ID
+     * @param: project_name
+     * @return: java.util.List<com.project.etsapi.vo.ReportInfo>
+     * @date: 2021/12/15 19:43
+     */
     @GetMapping("/getTotalReport")
     public List<ReportInfo> getTotalReportList(@RequestParam("course_ID") String course_ID,
                                                @RequestParam("project_name") String project_name){
         return reportService.getTotalReportInfoList(course_ID,project_name);
     }
 
+    /**
+     * @description: 批改实验报告
+     * @path: "/report/correct"
+     * @type: post
+     * @param: course_ID
+     * @param: project_name
+     * @param: student_ID
+     * @param: score
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：批改失败
+     * @date: 2021/12/15 19:42
+     */
     @PostMapping("/correct")
     public String correctReport(String course_ID,String project_name,String student_ID,Integer score){
+        System.out.println(course_ID);
+        System.out.println(project_name);
+        System.out.println(student_ID);
+        System.out.println(score);
         CorrectInfo correctInfo = new CorrectInfo(course_ID,project_name,student_ID,score);
-       return reportService.updateScore(correctInfo) == 1? "1":"-1";
+        return reportService.updateScore(correctInfo) == 1? "1":"-1";
     }
 }
