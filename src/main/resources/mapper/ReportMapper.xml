@@ -21,6 +21,14 @@
           and student_ID = #{student_ID}
     </update>
 
+    <update id="updateScore" parameterType="com.project.etsapi.vo.CorrectInfo">
+        update report
+        set score = #{score},correct_time = #{correct_time}
+        where course_ID = #{course_ID}
+          and project_name = #{project_name}
+          and student_ID = #{student_ID}
+    </update>
+
     <select id="getProjectScoreInfoList" resultType="com.project.etsapi.vo.ProjectScoreInfo">
         SELECT project_name,AVG(score) as avg_score,MAX(score) as max_score,MIN(score) as min_score
         FROM report
@@ -29,7 +37,8 @@
     </select>
 
     <select id="getReport" resultType="com.project.etsapi.entity.Report">
-        select *
+        select course_ID,project_name,student_ID,
+               report_name,score,submit_time,correct_time
         from report
         where course_ID = #{course_ID}
           and student_ID = #{student_ID}
@@ -37,7 +46,7 @@
     </select>
 
     <select id="getTotalReportList" resultType="com.project.etsapi.vo.ReportInfo">
-        select student_ID,name,submit_time,correct_time,score
+        select student_ID,name,report_name,submit_time,correct_time,score
         from report natural join student
         where course_ID = #{course_ID} and project_name = #{project_name}
     </select>

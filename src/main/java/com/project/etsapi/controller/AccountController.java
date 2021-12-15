@@ -56,7 +56,7 @@ public class AccountController {
      * @param: account_ID
      * @param: password
      * @return: java.lang.String
-     * 返回1：成功
+     * 成功：返回account_ID
      * 返回-1：账号或密码错误
      * @date: 2021/11/26 15:37
      */
@@ -64,7 +64,7 @@ public class AccountController {
     public String idMatchPassword(String account_ID,String password, HttpServletResponse response){
         if (accountService.idMatchPassword(account_ID,password)){
             response.setHeader("token",jwtUtil.createToken(account_ID,password));
-            return "1";
+            return account_ID;
         };
         return "-1";
     }

@@ -4,8 +4,9 @@ public class ReportInfo {
     private String student_ID;
     private String name;
     private String submit_time;
+    private String report_name;
     private String correct_time;
-    private String score;
+    private Integer score;
 
     public ReportInfo(){
 
@@ -35,6 +36,14 @@ public class ReportInfo {
         this.submit_time = submit_time;
     }
 
+    public String getReport_name() {
+        return report_name;
+    }
+
+    public void setReport_name(String report_name) {
+        this.report_name = report_name;
+    }
+
     public String getCorrect_time() {
         return correct_time;
     }
@@ -43,11 +52,11 @@ public class ReportInfo {
         this.correct_time = correct_time;
     }
 
-    public String getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 

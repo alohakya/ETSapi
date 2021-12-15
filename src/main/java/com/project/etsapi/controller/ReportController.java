@@ -3,6 +3,7 @@ package com.project.etsapi.controller;
 import com.project.etsapi.entity.Report;
 import com.project.etsapi.service.FileService;
 import com.project.etsapi.service.ReportService;
+import com.project.etsapi.vo.CorrectInfo;
 import com.project.etsapi.vo.ReportInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +46,11 @@ public class ReportController {
     public List<ReportInfo> getTotalReportList(@RequestParam("course_ID") String course_ID,
                                                @RequestParam("project_name") String project_name){
         return reportService.getTotalReportInfoList(course_ID,project_name);
+    }
+
+    @PostMapping("/correct")
+    public String correctReport(String course_ID,String project_name,String student_ID,Integer score){
+        CorrectInfo correctInfo = new CorrectInfo(course_ID,project_name,student_ID,score);
+       return reportService.updateScore(correctInfo) == 1? "1":"-1";
     }
 }
