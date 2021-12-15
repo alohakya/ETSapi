@@ -2,6 +2,7 @@ package com.project.etsapi.service;
 
 import com.project.etsapi.entity.Student;
 import com.project.etsapi.entity.TakeCourse;
+import com.project.etsapi.vo.PartScore;
 import com.project.etsapi.vo.ScoreInfo;
 import com.project.etsapi.vo.StudentInfo;
 
@@ -19,4 +20,6 @@ public interface TakeCourseService {
     List<StudentInfo> getStudentInfoListByCourseId(String course_ID, String is_student);
 
     List<ScoreInfo> getTotalScoreList(String course_ID);
+
+    PartScore getPartScore(String course_ID, String student_ID);
 }

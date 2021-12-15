@@ -1,8 +1,0 @@
-package com.project.etsapi.controller;
-
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class TokenController {
-
-}

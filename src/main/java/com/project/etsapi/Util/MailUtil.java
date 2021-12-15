@@ -1,9 +1,8 @@
-package com.project.etsapi.service.Implment;
+package com.project.etsapi.Util;
 
 import com.project.etsapi.mapper.AccountMapper;
 import com.project.etsapi.mapper.StudentMapper;
 import com.project.etsapi.mapper.TeacherMapper;
-import com.project.etsapi.service.MailService;
 import com.project.etsapi.vo.RegisterInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.servlet.http.HttpSession;
 
 @Service
-public class MailServiceImpl implements MailService {
+public class MailUtil {
 
     @Value("${spring.mail.username}")
     public String from;
@@ -31,8 +30,7 @@ public class MailServiceImpl implements MailService {
     @Autowired
     private TeacherMapper teacherMapper;
 
-    @Override
-    public String sendSimpleMail(String account_ID,String email,String title, String content){
+    public String sendCode(String account_ID, String email, String title, String content){
         if(accountMapper.getAccountById(account_ID) != null)
             return "-1";
         if(studentMapper.getStudent(account_ID) == null && teacherMapper.getTeacher(account_ID) == null)
@@ -53,8 +51,7 @@ public class MailServiceImpl implements MailService {
         }
     }
 
-    @Override
-    public String register(RegisterInfo registerInfo, HttpSession session) {
+    public String verifyCode(RegisterInfo registerInfo, HttpSession session) {
         //更新数据库
         try{
             String account_ID = (String) session.getAttribute("account_ID");
@@ -72,7 +69,7 @@ public class MailServiceImpl implements MailService {
             if(!code.equals(registerInfo.getCode())){
                 return "-3";
             }
-            return accountMapper.addAccount(registerInfo.toAccount()) == 1? "1" : "-4";
+            return "1";
         }
         catch (Exception e){
             e.printStackTrace();

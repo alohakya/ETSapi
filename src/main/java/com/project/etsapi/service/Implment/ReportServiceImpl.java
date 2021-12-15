@@ -5,6 +5,7 @@ import com.project.etsapi.mapper.ReportMapper;
 import com.project.etsapi.service.ReportService;
 import com.project.etsapi.vo.ProjectScoreInfo;
 import com.project.etsapi.vo.ReportInfo;
+import com.project.etsapi.vo.StuProScore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,11 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<ReportInfo> getTotalReportInfoList(String course_ID, String project_name) {
         return reportMapper.getTotalReportList(course_ID,project_name);
+    }
+
+    @Override
+    public List<StuProScore> getStuProScoreList(String course_ID, String student_ID) {
+        return reportMapper.getStuProScoreList(course_ID,student_ID);
     }
 
 }

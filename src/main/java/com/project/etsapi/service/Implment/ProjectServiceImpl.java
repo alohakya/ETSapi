@@ -94,6 +94,4 @@ public class ProjectServiceImpl implements ProjectService {
     public int deleteProject(Project project) {
         return projectMapper.deleteProject(project.getCourse_ID(),project.getName());
     }
-
-
 }

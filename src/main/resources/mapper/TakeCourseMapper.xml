@@ -40,6 +40,12 @@
         from student natural join takecourse
         where course_ID = #{course_ID} and is_student = "1"
     </select>
+
+    <select id="getPartScore" resultType="com.project.etsapi.vo.PartScore">
+        select project_score,attend_score
+        from takecourse
+        where course_ID = #{course_ID} and student_ID = #{student_ID} and is_student = "1"
+    </select>
 </mapper>
 
 

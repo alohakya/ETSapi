@@ -78,4 +78,14 @@ public class AccountServiceImpl implements AccountService {
         }
         return String.valueOf(accountMapper.updatePassword(account_ID,"111111"));
     }
+
+    @Override
+    public void addAccount(Account account) {
+        try{
+            accountMapper.addAccount(account);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

@@ -1,8 +1,8 @@
 package com.project.etsapi.controller;
 
+import com.project.etsapi.Util.MailUtil;
 import com.project.etsapi.entity.Account;
 import com.project.etsapi.service.AccountService;
-import com.project.etsapi.service.MailService;
 import com.project.etsapi.vo.AccountInfo;
 import com.project.etsapi.vo.RegisterInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class AccountController {
     AccountService accountService;
 
     @Autowired
-    MailService mailService;
+    MailUtil mailUtil;
 
     /**
      * @description: 根据账号ID获得账户
@@ -158,7 +158,7 @@ public class AccountController {
      * 返回1：发送成功
      * 返回-1：account_ID已注册
      * 返回-2：account_ID不存在
-     * 返回-3：总之就是失败了
+     * 返回-3：一般是邮件发送失败
      * @date: 2021/12/5 15:01
      */
     @PostMapping("/sendEmail")
@@ -167,7 +167,7 @@ public class AccountController {
         String title = "注册验证码";
         String code = String.valueOf(new Random().nextInt(899999) + 100000);
         String content = "您的验证码为：" + code + "，仅可使用一次，请尽快使用。（这是一封自动发送的邮件，请勿直接回复）";
-        String result = mailService.sendSimpleMail(account_ID,email,title,content);
+        String result = mailUtil.sendCode(account_ID,email,title,content);
         //发送成功则记录
         if(result.equals("1")){
             session.setAttribute("account_ID",account_ID);
@@ -188,14 +188,15 @@ public class AccountController {
      * 返回-1：id与之前填写的不一样
      * 返回-2：email与之前填写的不一样
      * 返回-3：验证码错误
-     * 返回-4：数据库操作出错，总之就是失败了
+     * 返回-4：一般是没有发邮箱，或者已注册
      * @date: 2021/12/5 15:02
      */
     @PostMapping("/register")
     public String register(RegisterInfo registerInfo, HttpServletRequest request){
         HttpSession session = request.getSession();
-        String result =  mailService.register(registerInfo,session);
+        String result =  mailUtil.verifyCode(registerInfo,session);
         if(result.equals("1")){
+            accountService.addAccount(registerInfo.toAccount());
             session.removeAttribute("account_ID");
             session.removeAttribute("code");
             session.removeAttribute("email");

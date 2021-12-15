@@ -41,4 +41,14 @@
         from report natural join student
         where course_ID = #{course_ID} and project_name = #{project_name}
     </select>
+
+    <select id="getStuProScoreList" resultType="com.project.etsapi.vo.StuProScore">
+        SELECT name,score
+        FROM
+            (SELECT * FROM project WHERE NOW() > end_time and course_ID = #{course_ID})as a
+                left JOIN ( SELECT * FROM report WHERE student_ID = #{student_ID} ) as b
+        on a.course_ID = b.course_ID
+        and a.name = b.project_name
+        WHERE correct_time is not NULL
+    </select>
 </mapper>
