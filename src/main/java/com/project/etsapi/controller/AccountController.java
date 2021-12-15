@@ -1,5 +1,6 @@
 package com.project.etsapi.controller;
 
+import com.project.etsapi.Util.JwtUtil;
 import com.project.etsapi.Util.MailUtil;
 import com.project.etsapi.entity.Account;
 import com.project.etsapi.service.AccountService;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Random;
@@ -29,6 +31,8 @@ public class AccountController {
 
     @Autowired
     MailUtil mailUtil;
+
+    JwtUtil jwtUtil = new JwtUtil();
 
     /**
      * @description: 根据账号ID获得账户
@@ -57,8 +61,12 @@ public class AccountController {
      * @date: 2021/11/26 15:37
      */
     @PostMapping( "/login")
-    public String idMatchPassword(@RequestParam("account_ID") String account_ID, @RequestParam("password") String password){
-        return String.valueOf(accountService.idMatchPassword(account_ID,password));
+    public String idMatchPassword(String account_ID,String password, HttpServletResponse response){
+        if (accountService.idMatchPassword(account_ID,password)){
+            response.setHeader("token",jwtUtil.createToken(account_ID,password));
+            return "1";
+        };
+        return "-1";
     }
 
     /**

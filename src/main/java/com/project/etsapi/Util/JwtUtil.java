@@ -44,6 +44,12 @@ public class JwtUtil {
         return SECRET_KEY[index % 3];
     }
 
+    /**
+     * 生成token
+     * @param account_ID
+     * @param password
+     * @return
+     */
     public String createToken(String account_ID,String password){
         try {
             Algorithm algorithm = Algorithm.HMAC256(getSECRET_KEY(account_ID) + password);
@@ -55,10 +61,14 @@ public class JwtUtil {
         }
     }
 
+    /**
+     * 验证token
+     * @param token
+     * @return
+     */
     public Boolean verifyToken(String token){
         try{
             String account_ID = JWT.decode(token).getAudience().get(0);
-            System.out.println(account_ID);
             Account account = jwtUtil.accountService.getAccountById(account_ID);
             if(account == null){
                 return false;
