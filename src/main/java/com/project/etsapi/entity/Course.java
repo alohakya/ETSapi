@@ -12,6 +12,7 @@ public class Course implements Serializable {
     private String description;
     private double attend_percentage;
     private double project_percentage;
+    private String is_active;
 
 
     public Course() {
@@ -25,6 +26,7 @@ public class Course implements Serializable {
         this.description = description;
         this.attend_percentage = attend_percentage;
         this.project_percentage = project_percentage;
+        this.is_active = "1";
     }
 
     public String getCourse_ID() {
@@ -73,5 +75,13 @@ public class Course implements Serializable {
 
     public void setProject_percentage(double project_percentage) {
         this.project_percentage = project_percentage;
+    }
+
+    public String getIs_active() {
+        return is_active;
+    }
+
+    public void setIs_active(String is_active) {
+        this.is_active = is_active;
     }
 }

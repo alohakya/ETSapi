@@ -1,6 +1,9 @@
 package com.project.etsapi.service;
 
 import com.project.etsapi.entity.Course;
+import com.project.etsapi.vo.CourseInfo;
+
+import java.util.List;
 
 public interface CourseService {
     int addCourse(Course course);
@@ -13,6 +16,5 @@ public interface CourseService {
 
     Course getCourse(String course_ID);
 
-//    List<Project>  getProjectListByCourseId(String course_ID);
-
+    List<List<CourseInfo>> getTotalCourse(String teacher_ID,boolean isStudent);
 }

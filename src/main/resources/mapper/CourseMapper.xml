@@ -4,13 +4,15 @@
 <mapper namespace="com.project.etsapi.mapper.CourseMapper">
 <!--    int addCourse(Course course);-->
     <insert id="addCourse" parameterType="com.project.etsapi.entity.Course">
-        insert into course (course_ID, name, teacher_ID, description, attend_percentage, project_percentage)
+        insert into course (course_ID, name, teacher_ID, description,
+                            attend_percentage, project_percentage,is_active)
         values (#{course_ID,jdbcType=VARCHAR},
                 #{name,jdbcType=VARCHAR},
                 #{teacher_ID,jdbcType=VARCHAR},
                 #{description,jdbcType=LONGVARCHAR},
                 #{attend_percentage},
-                #{project_percentage}
+                #{project_percentage},
+                #{is_active}
                 )
     </insert>
 
@@ -40,6 +42,26 @@
     <select id="getCourse" parameterType="String" resultType="com.project.etsapi.entity.Course">
         SELECT * FROM course
         WHERE course_ID = #{course_ID}
+    </select>
+
+    <select id="getStuCourse" resultType="com.project.etsapi.vo.CourseInfo">
+        SELECT course_ID,course_name,teacher_name,is_student  FROM
+            (SELECT course_ID,is_student
+             FROM takecourse
+             WHERE student_ID = #{student_ID}) as a NATURAL JOIN
+            (SELECT course_ID,course.name as course_name,teacher.name as teacher_name
+            FROM course LEFT JOIN teacher
+            on course.teacher_ID = teacher.teacher_ID
+            WHERE is_active = #{is_active}) as b
+    </select>
+
+    <select id="getTeaCourse" resultType="com.project.etsapi.vo.CourseInfo">
+        SELECT course_ID,course_name,teacher_name,"0" as is_student
+        FROM(SELECT course_ID FROM teachcourse WHERE teacher_ID = #{teacher_ID})as a NATURAL join
+            (SELECT course_ID,course.name as course_name,teacher.name as teacher_name
+            FROM course left JOIN teacher
+            on course.teacher_ID = teacher.teacher_ID
+             WHERE is_active = #{is_active}) as b
     </select>
 </mapper>
 

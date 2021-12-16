@@ -1,7 +1,10 @@
 package com.project.etsapi.mapper;
 
 import com.project.etsapi.entity.Course;
+import com.project.etsapi.vo.CourseInfo;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface CourseMapper {
@@ -43,6 +46,10 @@ public interface CourseMapper {
      * @return Course
      */
     Course getCourse(String course_ID);
+
+    List<CourseInfo> getStuCourse(String student_ID, String is_active);
+
+    List<CourseInfo> getTeaCourse(String teacher_ID, String is_active);
 
 //    /**
 //     * 根据课程ID获得列表，列表内容：学生ID，学生名字，账号邮箱

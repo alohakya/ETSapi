@@ -3,8 +3,12 @@ package com.project.etsapi.service.Implment;
 import com.project.etsapi.entity.Course;
 import com.project.etsapi.mapper.*;
 import com.project.etsapi.service.CourseService;
+import com.project.etsapi.vo.CourseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName CourseServiceImpl
@@ -72,14 +76,26 @@ public class CourseServiceImpl implements CourseService {
         return courseMapper.updateCourseGrade(course_ID,attend_percentage,project_percentage);
     }
 
-
     @Override
     public Course getCourse(String course_ID) {
         return courseMapper.getCourse(course_ID);
     }
 
-//    @Override
-//    public List<Project> getProjectListByCourseId(String course_ID) {
-//        return projectMapper.getProjectListByCourseId(course_ID);
-//    }
+    @Override
+    public List<List<CourseInfo>> getTotalCourse(String account_ID, boolean isStudent) {
+        List<List<CourseInfo>> result = new ArrayList<>();
+        List<CourseInfo> tmp1;
+        List<CourseInfo> tmp2;
+        if(isStudent){
+            tmp1 = courseMapper.getStuCourse(account_ID,"1");
+            tmp2 = courseMapper.getStuCourse(account_ID,"0");
+        }
+        else{
+            tmp1 = courseMapper.getTeaCourse(account_ID,"1");
+            tmp2 = courseMapper.getTeaCourse(account_ID,"0");
+        }
+        result.add(tmp1);
+        result.add(tmp2);
+        return result;
+    }
 }

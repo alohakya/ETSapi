@@ -2,9 +2,11 @@ package com.project.etsapi.controller;
 
 import com.project.etsapi.entity.Course;
 import com.project.etsapi.service.CourseService;
+import com.project.etsapi.vo.CourseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -38,6 +40,7 @@ public class CourseController {
         course.setTeacher_ID(teacher_ID);
         course.setName(name);
         course.setCourse_ID(String.valueOf(new Random().nextInt(89999999) + 10000000));
+        course.setIs_active("1");
         return String.valueOf(courseService.addCourse(course));
     }
 
@@ -100,4 +103,16 @@ public class CourseController {
     public Course getCourse(@RequestParam("course_ID") String course_ID){
         return courseService.getCourse(course_ID);
     }
+
+
+    @GetMapping("/getTotalCourse")
+    public List<List<CourseInfo>> getTotalCourse(String account_ID){
+        if(account_ID.length() == 7) {
+            return courseService.getTotalCourse(account_ID, true);
+        }
+        else{
+            return courseService.getTotalCourse(account_ID,false);
+        }
+    }
+
 }

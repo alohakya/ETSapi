@@ -22,8 +22,8 @@ public class FileServiceImpl implements FileService {
 
     @Autowired
     private FileMapper fileMapper;
-//    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
-    private final String basePath = "E:/PC/Desktop/";
+    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
+//    private final String basePath = "E:/PC/Desktop/";
     private final String projectPath = "/实验资料";
     private final String coursePath = "/课程资料";
     private final String photoPath = "/课程头像";
