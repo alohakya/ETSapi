@@ -62,4 +62,11 @@
             (SELECT student_ID FROM attend WHERE course_ID = #{course_ID} and start_time = #{start_time}) as b
             on a.student_ID = b.student_ID
     </select>
+
+    <select id="getStuTotalScore" resultType="com.project.etsapi.vo.StuPartScore">
+        SELECT a.start_time as name,student_ID as score FROM
+                (SELECT * from attendance where course_ID = #{course_ID})as a left join
+            (SELECT * from attend WHERE course_ID = #{course_ID} and student_ID = #{student_ID}) as b
+            on a.start_time = b.start_time
+    </select>
 </mapper>

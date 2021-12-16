@@ -1,12 +1,8 @@
 package com.project.etsapi.service;
 
 import com.project.etsapi.entity.Report;
-import com.project.etsapi.vo.CorrectInfo;
-import com.project.etsapi.vo.ProjectScoreInfo;
-import com.project.etsapi.vo.ReportInfo;
-import com.project.etsapi.vo.StuProScore;
+import com.project.etsapi.vo.*;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 public interface ReportService {
@@ -19,4 +15,8 @@ public interface ReportService {
     List<StuProScore> getStuProScoreList(String course_ID, String student_ID);
 
     int updateScore(CorrectInfo correctInfo);
+
+    String getReportName(String course_ID, String student_ID, String project_name);
+
+    List<StuPartScore> getStuTotalScore(String course_ID, String student_ID);
 }

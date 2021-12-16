@@ -5,6 +5,7 @@ import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.vo.AttendInfo;
 import com.project.etsapi.vo.AttendanceInfo;
 import com.project.etsapi.vo.StuAttend;
+import com.project.etsapi.vo.StuPartScore;
 
 import java.util.List;
 
@@ -24,6 +25,8 @@ public interface AttendService {
     List<AttendanceInfo> getAttendanceInfoList(String course_ID);
 
     List<StuAttend> getStuAttendList(String course_ID, String start_time);
+
+    List<StuPartScore> getStuTotalScore(String course_ID, String student_ID);
 
 //    //获得考勤列表
 //    List<Attend> getAttendListByCourseId(String course_ID);

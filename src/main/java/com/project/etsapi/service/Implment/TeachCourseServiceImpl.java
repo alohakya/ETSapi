@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class TeachCourseServiceImpl implements TeachCourseService {
@@ -45,6 +46,10 @@ public class TeachCourseServiceImpl implements TeachCourseService {
 
     @Override
     public int deleteTeachCourse(TeachCourse teachCourse) {
+        Course tmp = courseMapper.getCourse(teachCourse.getCourse_ID());
+        if(tmp !=null && Objects.equals(tmp.getTeacher_ID(), teachCourse.getTeacher_ID())){
+            return -2;
+        }
         return teachCourseMapper.getTeachCourse(teachCourse) == null?
                 -1:teachCourseMapper.deleteTeachCourse(teachCourse);
     }

@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -90,5 +89,10 @@ public class ReportController {
         System.out.println(score);
         CorrectInfo correctInfo = new CorrectInfo(course_ID,project_name,student_ID,score);
         return reportService.updateScore(correctInfo) == 1? "1":"-1";
+    }
+
+    @GetMapping("/getName")
+    public String getReportName(String course_ID,String project_name,String student_ID){
+        return reportService.getReportName(course_ID,student_ID,project_name);
     }
 }

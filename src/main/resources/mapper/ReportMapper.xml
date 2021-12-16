@@ -73,4 +73,11 @@
         and a.name = b.project_name
         WHERE correct_time is not NULL
     </select>
+
+    <select id="getStuTotalScore" resultType="com.project.etsapi.vo.StuPartScore">
+        SELECT name,score FROM
+                (SELECT * from project WHERE course_ID = #{course_ID}) as a left join
+            (SELECT * from report WHERE course_ID = #{course_ID} and student_ID = #{student_ID}) as b
+            on a.name = b .project_name
+    </select>
 </mapper>

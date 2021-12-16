@@ -4,6 +4,7 @@ import com.project.etsapi.entity.Attend;
 import com.project.etsapi.entity.Attendance;
 import com.project.etsapi.vo.AttendanceInfo;
 import com.project.etsapi.vo.StuAttend;
+import com.project.etsapi.vo.StuPartScore;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -58,4 +59,6 @@ public interface AttendMapper {
     List<AttendanceInfo> getAttendanceInfoList(String course_ID);
 
     List<StuAttend> getStuAttendList(String course_ID, String start_time);
+
+    List<StuPartScore> getStuTotalScore(String course_ID, String student_ID);
 }

@@ -3,14 +3,10 @@ package com.project.etsapi.service.Implment;
 import com.project.etsapi.entity.Report;
 import com.project.etsapi.mapper.ReportMapper;
 import com.project.etsapi.service.ReportService;
-import com.project.etsapi.vo.CorrectInfo;
-import com.project.etsapi.vo.ProjectScoreInfo;
-import com.project.etsapi.vo.ReportInfo;
-import com.project.etsapi.vo.StuProScore;
+import com.project.etsapi.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Service
@@ -48,6 +44,17 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public int updateScore(CorrectInfo correctInfo) {
         return reportMapper.updateScore(correctInfo);
+    }
+
+    @Override
+    public String getReportName(String course_ID, String student_ID, String project_name) {
+        Report report = reportMapper.getReport(course_ID,student_ID,project_name);
+        return report == null? "-1":report.getReport_name();
+    }
+
+    @Override
+    public List<StuPartScore> getStuTotalScore(String course_ID, String student_ID) {
+        return reportMapper.getStuTotalScore(course_ID,student_ID);
     }
 
 }

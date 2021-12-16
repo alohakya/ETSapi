@@ -1,6 +1,5 @@
 package com.project.etsapi.controller;
 
-import com.project.etsapi.Util.JwtUtil;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

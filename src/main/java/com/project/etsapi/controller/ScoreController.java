@@ -1,17 +1,16 @@
 package com.project.etsapi.controller;
 
+import com.project.etsapi.service.AttendService;
 import com.project.etsapi.service.ReportService;
 import com.project.etsapi.service.TakeCourseService;
-import com.project.etsapi.vo.PartScore;
-import com.project.etsapi.vo.ProjectScoreInfo;
-import com.project.etsapi.vo.ScoreInfo;
-import com.project.etsapi.vo.StuProScore;
+import com.project.etsapi.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -23,6 +22,9 @@ public class ScoreController {
 
     @Autowired
     ReportService reportService;
+
+    @Autowired
+    AttendService attendService;
 
     @GetMapping("/getTotalScore")
     public List<ScoreInfo> getTotalScoreList(@RequestParam("course_ID") String course_ID){
@@ -61,5 +63,13 @@ public class ScoreController {
     @GetMapping("/getPartScore")
     public PartScore getPartScore(String course_ID,String student_ID){
         return takeCourseService.getPartScore(course_ID,student_ID);
+    }
+
+    @GetMapping("/getStuTotalScore")
+    public List<List<StuPartScore>> getStuTotalScore(String student_ID,String course_ID){
+        List<List<StuPartScore>> result = new ArrayList<>();
+        result.add(reportService.getStuTotalScore(course_ID,student_ID));
+        result.add(attendService.getStuTotalScore(course_ID,student_ID));
+        return result;
     }
 }
