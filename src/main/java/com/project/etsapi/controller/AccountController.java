@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -56,17 +57,21 @@ public class AccountController {
      * @param: account_ID
      * @param: password
      * @return: java.lang.String
-     * 成功：返回account_ID
-     * 返回-1：账号或密码错误
+     * 成功：返回account_ID 和 token
+     * 失败：返回null
      * @date: 2021/11/26 15:37
      */
     @PostMapping( "/login")
-    public String idMatchPassword(String account_ID,String password, HttpServletResponse response){
+    public List<String> idMatchPassword(String account_ID,String password, HttpServletResponse response){
         if (accountService.idMatchPassword(account_ID,password)){
-            response.setHeader("token",jwtUtil.createToken(account_ID,password));
-            return account_ID;
+            String token = jwtUtil.createToken(account_ID,password);
+            response.setHeader("token",token);
+            List<String> result = new ArrayList<>();
+            result.add(account_ID);
+            result.add(token);
+            return result;
         };
-        return "-1";
+        return null;
     }
 
     /**

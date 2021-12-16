@@ -15,6 +15,9 @@
         values (#{course_ID},
                 #{start_time},
                 #{student_ID})
+        update takecourse
+        set attend_score = attend_score + 1
+        where course_ID = #{course_ID} and student_ID = #{student_ID}
     </insert>
 
     <select id="getAttendance" resultType="com.project.etsapi.entity.Attendance">

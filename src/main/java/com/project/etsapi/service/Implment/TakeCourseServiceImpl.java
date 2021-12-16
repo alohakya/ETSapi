@@ -45,6 +45,16 @@ public class TakeCourseServiceImpl implements TakeCourseService {
     }
 
     @Override
+    public void updateProjectScore(String course_ID, String student_ID, int score) {
+        try{
+            takeCourseMapper.updateProjectScore(course_ID,student_ID,score);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public int addTakeCourse(TakeCourse takeCourse) {
         Student student = studentMapper.getStudent(takeCourse.getStudent_ID());
         if(student == null){

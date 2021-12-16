@@ -1,8 +1,10 @@
 package com.project.etsapi.controller;
 
 import com.project.etsapi.entity.Report;
+import com.project.etsapi.entity.TakeCourse;
 import com.project.etsapi.service.FileService;
 import com.project.etsapi.service.ReportService;
+import com.project.etsapi.service.TakeCourseService;
 import com.project.etsapi.vo.CorrectInfo;
 import com.project.etsapi.vo.ReportInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class ReportController {
 
     @Autowired
     FileService fileService;
+
+    @Autowired
+    TakeCourseService takeCourseService;
 
     /**
      * @description: 上传报告
@@ -82,13 +87,17 @@ public class ReportController {
      * @date: 2021/12/15 19:42
      */
     @PostMapping("/correct")
-    public String correctReport(String course_ID,String project_name,String student_ID,Integer score){
+    public String correctReport(String course_ID,String project_name,String student_ID,Integer old_score,Integer score){
         System.out.println(course_ID);
         System.out.println(project_name);
         System.out.println(student_ID);
         System.out.println(score);
         CorrectInfo correctInfo = new CorrectInfo(course_ID,project_name,student_ID,score);
-        return reportService.updateScore(correctInfo) == 1? "1":"-1";
+        if (reportService.updateScore(correctInfo) == 1){
+            takeCourseService.updateProjectScore(course_ID,student_ID,old_score==null?score:score-old_score);
+            return "1";
+        }
+        return "-1";
     }
 
     @GetMapping("/getName")

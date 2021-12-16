@@ -46,6 +46,12 @@
         from takecourse
         where course_ID = #{course_ID} and student_ID = #{student_ID} and is_student = "1"
     </select>
+
+    <update id="updataProjectScore">
+        update takecourse
+        set project_score = project_score + #{score}
+        where course_ID = #{course_ID} and student_ID = #{student_ID}
+    </update>
 </mapper>
 
 

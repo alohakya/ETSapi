@@ -82,20 +82,18 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<List<CourseInfo>> getTotalCourse(String account_ID, boolean isStudent) {
-        List<List<CourseInfo>> result = new ArrayList<>();
-        List<CourseInfo> tmp1;
-        List<CourseInfo> tmp2;
+    public List<CourseInfo> getTotalCourse(String account_ID, boolean isStudent) {
         if(isStudent){
-            tmp1 = courseMapper.getStuCourse(account_ID,"1");
-            tmp2 = courseMapper.getStuCourse(account_ID,"0");
+            return courseMapper.getStuCourse(account_ID,"1");
         }
-        else{
-            tmp1 = courseMapper.getTeaCourse(account_ID,"1");
-            tmp2 = courseMapper.getTeaCourse(account_ID,"0");
+        return courseMapper.getTeaCourse(account_ID,"1");
+    }
+
+    @Override
+    public List<CourseInfo> getTotalEndCourse(String account_ID, boolean isStudent) {
+        if(isStudent){
+            return courseMapper.getStuCourse(account_ID,"0");
         }
-        result.add(tmp1);
-        result.add(tmp2);
-        return result;
+        return courseMapper.getTeaCourse(account_ID,"0");
     }
 }

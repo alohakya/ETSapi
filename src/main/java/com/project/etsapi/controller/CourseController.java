@@ -106,7 +106,7 @@ public class CourseController {
 
 
     @GetMapping("/getTotalCourse")
-    public List<List<CourseInfo>> getTotalCourse(String account_ID){
+    public List<CourseInfo> getTotalCourse(String account_ID){
         if(account_ID.length() == 7) {
             return courseService.getTotalCourse(account_ID, true);
         }
@@ -115,4 +115,13 @@ public class CourseController {
         }
     }
 
+    @GetMapping("/getTotalEndCourse")
+    public List<CourseInfo> getTotalEndCourse(String account_ID){
+        if(account_ID.length() == 7) {
+            return courseService.getTotalEndCourse(account_ID, true);
+        }
+        else{
+            return courseService.getTotalEndCourse(account_ID,false);
+        }
+    }
 }
