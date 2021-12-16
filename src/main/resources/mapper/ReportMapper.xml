@@ -30,9 +30,17 @@
     </update>
 
     <select id="getProjectScoreInfoList" resultType="com.project.etsapi.vo.ProjectScoreInfo">
-        SELECT project_name,AVG(score) as avg_score,MAX(score) as max_score,MIN(score) as min_score
-        FROM report
-        WHERE course_ID = #{course_ID}
+        SELECT
+            c.project_name,
+            SUM( score )/ COUNT(c.project_name) as avg_score,
+            MAX(score) as max_score,
+            MIN(score) as min_score
+        FROM
+            (SELECT * FROM
+            ( SELECT name AS project_name FROM project WHERE course_ID = "42024401" ) AS a
+                JOIN ( SELECT student_ID FROM takecourse WHERE course_ID = "42024401") AS b) AS c
+                LEFT JOIN ( SELECT project_name, student_ID, score FROM report WHERE course_ID = "42024401" ) AS d
+                ON c.project_name = d.project_name AND c.student_ID = d.student_ID
         GROUP BY project_name
     </select>
 
