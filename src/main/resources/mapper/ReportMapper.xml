@@ -37,9 +37,9 @@
             MIN(score) as min_score
         FROM
             (SELECT * FROM
-            ( SELECT name AS project_name FROM project WHERE course_ID = "42024401" ) AS a
-                JOIN ( SELECT student_ID FROM takecourse WHERE course_ID = "42024401") AS b) AS c
-                LEFT JOIN ( SELECT project_name, student_ID, score FROM report WHERE course_ID = "42024401" ) AS d
+            ( SELECT name AS project_name FROM project WHERE course_ID = #{course_ID} ) AS a
+                JOIN ( SELECT student_ID FROM takecourse WHERE course_ID = #{course_ID}) AS b) AS c
+                LEFT JOIN ( SELECT project_name, student_ID, score FROM report WHERE course_ID = #{course_ID} ) AS d
                 ON c.project_name = d.project_name AND c.student_ID = d.student_ID
         GROUP BY project_name
     </select>
