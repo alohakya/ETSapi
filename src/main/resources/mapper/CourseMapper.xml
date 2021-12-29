@@ -45,20 +45,20 @@
     </select>
 
     <select id="getStuCourse" resultType="com.project.etsapi.vo.CourseInfo">
-        SELECT course_ID,course_name,teacher_name,is_student  FROM
+        SELECT course_ID,course_name,teacher_ID,teacher_name,is_student  FROM
             (SELECT course_ID,is_student
              FROM takecourse
              WHERE student_ID = #{student_ID}) as a NATURAL JOIN
-            (SELECT course_ID,course.name as course_name,teacher.name as teacher_name
+            (SELECT course_ID,course.name as course_name,course.teacher_ID as teacher_ID,teacher.name as teacher_name
             FROM course LEFT JOIN teacher
             on course.teacher_ID = teacher.teacher_ID
             WHERE is_active = #{is_active}) as b
     </select>
 
     <select id="getTeaCourse" resultType="com.project.etsapi.vo.CourseInfo">
-        SELECT course_ID,course_name,teacher_name,"0" as is_student
+        SELECT course_ID,course_name,teacher_ID,teacher_name,"0" as is_student
         FROM(SELECT course_ID FROM teachcourse WHERE teacher_ID = #{teacher_ID})as a NATURAL join
-            (SELECT course_ID,course.name as course_name,teacher.name as teacher_name
+            (SELECT course_ID,course.name as course_name,course.teacher_ID as teacher_ID,teacher.name as teacher_name
             FROM course left JOIN teacher
             on course.teacher_ID = teacher.teacher_ID
              WHERE is_active = #{is_active}) as b

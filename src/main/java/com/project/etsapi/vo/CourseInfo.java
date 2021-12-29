@@ -3,10 +3,19 @@ package com.project.etsapi.vo;
 public class CourseInfo {
     private String course_ID;
     private String course_name;
+    private String teacher_ID;
     private String teacher_name;
     private String is_student;
 
     public CourseInfo() {
+    }
+
+    public String getTeacher_ID() {
+        return teacher_ID;
+    }
+
+    public void setTeacher_ID(String teacher_ID) {
+        this.teacher_ID = teacher_ID;
     }
 
     public String getCourse_ID() {

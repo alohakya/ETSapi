@@ -25,7 +25,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns(
                         "/account/login",
                         "/account/sendEmail",
-                        "/account/register"
+                        "/account/register",
+                        "/test/**"
                 );
     }
 }

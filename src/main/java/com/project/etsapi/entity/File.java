@@ -30,7 +30,7 @@ public class File {
         this.submit_time = df.format(new Date());
     }
 
-    public File(String course_ID, String name, String path) {
+    public File(String course_ID, String file_name, String path) {
         this.course_ID = course_ID;
         this.file_name = file_name;
         this.path = path;
