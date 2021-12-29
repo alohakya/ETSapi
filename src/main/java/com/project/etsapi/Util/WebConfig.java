@@ -18,8 +18,6 @@ public class WebConfig implements WebMvcConfigurer {
                         "/report/**",
                         "/score/**",
                         "/student/**",
-                        "/take/**",
-                        "/teach/**",
                         "/teacher/**"
                 )
                 .excludePathPatterns(
