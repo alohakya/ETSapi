@@ -16,6 +16,12 @@
                 )
     </insert>
 
+    <update id="endCourse">
+        UPDATE course
+        SET is_active = "0"
+        WHERE course_ID = #{course_ID,jdbcType=VARCHAR}
+    </update>
+
 <!--    int deleteCourseById(String course_ID);-->
     <delete id="deleteCourseById" parameterType="java.lang.String">
         delete from course

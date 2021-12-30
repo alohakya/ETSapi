@@ -46,16 +46,6 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<String> getProjectNameListByCourseId(String course_ID) {
-        List<String> result = new ArrayList<>();
-        List<Project> tmp = projectMapper.getProjectListByCourseId(course_ID);
-        for (Project p:tmp) {
-            result.add(p.getName());
-        }
-        return result;
-    }
-
-    @Override
     public List<Project> getProjectListByCourseId(String course_ID) {
         return projectMapper.getProjectListByCourseId(course_ID);
     }
@@ -91,7 +81,7 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public int deleteProject(Project project) {
-        return projectMapper.deleteProject(project.getCourse_ID(),project.getName());
+    public int deleteProject(String course_ID,String name) {
+        return projectMapper.deleteProject(course_ID,name);
     }
 }

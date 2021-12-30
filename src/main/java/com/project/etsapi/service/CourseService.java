@@ -19,4 +19,6 @@ public interface CourseService {
     List<CourseInfo> getTotalCourse(String teacher_ID,boolean isStudent);
 
     List<CourseInfo> getTotalEndCourse(String account_ID, boolean isStudent);
+
+    int endCourse(String course_ID);
 }

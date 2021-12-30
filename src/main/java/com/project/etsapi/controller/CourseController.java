@@ -53,6 +53,7 @@ public class CourseController {
         course.setIs_active("1");
         return String.valueOf(courseService.addCourse(course));
     }
+
     /**
      * @description: 根据课程id删除课程
      * @type: post
@@ -65,6 +66,21 @@ public class CourseController {
     public String deleteCourse(@RequestParam("course_ID") String course_ID){
         return String.valueOf(courseService.deleteCourse(course_ID));
     }
+
+
+    /**
+     * @description: 结束课程
+     * @path:
+     * @type:
+     * @param: course_ID
+     * @return: java.lang.String
+     * @date: 2021/12/30 14:47
+     */
+    @PostMapping("/end")
+    public String endCourse(@RequestParam("course_ID") String course_ID){
+        return String.valueOf(courseService.endCourse(course_ID));
+    }
+
 
     /**
      * @description: 设置课程介绍信息

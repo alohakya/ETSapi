@@ -96,4 +96,15 @@ public class CourseServiceImpl implements CourseService {
         }
         return courseMapper.getTeaCourse(account_ID,"0");
     }
+
+    @Override
+    public int endCourse(String course_ID) {
+        Course course = courseMapper.getCourse(course_ID);
+        if(course == null)
+        //课程不存在
+        {
+            return -1;
+        }
+        return courseMapper.endCourse(course_ID);
+    }
 }

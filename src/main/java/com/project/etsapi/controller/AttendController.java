@@ -89,11 +89,30 @@ public class AttendController {
         }
     }
 
+
+    /**
+     * @description: 获得课程所有考勤的出勤信息
+     * @path:
+     * @type:
+     * @param: course_ID
+     * @return: java.util.List<com.project.etsapi.vo.AttendanceInfo>
+     * @date: 2021/12/30 14:15
+     */
     @GetMapping("/getAttendanceInfoList")
     public List<AttendanceInfo> getAttendanceInfoList(@RequestParam("course_ID") String course_ID){
         return attendService.getAttendanceInfoList(course_ID);
     }
 
+
+    /**
+     * @description: 获得指定考勤的所有学生出勤列表
+     * @path:
+     * @type:
+     * @param: course_ID
+     * @param: start_time
+     * @return: java.util.List<com.project.etsapi.vo.StuAttend>
+     * @date: 2021/12/30 14:15
+     */
     @GetMapping("/getStuAttendList")
     public List<StuAttend> getStuAttendList(String course_ID, String start_time){
         return attendService.getStuAttendList(course_ID,start_time);

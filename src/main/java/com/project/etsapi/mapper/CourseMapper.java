@@ -51,6 +51,8 @@ public interface CourseMapper {
 
     List<CourseInfo> getTeaCourse(String teacher_ID, String is_active);
 
+    int endCourse(String course_ID);
+
 //    /**
 //     * 根据课程ID获得列表，列表内容：学生ID，学生名字，账号邮箱
 //     * @param

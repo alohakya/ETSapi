@@ -6,7 +6,6 @@ import com.project.etsapi.vo.*;
 import java.util.List;
 
 public interface ReportService {
-
     void addReport(Report report) throws Exception;
 
     List<ReportInfo> getTotalReportInfoList(String course_ID, String project_name);
