@@ -53,7 +53,6 @@ public class CourseController {
         course.setIs_active("1");
         return String.valueOf(courseService.addCourse(course));
     }
-
     /**
      * @description: 根据课程id删除课程
      * @type: post
@@ -167,6 +166,7 @@ public class CourseController {
         return String.valueOf(takeCourseService.deleteTakeCourse(takeCourse));
     }
 
+    //TODO 没有用到
     /**
      * @description: 根据课程ID和权限参与身份获得学生名单或助教名单
      * @type: get
@@ -230,6 +230,7 @@ public class CourseController {
         return String.valueOf(teachCourseService.deleteTeachCourse(teachCourse));
     }
 
+    //TODO 没有用到
     /**
      * @description: 根据课程id获得教师列表
      * @type: get

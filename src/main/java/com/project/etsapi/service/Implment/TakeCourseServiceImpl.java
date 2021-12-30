@@ -7,8 +7,6 @@ import com.project.etsapi.mapper.CourseMapper;
 import com.project.etsapi.mapper.StudentMapper;
 import com.project.etsapi.mapper.TakeCourseMapper;
 import com.project.etsapi.service.TakeCourseService;
-import com.project.etsapi.vo.PartScore;
-import com.project.etsapi.vo.ScoreInfo;
 import com.project.etsapi.vo.StudentInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,16 +30,6 @@ public class TakeCourseServiceImpl implements TakeCourseService {
     @Override
     public List<StudentInfo> getStudentInfoListByCourseId(String course_ID, String is_student) {
         return takeCourseMapper.getStudentInfoListByCourseId(course_ID,is_student);
-    }
-
-    @Override
-    public List<ScoreInfo> getTotalScoreList(String course_ID) {
-        return takeCourseMapper.getTotalScoreList(course_ID);
-    }
-
-    @Override
-    public PartScore getPartScore(String course_ID, String student_ID) {
-        return takeCourseMapper.getPartScore(course_ID,student_ID);
     }
 
     @Override
@@ -77,8 +65,4 @@ public class TakeCourseServiceImpl implements TakeCourseService {
                 -1:takeCourseMapper.deleteTakeCourse(takeCourse);
     }
 
-    @Override
-    public TakeCourse getTakeCourse(String student_ID, String course_ID) {
-        return takeCourseMapper.getTakeCourse(student_ID,course_ID);
-    }
 }

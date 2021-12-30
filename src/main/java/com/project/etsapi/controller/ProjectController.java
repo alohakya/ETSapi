@@ -67,6 +67,12 @@ public class ProjectController {
         return "1";
     }
 
+    //TODO 待完善
+    @PostMapping("/delete")
+    public String deleteProject(){
+        return null;
+    }
+
     /**
      * @description: 根据课程id和项目name查询项目信息
      * @type: get
@@ -81,6 +87,7 @@ public class ProjectController {
         return projectService.getProject(course_ID,name);
     }
 
+    //TODO 没有用到
      /**
      * @description: 根据课程ID获得项目列表
      * @type: get
@@ -109,6 +116,7 @@ public class ProjectController {
         return projectService.getProjectInfoListByCourseId(course_ID);
     }
 
+    //TODO 没有用到
     /**
      * @description: 根据课程ID获得待完成项目信息列表
      * @type: get

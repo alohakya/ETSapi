@@ -2,6 +2,7 @@ package com.project.etsapi.controller;
 
 import com.project.etsapi.service.AttendService;
 import com.project.etsapi.service.ReportService;
+import com.project.etsapi.service.ScoreService;
 import com.project.etsapi.service.TakeCourseService;
 import com.project.etsapi.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +22,17 @@ public class ScoreController {
     TakeCourseService takeCourseService;
 
     @Autowired
-    ReportService reportService;
-
-    @Autowired
-    AttendService attendService;
+    ScoreService scoreService;
 
     @GetMapping("/getTotalScore")
     public List<ScoreInfo> getTotalScoreList(@RequestParam("course_ID") String course_ID){
-        return takeCourseService.getTotalScoreList(course_ID);
+        return scoreService.getTotalScoreList(course_ID);
     }
 
     @GetMapping("/getProjectScoreInfoList")
     public List<ProjectScoreInfo> getProjectScoreInfoList(@RequestParam("course_ID") String course_ID){
-        return reportService.getProjectScoreInfoList(course_ID);
+        return scoreService.getProjectScoreInfoList(course_ID);
     }
-
 
     /**
      * @description: 获得学生项目成绩列表
@@ -48,7 +45,7 @@ public class ScoreController {
      */
     @GetMapping("/getStuProScoreList")
     public List<StuProScore> getStuProScoreList(String course_ID, String student_ID){
-        return reportService.getStuProScoreList(course_ID,student_ID);
+        return scoreService.getStuProScoreList(course_ID,student_ID);
     }
 
     /**
@@ -62,14 +59,11 @@ public class ScoreController {
      */
     @GetMapping("/getPartScore")
     public PartScore getPartScore(String course_ID,String student_ID){
-        return takeCourseService.getPartScore(course_ID,student_ID);
+        return scoreService.getPartScore(course_ID,student_ID);
     }
 
     @GetMapping("/getStuTotalScore")
     public List<List<StuPartScore>> getStuTotalScore(String student_ID,String course_ID){
-        List<List<StuPartScore>> result = new ArrayList<>();
-        result.add(reportService.getStuTotalScore(course_ID,student_ID));
-        result.add(attendService.getStuTotalScore(course_ID,student_ID));
-        return result;
+        return scoreService.getStuTotalScore(course_ID,student_ID);
     }
 }

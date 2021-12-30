@@ -16,11 +16,6 @@ public class ReportServiceImpl implements ReportService {
     ReportMapper reportMapper;
 
     @Override
-    public List<ProjectScoreInfo> getProjectScoreInfoList(String course_ID) {
-        return reportMapper.getProjectScoreInfoList(course_ID);
-    }
-
-    @Override
     public void addReport(Report report) throws Exception {
         if(reportMapper.getReport(report.getCourse_ID(),report.getStudent_ID(),
                 report.getProject_name()) != null){
@@ -34,11 +29,6 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<ReportInfo> getTotalReportInfoList(String course_ID, String project_name) {
         return reportMapper.getTotalReportList(course_ID,project_name);
-    }
-
-    @Override
-    public List<StuProScore> getStuProScoreList(String course_ID, String student_ID) {
-        return reportMapper.getStuProScoreList(course_ID,student_ID);
     }
 
     @Override
