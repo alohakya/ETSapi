@@ -18,7 +18,7 @@ public interface ReportMapper {
 
     List<ReportInfo> getTotalReportList(String course_ID, String project_name);
 
-    List<StuProScore> getStuProScoreList(String course_ID, String student_ID);
+    List<StuPartScore> getStuProScoreList(String course_ID, String student_ID);
 
     int updateScore(CorrectInfo correctInfo);
 

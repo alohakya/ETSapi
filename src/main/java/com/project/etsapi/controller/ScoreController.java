@@ -24,18 +24,34 @@ public class ScoreController {
     @Autowired
     ScoreService scoreService;
 
-    @GetMapping("/getTotalScore")
+    /**
+     * @description: 获得所有学生总成绩
+     * @path:
+     * @type:
+     * @param: course_ID
+     * @return: java.util.List<com.project.etsapi.vo.ScoreInfo>
+     * @date: 2021/12/30 13:31
+     */
+    @GetMapping("/getTotalScoreList")
     public List<ScoreInfo> getTotalScoreList(@RequestParam("course_ID") String course_ID){
         return scoreService.getTotalScoreList(course_ID);
     }
 
+    /**
+     * @description: 获得课程所有实验成绩信息列表
+     * @path:
+     * @type:
+     * @param: course_ID
+     * @return: java.util.List<com.project.etsapi.vo.ProjectScoreInfo>
+     * @date: 2021/12/30 13:31
+     */
     @GetMapping("/getProjectScoreInfoList")
     public List<ProjectScoreInfo> getProjectScoreInfoList(@RequestParam("course_ID") String course_ID){
         return scoreService.getProjectScoreInfoList(course_ID);
     }
 
     /**
-     * @description: 获得学生项目成绩列表
+     * @description: 获得指定学生的各个实验成绩
      * @path: "/score/getStuProScoreList"
      * @type: get
      * @param: course_ID
@@ -44,12 +60,12 @@ public class ScoreController {
      * @date: 2021/12/14 22:54
      */
     @GetMapping("/getStuProScoreList")
-    public List<StuProScore> getStuProScoreList(String course_ID, String student_ID){
+    public List<StuPartScore> getStuProScoreList(String course_ID, String student_ID){
         return scoreService.getStuProScoreList(course_ID,student_ID);
     }
 
     /**
-     * @description: 获得学生考勤成绩attend_score和实验成绩project_score
+     * @description: 获得指定学生的实验总成绩与考勤总成绩
      * @path: "/score/getPartScore"
      * @type: get
      * @param: course_ID
@@ -62,6 +78,15 @@ public class ScoreController {
         return scoreService.getPartScore(course_ID,student_ID);
     }
 
+    /**
+     * @description: 获得指定学生的各个实验与考勤成绩
+     * @path:
+     * @type:
+     * @param: student_ID
+     * @param: course_ID
+     * @return: java.util.List<java.util.List < com.project.etsapi.vo.StuPartScore>>
+     * @date: 2021/12/30 13:33
+     */
     @GetMapping("/getStuTotalScore")
     public List<List<StuPartScore>> getStuTotalScore(String student_ID,String course_ID){
         return scoreService.getStuTotalScore(course_ID,student_ID);

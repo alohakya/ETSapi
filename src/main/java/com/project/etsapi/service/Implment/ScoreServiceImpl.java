@@ -30,7 +30,7 @@ public class ScoreServiceImpl implements ScoreService {
     }
 
     @Override
-    public List<StuProScore> getStuProScoreList(String course_ID, String student_ID) {
+    public List<StuPartScore> getStuProScoreList(String course_ID, String student_ID) {
         return reportMapper.getStuProScoreList(course_ID,student_ID);
     }
 

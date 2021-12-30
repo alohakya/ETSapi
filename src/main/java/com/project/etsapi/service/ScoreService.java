@@ -8,7 +8,7 @@ public interface ScoreService {
 
     List<ProjectScoreInfo> getProjectScoreInfoList(String course_ID);
 
-    List<StuProScore> getStuProScoreList(String course_ID, String student_ID);
+    List<StuPartScore> getStuProScoreList(String course_ID, String student_ID);
 
     PartScore getPartScore(String course_ID, String student_ID);
 
