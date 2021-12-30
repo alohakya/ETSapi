@@ -27,9 +27,20 @@ public class ReportController {
     @Autowired
     TakeCourseService takeCourseService;
 
+    //TODO 待完善
     /**
-     * @description: 上传报告
+     * @description: 上传固定模板的实验报告
      * @path: "/report/add"
+     * @type: post
+     */
+    @PostMapping("/add")
+    public String addReport(HttpServletRequest request){
+        return null;
+    }
+
+    /**
+     * @description: 上传实验报告文件
+     * @path: "/report/upload"
      * @type: post
      * @param: request
      * @return: java.lang.String
@@ -38,7 +49,7 @@ public class ReportController {
      * 返回-2：没有报告文件
      * @date: 2021/12/15 19:40
      */
-    @PostMapping("/add")
+    @PostMapping("/upload")
     public String uploadReport(HttpServletRequest request){
         String course_ID = request.getParameter("course_ID");
         String student_ID = request.getParameter("student_ID");
