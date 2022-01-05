@@ -28,6 +28,8 @@ public interface AttendService {
 
     List<StuPartScore> getStuTotalScore(String course_ID, String student_ID);
 
+    int deleteAttendance(Attendance attendance);
+
 //    //获得考勤列表
 //    List<Attend> getAttendListByCourseId(String course_ID);
 //

@@ -100,4 +100,9 @@ public class AttendServiceImpl implements AttendService {
     public List<StuPartScore> getStuTotalScore(String course_ID, String student_ID) {
         return attendMapper.getStuTotalScore(course_ID,student_ID);
     }
+
+    @Override
+    public int deleteAttendance(Attendance attendance) {
+        return attendMapper.deleteAttendance(attendance);
+    }
 }

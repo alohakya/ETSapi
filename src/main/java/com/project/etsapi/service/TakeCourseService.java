@@ -17,5 +17,4 @@ public interface TakeCourseService {
 
     List<StudentInfo> getStudentInfoListByCourseId(String course_ID, String is_student);
 
-    void updateProjectScore(String course_ID, String student_ID, int score);
 }

@@ -99,16 +99,8 @@ public class ReportController {
      */
     @PostMapping("/correct")
     public String correctReport(String course_ID,String project_name,String student_ID,Integer old_score,Integer score){
-        System.out.println(course_ID);
-        System.out.println(project_name);
-        System.out.println(student_ID);
-        System.out.println(score);
         CorrectInfo correctInfo = new CorrectInfo(course_ID,project_name,student_ID,score);
-        if (reportService.updateScore(correctInfo) == 1){
-            takeCourseService.updateProjectScore(course_ID,student_ID,old_score==null?score:score-old_score);
-            return "1";
-        }
-        return "-1";
+        return String.valueOf(reportService.updateScore(correctInfo));
     }
 
     @GetMapping("/getName")

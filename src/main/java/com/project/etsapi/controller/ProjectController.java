@@ -69,9 +69,13 @@ public class ProjectController {
 
     //TODO 待完善
     @PostMapping("/delete")
-    public String deleteProject(){
-//        return projectService.deleteProject();
-        return null;
+    public String deleteProject(String course_ID,String name){
+        return String.valueOf(projectService.deleteProject(course_ID,name));
+    }
+
+    @PostMapping("/update")
+    public String updateProject(Project project){
+        return String.valueOf(projectService.updateProject(project));
     }
 
     /**

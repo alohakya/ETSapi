@@ -25,4 +25,6 @@ public interface ProjectService {
     List<ProjectInfo> getToDoProjectInfoListByCourseId(String course_ID);
 
     int deleteProject(String course_ID,String name);
+
+    int updateProject(Project project);
 }

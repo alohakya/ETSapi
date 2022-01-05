@@ -61,4 +61,6 @@ public interface AttendMapper {
     List<StuAttend> getStuAttendList(String course_ID, String start_time);
 
     List<StuPartScore> getStuTotalScore(String course_ID, String student_ID);
+
+    int deleteAttendance(Attendance attendance);
 }

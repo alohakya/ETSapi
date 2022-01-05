@@ -37,4 +37,6 @@ public interface ProjectMapper {
     Project getProject(String course_ID,String name);
 
     int deleteProject(String course_ID,String name);
+
+    int updateProject(Project project);
 }

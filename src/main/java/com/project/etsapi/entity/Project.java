@@ -10,6 +10,15 @@ public class Project {
     private String start_time;
     private String end_time;
     private String description;
+
+    public Project(String course_ID, String name, String start_time, String end_time, String description) {
+        this.course_ID = course_ID;
+        this.name = name;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.description = description;
+    }
+
     private String teacher_ID;
     private double percentage;
     //    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//注意月和小时的格式为两个大写字母

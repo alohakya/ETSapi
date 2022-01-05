@@ -32,5 +32,4 @@ public interface TakeCourseMapper {
 
     PartScore getPartScore(String course_ID, String student_ID);
 
-    void updateProjectScore(String course_ID, String student_ID, double score);
 }

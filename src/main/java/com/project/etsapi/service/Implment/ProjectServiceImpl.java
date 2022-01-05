@@ -84,4 +84,9 @@ public class ProjectServiceImpl implements ProjectService {
     public int deleteProject(String course_ID,String name) {
         return projectMapper.deleteProject(course_ID,name);
     }
+
+    @Override
+    public int updateProject(Project project) {
+        return projectMapper.updateProject(project);
+    }
 }

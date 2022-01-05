@@ -17,6 +17,11 @@
                 #{student_ID})
     </insert>
 
+    <delete id="deleteAttendance" parameterType="com.project.etsapi.entity.Attendance">
+        delete from attendance
+        where course_ID = #{course_ID} and start_time = #{start_time}
+    </delete>
+
     <select id="getAttendance" resultType="com.project.etsapi.entity.Attendance">
         select *
         from attendance

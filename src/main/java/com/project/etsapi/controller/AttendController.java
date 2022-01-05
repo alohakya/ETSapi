@@ -32,6 +32,20 @@ public class AttendController {
     }
 
     /**
+     * @description: 传入课程id与开始、结束时间新建考勤
+     * @path: "/attend/addAttendance
+     * @param: attendance
+     * @return: java.lang.String
+     * 返回1：成功
+     * 返回-1：已存在这个考勤
+     * @date: 2021/11/27 18:56
+     */
+    @PostMapping("/deleteAttendance")
+    public String deleteAttendance(Attendance attendance){
+        return String.valueOf(attendService.deleteAttendance(attendance));
+    }
+
+    /**
      * @description: 传入课程id查询该课程所有考勤
      * @path: "/attend/getAttendanceListByCourseId"
      * @param: course_ID
@@ -92,7 +106,6 @@ public class AttendController {
         }
     }
 
-
     /**
      * @description: 获得课程所有考勤的出勤信息
      * @path:
@@ -105,7 +118,6 @@ public class AttendController {
     public List<AttendanceInfo> getAttendanceInfoList(@RequestParam("course_ID") String course_ID){
         return attendService.getAttendanceInfoList(course_ID);
     }
-
 
     /**
      * @description: 获得指定考勤的所有学生出勤列表

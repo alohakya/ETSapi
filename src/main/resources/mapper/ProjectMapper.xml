@@ -28,6 +28,14 @@
         DELETE FROM project
         WHERE course_ID=#{course_ID} and name = #{name}
     </delete>
+
+    <update id="updateProject" parameterType="com.project.etsapi.entity.Project">
+        UPDATE project
+        SET description = #{description},
+            start_time = #{start_time},
+            end_time = #{end_time}
+        WHERE course_ID = #{course_ID} and name = #{name}
+    </update>
 </mapper>
 
 
