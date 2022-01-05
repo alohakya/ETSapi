@@ -22,8 +22,8 @@ public class FileServiceImpl implements FileService {
 
     @Autowired
     private FileMapper fileMapper;
-    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
-//        private final String basePath = "E:/PC/Desktop/";
+//    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
+        private final String basePath = "E:/PC/Desktop/";
     private final String projectPath = "/实验资料";
     private final String coursePath = "/课程资料";
     private final String photoPath = "/课程头像";
@@ -58,11 +58,6 @@ public class FileServiceImpl implements FileService {
     @Override
     public List<String> getFolderNameListByType(String course_ID, Boolean isProject) {
         return fileMapper.getFileNameListByPath(course_ID,isProject?projectPath:coursePath);
-    }
-
-    @Override
-    public void deleteFileByProject(Project project) {
-        fileMapper.deleteFilesByPath(project.getCourse_ID(),project.getProjectPath());
     }
 
     @Override
@@ -138,16 +133,20 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public void removeFileByProject(Project project, List<MultipartFile> fileList) {
-        try{
-            for (MultipartFile file : fileList) {
-                this.removeFile(project.getCourse_ID(), project.getProjectPath(), file.getOriginalFilename());
+    public void removeFileByProject(String course_ID,String name) {
+        java.io.File dirFile = new java.io.File(basePath + course_ID + projectPath + "/" + name);
+        if (!dirFile.exists()) {
+            return;
+        }
+        if (dirFile.isFile()) {
+            dirFile.delete();
+        }
+        else {
+            for (java.io.File file : dirFile.listFiles()) {
+                file.delete();
             }
-            this.removeFile(project.getCourse_ID(),projectPath,project.getName());
         }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+        dirFile.delete();
     }
 
     @Override

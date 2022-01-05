@@ -56,21 +56,22 @@ public class ProjectController {
         catch (Exception e){
             //出错，手动回滚
             e.printStackTrace();
-            //数据库删除实验
+            //数据库删除实验，触发器自动删除数据库记录的文件
             projectService.deleteProject(project.getCourse_ID(),project.getName());
-            //数据库删除实验已记录的文件
-            fileService.deleteFileByProject(project);
             //删除服务器上的文件存档
-            fileService.removeFileByProject(project,fileList);
+            fileService.removeFileByProject(project.getCourse_ID(),project.getName());
             return "-2";
         }
         return "1";
     }
 
-    //TODO 待完善
     @PostMapping("/delete")
     public String deleteProject(String course_ID,String name){
-        return String.valueOf(projectService.deleteProject(course_ID,name));
+        if(projectService.deleteProject(course_ID,name) != 1){
+            return "-1";
+        }
+        fileService.removeFileByProject(course_ID,name);
+        return "1";
     }
 
     @PostMapping("/update")

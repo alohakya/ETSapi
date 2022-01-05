@@ -13,8 +13,6 @@ public interface FileMapper {
 
     File getPhoto(String course_ID,String path);
 
-    void deleteFilesByPath(String course_ID, String path);
-
     List<File> getFileList(String course_ID, String path);
 
     int deleteFile(String course_ID,String path,String file_name);
