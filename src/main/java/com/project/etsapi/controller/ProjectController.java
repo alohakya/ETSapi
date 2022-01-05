@@ -49,18 +49,21 @@ public class ProjectController {
         if (!projectService.addProject(project)) {
             return "-1";
         }
-        //上传文件
-        try{
-            fileService.saveProjectFiles(project, fileList);
-        }
-        catch (Exception e){
-            //出错，手动回滚
-            e.printStackTrace();
-            //数据库删除实验，触发器自动删除数据库记录的文件
-            projectService.deleteProject(project.getCourse_ID(),project.getName());
-            //删除服务器上的文件存档
-            fileService.removeFileByProject(project.getCourse_ID(),project.getName());
-            return "-2";
+
+        //文件模板实验，上传文件
+        if(project.getIs_file().equals("1")){
+            try{
+                fileService.saveProjectFiles(project, fileList);
+            }
+            catch (Exception e){
+                //出错，手动回滚
+                e.printStackTrace();
+                //数据库删除实验，触发器自动删除数据库记录的文件
+                projectService.deleteProject(project.getCourse_ID(),project.getName());
+                //删除服务器上的文件存档
+                fileService.removeFileByProject(project.getCourse_ID(),project.getName());
+                return "-2";
+            }
         }
         return "1";
     }
@@ -71,6 +74,7 @@ public class ProjectController {
             return "-1";
         }
         fileService.removeFileByProject(course_ID,name);
+        fileService.removeReportByProject(course_ID,name);
         return "1";
     }
 

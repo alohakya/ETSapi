@@ -10,18 +10,11 @@ public class Project {
     private String start_time;
     private String end_time;
     private String description;
-
-    public Project(String course_ID, String name, String start_time, String end_time, String description) {
-        this.course_ID = course_ID;
-        this.name = name;
-        this.start_time = start_time;
-        this.end_time = end_time;
-        this.description = description;
-    }
-
     private String teacher_ID;
     private double percentage;
-    //    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//注意月和小时的格式为两个大写字母
+    private String is_file;
+
+//    DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//注意月和小时的格式为两个大写字母
 //    java.util.Date date = new Date();//获得当前时间
 //    String birthday = df.format(date);//将当前时间转换成特定格式的时间字符串，这样便可以插入到数据库中
 
@@ -33,8 +26,7 @@ public class Project {
         return "/实验资料/" + this.getName();
     }
 
-    public Project(String course_ID,String name, String start_time, String end_time,
-                   String description, String teacher_ID, double percentage) {
+    public Project(String course_ID, String name, String start_time, String end_time, String description, String teacher_ID, double percentage, String is_file) {
         this.course_ID = course_ID;
         this.name = name;
         this.start_time = start_time;
@@ -42,6 +34,7 @@ public class Project {
         this.description = description;
         this.teacher_ID = teacher_ID;
         this.percentage = percentage;
+        this.is_file = is_file;
     }
 
     public ProjectInfo projectToProjectInfo(String teacherName){
@@ -110,5 +103,13 @@ public class Project {
 
     public void setCourse_ID(String course_ID) {
         this.course_ID = course_ID;
+    }
+
+    public String getIs_file() {
+        return is_file;
+    }
+
+    public void setIs_file(String is_file) {
+        this.is_file = is_file;
     }
 }

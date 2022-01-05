@@ -32,7 +32,11 @@ public interface FileService {
 
     void saveReport(String course_ID, String project_name, MultipartFile report) throws Exception;
 
+    void removeDirFile(String path);
+
     void removeFile(String course_ID,String path,String file_name) throws Exception;
 
     void removeFileByProject(String course_ID,String name);
+
+    void removeReportByProject(String course_ID,String name);
 }

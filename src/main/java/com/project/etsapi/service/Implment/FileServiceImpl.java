@@ -133,8 +133,8 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public void removeFileByProject(String course_ID,String name) {
-        java.io.File dirFile = new java.io.File(basePath + course_ID + projectPath + "/" + name);
+    public void removeDirFile(String path) {
+        java.io.File dirFile = new java.io.File(path);
         if (!dirFile.exists()) {
             return;
         }
@@ -147,6 +147,16 @@ public class FileServiceImpl implements FileService {
             }
         }
         dirFile.delete();
+    }
+
+    @Override
+    public void removeFileByProject(String course_ID,String name) {
+        removeDirFile(basePath + course_ID + projectPath + "/" + name);
+    }
+
+    @Override
+    public void removeReportByProject(String course_ID,String name) {
+        removeDirFile(basePath + course_ID + reportPath + name);
     }
 
     @Override
