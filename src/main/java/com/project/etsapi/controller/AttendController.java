@@ -83,6 +83,9 @@ public class AttendController {
     @PostMapping("/addAttend")
     public String addAttend(Attend attend){
         try {
+            System.out.println(attend.getCourse_ID());
+            System.out.println(attend.getStart_time());
+            System.out.println(attend.getStudent_ID());
             return String.valueOf(attendService.addAttend(attend));
         } catch (Exception e) {
             return "-2";
