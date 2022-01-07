@@ -32,7 +32,10 @@ public interface AccountMapper {
 
     int updatePassword(String account_ID, String password);
 
+    int updateEmail(String account_ID, String email);
+
     Privacy getStudentPrivacy(String student_ID);
 
     Privacy getTeacherPrivacy(String teacher_ID);
+
 }

@@ -37,4 +37,6 @@ public interface AccountService {
     Privacy getPrivacy(String account_ID);
 
     boolean checkRegisterInfo(String account_ID, String ID_number);
+
+    int changeEmail(String account_ID,String email);
 }

@@ -3,9 +3,12 @@ package com.project.etsapi.service;
 import com.project.etsapi.entity.File;
 import com.project.etsapi.entity.Project;
 import com.project.etsapi.vo.FileInfo;
+import com.project.etsapi.vo.ReportTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public interface FileService {
@@ -39,4 +42,8 @@ public interface FileService {
     void removeFileByProject(String course_ID,String name);
 
     void removeReportByProject(String course_ID,String name);
+
+    void addReport(ReportTemplate reportTemplate) throws IOException;
+
+    ReportTemplate getReportContent(String course_ID, String student_ID, String project_name);
 }

@@ -97,6 +97,23 @@ public class AccountController {
     }
 
     /**
+     * @description: 修改邮箱
+     * @path: "/account/changeEmail"
+     * @type:
+     * @param: account_ID
+     * @param: email
+     * @return: java.lang.String
+     * @date: 2022/1/7 23:07
+     */
+    @PostMapping("/changeEmail")
+    public String changeEmail(String account_ID,String email){
+        if(accountService.changeEmail(account_ID,email) == 1){
+            return email;
+        }
+        return null;
+    }
+
+    /**
      * @description: 重置密码
      * @path: "/account/resetPassword"
      * @type: post

@@ -6,6 +6,7 @@ import com.project.etsapi.service.ReportService;
 import com.project.etsapi.service.TakeCourseService;
 import com.project.etsapi.vo.CorrectInfo;
 import com.project.etsapi.vo.ReportInfo;
+import com.project.etsapi.vo.ReportTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,15 +27,33 @@ public class ReportController {
     @Autowired
     TakeCourseService takeCourseService;
 
-    //TODO 待完善
     /**
      * @description: 上传固定模板的实验报告
      * @path: "/report/add"
      * @type: post
      */
     @PostMapping("/add")
-    public String addReport(HttpServletRequest request){
-        return null;
+    public String addReport(ReportTemplate reportTemplate){
+        try{
+            fileService.addReport(reportTemplate);
+            reportService.addReport(reportTemplate.toReport());
+            return "1";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "-1";
+        }
+    }
+
+    @PostMapping("/getContent")
+    @ResponseBody
+    public ReportTemplate getReportContent(String course_ID,String student_ID,String project_name){
+        return fileService.getReportContent(course_ID,student_ID,project_name);
+//        Report report = reportService.getReport(course_ID, student_ID, project_name);
+//        if(report == null || report.getSubmit_time() == null){
+//            return new ReportTemplate(course_ID,student_ID,project_name);
+//        }else{
+//            return fileService.getReportContent(course_ID,student_ID,project_name);
+//        }
     }
 
     @GetMapping("/get")

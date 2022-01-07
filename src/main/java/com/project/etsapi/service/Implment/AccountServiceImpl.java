@@ -126,4 +126,9 @@ public class AccountServiceImpl implements AccountService {
         }
         return false;
     }
+
+    @Override
+    public int changeEmail(String account_ID, String email) {
+        return accountMapper.updateEmail(account_ID,email);
+    }
 }

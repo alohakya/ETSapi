@@ -5,6 +5,7 @@ import com.project.etsapi.entity.Project;
 import com.project.etsapi.mapper.FileMapper;
 import com.project.etsapi.service.FileService;
 import com.project.etsapi.vo.FileInfo;
+import com.project.etsapi.vo.ReportTemplate;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
+import java.io.*;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +23,8 @@ public class FileServiceImpl implements FileService {
 
     @Autowired
     private FileMapper fileMapper;
-    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
-//        private final String basePath = "E:/PC/Desktop/";
+//    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
+        private final String basePath = "E:/PC/Desktop/";
     private final String projectPath = "/实验资料";
     private final String coursePath = "/课程资料";
     private final String photoPath = "/课程头像";
@@ -157,6 +158,44 @@ public class FileServiceImpl implements FileService {
     @Override
     public void removeReportByProject(String course_ID,String name) {
         removeDirFile(basePath + course_ID + reportPath + name);
+    }
+
+    @Override
+    public void addReport(ReportTemplate reportTemplate) throws IOException {
+        java.io.File dir = new java.io.File(basePath
+                + reportTemplate.getCourse_ID() + reportPath
+                + reportTemplate.getProject_name());
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        java.io.File file = new java.io.File(dir + "/"
+                + reportTemplate.getStudent_ID() + "_"
+                + reportTemplate.getProject_name() + ".txt");
+        if(!file.exists()){
+            file.createNewFile();
+        }
+        FileWriter fileWriter = new FileWriter(file);
+        fileWriter.write(reportTemplate.toString());
+        fileWriter.close();
+    }
+
+    @Override
+    public ReportTemplate getReportContent(String course_ID, String student_ID, String project_name){
+        ReportTemplate result = new ReportTemplate(course_ID,student_ID,project_name);
+        try{
+            String filePath = basePath + course_ID + reportPath + project_name
+                    + "/" + student_ID +"_" + project_name + ".txt";
+            java.io.File file = new java.io.File(filePath);
+            byte[] bytes = new byte[(int) file.length()];
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            int ret  = fileInputStream.read(bytes);
+            fileInputStream.close();
+            result.setContent(new String(bytes,0,ret));
+        }
+        catch (IOException e){
+            System.out.println("没有实验报告存档！");
+        }
+        return result;
     }
 
     @Override

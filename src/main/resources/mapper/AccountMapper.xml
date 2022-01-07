@@ -30,6 +30,12 @@
         where account_ID = #{account_ID}
     </update>
 
+    <update id="updateEmail">
+        update account
+        set email = #{email}
+        where account_ID = #{account_ID}
+    </update>
+
     <!--    Account getAccountById(String account_ID);-->
     <select id="getAccountById" parameterType="String" resultType="com.project.etsapi.entity.Account">
         SELECT * FROM account
