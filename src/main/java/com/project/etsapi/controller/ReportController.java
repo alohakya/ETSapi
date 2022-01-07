@@ -1,7 +1,6 @@
 package com.project.etsapi.controller;
 
 import com.project.etsapi.entity.Report;
-import com.project.etsapi.entity.TakeCourse;
 import com.project.etsapi.service.FileService;
 import com.project.etsapi.service.ReportService;
 import com.project.etsapi.service.TakeCourseService;
@@ -36,6 +35,12 @@ public class ReportController {
     @PostMapping("/add")
     public String addReport(HttpServletRequest request){
         return null;
+    }
+
+    @GetMapping("/get")
+    @ResponseBody
+    public Report getReport(String course_ID,String project_name,String student_ID){
+        return reportService.getReport(course_ID,student_ID,project_name);
     }
 
     /**
@@ -101,10 +106,5 @@ public class ReportController {
     public String correctReport(String course_ID,String project_name,String student_ID,Integer old_score,Integer score){
         CorrectInfo correctInfo = new CorrectInfo(course_ID,project_name,student_ID,score);
         return String.valueOf(reportService.updateScore(correctInfo));
-    }
-
-    @GetMapping("/getName")
-    public String getReportName(String course_ID,String project_name,String student_ID){
-        return reportService.getReportName(course_ID,student_ID,project_name);
     }
 }

@@ -37,9 +37,8 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public String getReportName(String course_ID, String student_ID, String project_name) {
-        Report report = reportMapper.getReport(course_ID,student_ID,project_name);
-        return report == null? "-1":report.getReport_name();
+    public Report getReport(String course_ID, String student_ID, String project_name) {
+        return reportMapper.getReport(course_ID,student_ID,project_name);
     }
 
     @Override

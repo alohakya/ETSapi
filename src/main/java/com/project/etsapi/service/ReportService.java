@@ -12,7 +12,7 @@ public interface ReportService {
 
     int updateScore(CorrectInfo correctInfo);
 
-    String getReportName(String course_ID, String student_ID, String project_name);
+    Report getReport(String course_ID, String student_ID, String project_name);
 
     List<StuPartScore> getStuTotalScore(String course_ID, String student_ID);
 }
