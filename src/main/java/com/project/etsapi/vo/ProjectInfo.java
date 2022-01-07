@@ -19,6 +19,7 @@ public class ProjectInfo {
     private String description;
     private String teacher_name;
     private double percentage;
+    private String is_file;
 
     public ProjectInfo() {
 

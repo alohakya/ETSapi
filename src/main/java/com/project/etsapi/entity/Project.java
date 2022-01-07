@@ -46,6 +46,7 @@ public class Project {
         projectInfo.setStart_time(this.start_time);
         projectInfo.setEnd_time(this.end_time);
         projectInfo.setDescription(this.description);
+        projectInfo.setIs_file(this.is_file);
         return projectInfo;
     }
 

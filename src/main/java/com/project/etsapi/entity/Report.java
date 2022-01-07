@@ -36,7 +36,7 @@ public class Report {
         this.student_ID = student_ID;
         this.project_name = project_name;
         this.report_name = report_name;
-        this.score = null;
+        this.score = 0;
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.submit_time = df.format(new Date());
         this.correct_time = null;
