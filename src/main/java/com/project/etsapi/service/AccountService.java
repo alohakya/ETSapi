@@ -2,6 +2,7 @@ package com.project.etsapi.service;
 
 import com.project.etsapi.entity.Account;
 import com.project.etsapi.vo.AccountInfo;
+import com.project.etsapi.vo.Privacy;
 
 import java.util.List;
 
@@ -32,4 +33,8 @@ public interface AccountService {
     String resetPassword(String account_ID);
 
     void addAccount(Account account);
+
+    Privacy getPrivacy(String account_ID);
+
+    boolean checkRegisterInfo(String account_ID, String ID_number);
 }

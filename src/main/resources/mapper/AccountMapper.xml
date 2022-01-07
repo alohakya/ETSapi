@@ -47,6 +47,18 @@
         from account join student
         where account_ID = student_ID
     </select>
+
+    <select id="getStudentPrivacy" resultType="com.project.etsapi.vo.Privacy">
+        select  account_ID,name,email,ID_number
+        from account join student
+        where account_ID = student_ID and student_ID = #{student_ID}
+    </select>
+
+    <select id="getTeacherPrivacy" resultType="com.project.etsapi.vo.Privacy">
+        select account_ID,name,email,ID_number
+        from account join teacher
+        where account_ID = teacher_ID and teacher_ID = #{teacher_ID}
+    </select>
 </mapper>
 
 

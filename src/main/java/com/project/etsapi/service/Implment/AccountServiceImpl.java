@@ -1,9 +1,14 @@
 package com.project.etsapi.service.Implment;
 
 import com.project.etsapi.entity.Account;
+import com.project.etsapi.entity.Student;
+import com.project.etsapi.entity.Teacher;
 import com.project.etsapi.mapper.AccountMapper;
+import com.project.etsapi.mapper.StudentMapper;
+import com.project.etsapi.mapper.TeacherMapper;
 import com.project.etsapi.service.AccountService;
 import com.project.etsapi.vo.AccountInfo;
+import com.project.etsapi.vo.Privacy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +26,12 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
     @Autowired
     AccountMapper accountMapper;
+
+    @Autowired
+    TeacherMapper teacherMapper;
+
+    @Autowired
+    StudentMapper studentMapper;
 
     @Override
     public Account getAccountById(String account_ID) {
@@ -87,5 +98,32 @@ public class AccountServiceImpl implements AccountService {
         catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Privacy getPrivacy(String account_ID) {
+        if(account_ID.length() == 7){
+            return accountMapper.getStudentPrivacy(account_ID);
+        }
+        else if(account_ID.length() == 5){
+            return accountMapper.getTeacherPrivacy(account_ID);
+        }
+        return null;
+    }
+
+    @Override
+    public boolean checkRegisterInfo(String account_ID, String ID_number) {
+        if(accountMapper.getAccountById(account_ID) != null){
+            return false;
+        }
+        if(account_ID.length() == 7){
+            Student student = studentMapper.getStudent(account_ID);
+            return student != null && student.getID_number().equals(ID_number);
+        }
+        else if (account_ID.length() == 5){
+            Teacher teacher = teacherMapper.getTeacher(account_ID);
+            return teacher != null && teacher.getID_number().equals(ID_number);
+        }
+        return false;
     }
 }

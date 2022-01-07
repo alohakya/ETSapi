@@ -21,20 +21,7 @@ public class MailUtil {
     @Autowired
     private JavaMailSender mailSender;
 
-    @Autowired
-    private AccountMapper accountMapper;
-
-    @Autowired
-    private StudentMapper studentMapper;
-
-    @Autowired
-    private TeacherMapper teacherMapper;
-
-    public String sendCode(String account_ID, String email, String title, String content){
-        if(accountMapper.getAccountById(account_ID) != null)
-            return "-1";
-        if(studentMapper.getStudent(account_ID) == null && teacherMapper.getTeacher(account_ID) == null)
-            return "-2";
+    public String sendCode(String email, String title, String content){
         try {
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom(from);
@@ -47,7 +34,7 @@ public class MailUtil {
         }
         catch (Exception e){
             e.printStackTrace();
-            return "-3";
+            return "-2";
         }
     }
 
@@ -55,25 +42,24 @@ public class MailUtil {
         //更新数据库
         try{
             String account_ID = (String) session.getAttribute("account_ID");
+            String ID_number = (String) session.getAttribute("ID_number");
             String email = (String) session.getAttribute("email");
             String code = (String) session.getAttribute("code");
-            //id与之前填写的不一样
-            if(!account_ID.equals(registerInfo.getAccount_ID())){
+            //验证码填写错误
+            if(!code.equals(registerInfo.getCode())){
                 return "-1";
             }
-            //邮箱与之前填写的不一样
-            if(!email.equals(registerInfo.getEmail())){
+            //注册信息与之前填写的不一样
+            if(!account_ID.equals(registerInfo.getAccount_ID())
+                    || !email.equals(registerInfo.getEmail())
+                    || !ID_number.equals(registerInfo.getID_number())){
                 return "-2";
-            }
-            //验证码与之前填写的不一样
-            if(!code.equals(registerInfo.getCode())){
-                return "-3";
             }
             return "1";
         }
         catch (Exception e){
             e.printStackTrace();
-            return "-4";
+            return "-3";
         }
     }
 }

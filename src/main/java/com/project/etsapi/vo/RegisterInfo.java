@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 public class RegisterInfo {
     private String account_ID;
+    private String ID_number;
     private String password;
     private String email;
     private String code;
@@ -17,6 +18,14 @@ public class RegisterInfo {
         account.setPassword(this.password);
         account.setIs_active("1");
         return account;
+    }
+
+    public String getID_number() {
+        return ID_number;
+    }
+
+    public void setID_number(String ID_number) {
+        this.ID_number = ID_number;
     }
 
     public String getAccount_ID() {

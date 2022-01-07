@@ -2,6 +2,7 @@ package com.project.etsapi.mapper;
 
 import com.project.etsapi.entity.Account;
 import com.project.etsapi.vo.AccountInfo;
+import com.project.etsapi.vo.Privacy;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -30,4 +31,8 @@ public interface AccountMapper {
     int updateActive(String account_ID, String is_active);
 
     int updatePassword(String account_ID, String password);
+
+    Privacy getStudentPrivacy(String student_ID);
+
+    Privacy getTeacherPrivacy(String teacher_ID);
 }

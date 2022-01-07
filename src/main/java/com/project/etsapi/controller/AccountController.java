@@ -53,8 +53,8 @@ public class AccountController {
 
     @PostMapping("/getPrivacy")
     @ResponseBody
-    public Privacy getPrivacy(){
-        return null;
+    public Privacy getPrivacy(String account_ID){
+        return accountService.getPrivacy(account_ID);
     }
 
     /**
@@ -176,20 +176,28 @@ public class AccountController {
      * @param: request
      * @return: java.lang.String
      * 返回1：发送成功
-     * 返回-1：account_ID已注册
-     * 返回-2：account_ID不存在
-     * 返回-3：一般是邮件发送失败
+     * 返回-1：填写信息错误或账号已注册
+     * 返回-2：邮件发送失败
      * @date: 2021/12/5 15:01
      */
     @PostMapping("/sendEmail")
-    public String sendEmail(String account_ID, String email, HttpServletRequest request){
+    public String sendEmail(HttpServletRequest request){
+        String ID_number = request.getParameter("ID_number");
+        String account_ID = request.getParameter("account_ID");
+        String email = request.getParameter("email");
+        //检验账号信息
+        if(!accountService.checkRegisterInfo(account_ID,ID_number)){
+            return "-1";
+        }
+        //发送验证码
         HttpSession session = request.getSession();
         String title = "注册验证码";
         String code = String.valueOf(new Random().nextInt(899999) + 100000);
         String content = "您的验证码为：" + code + "，仅可使用一次，请尽快使用。（这是一封自动发送的邮件，请勿直接回复）";
-        String result = mailUtil.sendCode(account_ID,email,title,content);
+        String result = mailUtil.sendCode(email,title,content);
         //发送成功则记录
         if(result.equals("1")){
+            session.setAttribute("ID_number",ID_number);
             session.setAttribute("account_ID",account_ID);
             session.setAttribute("code",code);
             session.setAttribute("email", email);
@@ -205,10 +213,9 @@ public class AccountController {
      * @param: session
      * @return: java.lang.String
      * 返回1：成功
-     * 返回-1：id与之前填写的不一样
-     * 返回-2：email与之前填写的不一样
-     * 返回-3：验证码错误
-     * 返回-4：一般是没有发邮箱，或者已注册
+     * 返回-1：验证码错误
+     * 返回-2：注册信息与之前填写的不一样
+     * 返回-3：没有发
      * @date: 2021/12/5 15:02
      */
     @PostMapping("/register")
@@ -217,6 +224,7 @@ public class AccountController {
         String result =  mailUtil.verifyCode(registerInfo,session);
         if(result.equals("1")){
             accountService.addAccount(registerInfo.toAccount());
+            session.removeAttribute("ID_number");
             session.removeAttribute("account_ID");
             session.removeAttribute("code");
             session.removeAttribute("email");
