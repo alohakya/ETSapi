@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class Student implements Serializable {
     private String student_ID;
     private String name;
+    private String ID_number;
 
     public Student(String student_ID, String name) {
         this.student_ID = student_ID;
@@ -16,6 +17,14 @@ public class Student implements Serializable {
 
     public Student() {
 
+    }
+
+    public String getID_number() {
+        return ID_number;
+    }
+
+    public void setID_number(String ID_number) {
+        this.ID_number = ID_number;
     }
 
     public String getStudent_ID() {

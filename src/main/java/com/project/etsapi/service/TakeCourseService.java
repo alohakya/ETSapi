@@ -13,8 +13,6 @@ public interface TakeCourseService {
 
     int deleteTakeCourse(TakeCourse takeCourse);
 
-    List<Student> getStudentListByCourseId(String course_ID, String is_student);
-
     List<StudentInfo> getStudentInfoListByCourseId(String course_ID, String is_student);
 
 }

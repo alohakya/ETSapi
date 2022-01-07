@@ -5,8 +5,8 @@
 
     <!--增-->
     <insert id="addStudent" parameterType="com.project.etsapi.entity.Student">
-        INSERT INTO student (student_ID, name)
-        VALUES (#{student_ID}, #{name})
+        INSERT INTO student (student_ID, name,ID_number)
+        VALUES (#{student_ID}, #{name},#{ID_number})
     </insert>
 
     <!--删-->

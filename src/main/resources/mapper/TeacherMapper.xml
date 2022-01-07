@@ -4,8 +4,8 @@
 <mapper namespace="com.project.etsapi.mapper.TeacherMapper">
 <!--add-->
     <insert id="addTeacher" parameterType="com.project.etsapi.entity.Teacher">
-        INSERT INTO teacher (teacher_ID, name)
-        VALUES (#{teacher_ID}, #{name})
+        INSERT INTO teacher (teacher_ID, name,ID_number)
+        VALUES (#{teacher_ID}, #{name}, #{ID_number})
     </insert>
 
 <!--    delete-->

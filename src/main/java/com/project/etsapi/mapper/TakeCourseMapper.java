@@ -24,8 +24,6 @@ public interface TakeCourseMapper {
 
     TakeCourse getTakeCourse(String student_ID,String course_ID);
 
-    List<Student> getStudentListByCourseId(String course_ID,String is_student);
-
     List<StudentInfo> getStudentInfoListByCourseId(String course_ID, String is_student);
 
     List<ScoreInfo> getTotalScoreList(String course_ID);

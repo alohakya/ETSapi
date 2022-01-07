@@ -35,12 +35,6 @@ public interface TeachCourseMapper {
      */
     TeachCourse getTeachCourse(TeachCourse teachCourse);
 
-    /**
-     * 根据课程id获得某门课的教师列表
-     * @param course_ID
-     * @return
-     */
-    List<Teacher> getTeacherListByCourseId(String course_ID);
 
     /**
      * 根据课程id获得某门课的教师信息列表，包含邮箱

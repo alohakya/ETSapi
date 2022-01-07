@@ -182,23 +182,6 @@ public class CourseController {
         return String.valueOf(takeCourseService.deleteTakeCourse(takeCourse));
     }
 
-    //TODO 没有用到
-    /**
-     * @description: 根据课程ID和权限参与身份获得学生名单或助教名单
-     * @type: get
-     * @path: "/take/getStudentList"
-     * @param: course_ID 课程id
-     * @param: is_student 是否是学生
-     * @return: java.util.List<com.project.etsapi.entity.Student>
-     * @date: 2021/11/26 15:07
-     */
-    @GetMapping("/getStudentList")
-    @ResponseBody
-    public List<Student> getStudentList(@RequestParam("course_ID")String course_ID,
-                                        @RequestParam("is_student")String is_student){
-        return takeCourseService.getStudentListByCourseId(course_ID, is_student);
-    }
-
     /**
      * @description: 根据课程id获得学生或助教信息列表，包含id，姓名，邮箱
      * @type: get
@@ -214,7 +197,6 @@ public class CourseController {
                                                 @RequestParam("is_student") String is_student){
         return takeCourseService.getStudentInfoListByCourseId(course_ID, is_student);
     }
-
 
     /**
      * @description: 添加一位老师到一个课程
@@ -244,21 +226,6 @@ public class CourseController {
     @PostMapping("/deleteTeach")
     public String deleteTeachCourse(TeachCourse teachCourse){
         return String.valueOf(teachCourseService.deleteTeachCourse(teachCourse));
-    }
-
-    //TODO 没有用到
-    /**
-     * @description: 根据课程id获得教师列表
-     * @type: get
-     * @path: "/teach/getTeacherList"
-     * @param: course_ID 课程id
-     * @return: java.util.List<com.project.etsapi.entity.Teacher>
-     * @date: 2021/11/26 15:06
-     */
-    @GetMapping("/getTeacherList")
-    @ResponseBody
-    public List<Teacher> getTeacherList(@RequestParam("course_ID") String course_ID){
-        return teachCourseService.getTeacherListByCourseId(course_ID);
     }
 
     /**

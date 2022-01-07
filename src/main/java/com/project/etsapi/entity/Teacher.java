@@ -6,6 +6,7 @@ import lombok.Data;
 public class Teacher {
     private String teacher_ID;
     private String name;
+    private String ID_number;
 
     public Teacher(String teacher_ID, String name) {
         this.teacher_ID = teacher_ID;
@@ -13,6 +14,14 @@ public class Teacher {
     }
 
     public Teacher() {
+    }
+
+    public String getID_number() {
+        return ID_number;
+    }
+
+    public void setID_number(String ID_number) {
+        this.ID_number = ID_number;
     }
 
     public String getTeacher_ID() {

@@ -60,11 +60,6 @@ public class TeachCourseServiceImpl implements TeachCourseService {
     }
 
     @Override
-    public List<Teacher> getTeacherListByCourseId(String course_ID) {
-        return teachCourseMapper.getTeacherListByCourseId(course_ID);
-    }
-
-    @Override
     public List<TeacherInfo> getTeacherInfoListByCourseId(String course_ID) {
         return teachCourseMapper.getTeacherInfoListByCourseId(course_ID);
     }

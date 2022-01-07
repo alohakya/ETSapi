@@ -23,11 +23,6 @@ public class TakeCourseServiceImpl implements TakeCourseService {
     CourseMapper courseMapper;
 
     @Override
-    public List<Student> getStudentListByCourseId(String course_ID, String is_student) {
-        return takeCourseMapper.getStudentListByCourseId(course_ID,is_student);
-    }
-
-    @Override
     public List<StudentInfo> getStudentInfoListByCourseId(String course_ID, String is_student) {
         return takeCourseMapper.getStudentInfoListByCourseId(course_ID,is_student);
     }

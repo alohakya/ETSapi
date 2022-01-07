@@ -13,8 +13,6 @@ public interface TeachCourseService {
 
     TeachCourse getTeachCourse(TeachCourse teachCourse);
 
-    List<Teacher> getTeacherListByCourseId(String course_ID);
-
     List<TeacherInfo> getTeacherInfoListByCourseId(String course_ID);
 
 }
