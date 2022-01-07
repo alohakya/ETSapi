@@ -38,9 +38,7 @@ public class CourseController {
      * @param: teacher_ID
      * @param: name
      * @return: java.lang.String
-     * 返回1：创建成功
-     * 返回-1：随机数生成id，课程id已存在
-     * 返回-2：教师id不存在
+     * 成功则返回课程id
      * @date: 2021/11/26 15:04
      */
     @PostMapping("/add")
@@ -49,9 +47,13 @@ public class CourseController {
         Course course = new Course();
         course.setTeacher_ID(teacher_ID);
         course.setName(name);
-        course.setCourse_ID(String.valueOf(new Random().nextInt(89999999) + 10000000));
+        String course_ID = String.valueOf(new Random().nextInt(89999999) + 10000000);
+        course.setCourse_ID(course_ID);
         course.setIs_active("1");
-        return String.valueOf(courseService.addCourse(course));
+        if(courseService.addCourse(course) == 1){
+            return course_ID;
+        }
+        return null;
     }
 
     /**
@@ -128,17 +130,19 @@ public class CourseController {
     }
 
     @GetMapping("/getTotalCourse")
-    public List<CourseInfo> getTotalCourse(String account_ID){
+    public List<CourseInfo> getTotalCourse(@RequestParam("account_ID") String account_ID){
+        System.out.println(account_ID);
         if(account_ID.length() == 7) {
             return courseService.getTotalCourse(account_ID, true);
         }
-        else{
+        else if(account_ID.length() == 5){
             return courseService.getTotalCourse(account_ID,false);
         }
+        return null;
     }
 
     @GetMapping("/getTotalEndCourse")
-    public List<CourseInfo> getTotalEndCourse(String account_ID){
+    public List<CourseInfo> getTotalEndCourse(@RequestParam("account_ID") String account_ID){
         if(account_ID.length() == 7) {
             return courseService.getTotalEndCourse(account_ID, true);
         }
