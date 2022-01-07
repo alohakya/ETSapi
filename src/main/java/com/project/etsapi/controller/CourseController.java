@@ -67,7 +67,6 @@ public class CourseController {
         return String.valueOf(courseService.deleteCourse(course_ID));
     }
 
-
     /**
      * @description: 结束课程
      * @path:
@@ -80,7 +79,6 @@ public class CourseController {
     public String endCourse(@RequestParam("course_ID") String course_ID){
         return String.valueOf(courseService.endCourse(course_ID));
     }
-
 
     /**
      * @description: 设置课程介绍信息
@@ -129,7 +127,6 @@ public class CourseController {
         return courseService.getCourse(course_ID);
     }
 
-
     @GetMapping("/getTotalCourse")
     public List<CourseInfo> getTotalCourse(String account_ID){
         if(account_ID.length() == 7) {
@@ -149,8 +146,6 @@ public class CourseController {
             return courseService.getTotalEndCourse(account_ID,false);
         }
     }
-
-
 
     /**
      * @description: 添加一位学生或助教到一个课程

@@ -5,6 +5,7 @@ import com.project.etsapi.Util.MailUtil;
 import com.project.etsapi.entity.Account;
 import com.project.etsapi.service.AccountService;
 import com.project.etsapi.vo.AccountInfo;
+import com.project.etsapi.vo.Privacy;
 import com.project.etsapi.vo.RegisterInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,12 @@ public class AccountController {
     public Account getAccount(
            @RequestParam("account_ID") String account_ID){
         return accountService.getAccountById(account_ID);
+    }
+
+    @PostMapping("/getPrivacy")
+    @ResponseBody
+    public Privacy getPrivacy(){
+        return null;
     }
 
     /**
