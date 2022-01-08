@@ -110,7 +110,21 @@ public class AccountController {
         if(accountService.changeEmail(account_ID,email) == 1){
             return email;
         }
-        return null;
+        return "-1";
+    }
+
+    /**
+     * @description: 修改密码
+     * @path: "/account/changeEmail"
+     * @type:
+     * @param: account_ID
+     * @param: password
+     * @return: java.lang.String
+     * @date: 2022/1/7 23:07
+     */
+    @PostMapping("/changePassword")
+    public String changePassword(String account_ID,String password){
+        return String.valueOf(accountService.changePassword(account_ID,password));
     }
 
     /**
@@ -125,7 +139,7 @@ public class AccountController {
      */
     @PostMapping("/resetPassword")
     public String resetPassword(String account_ID){
-        return accountService.resetPassword(account_ID);
+        return String.valueOf(accountService.changePassword(account_ID,"111111"));
     }
 
     /**

@@ -83,11 +83,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public String resetPassword(String account_ID) {
-        if(accountMapper.getAccountById(account_ID) == null){
-            return "-1";
-        }
-        return String.valueOf(accountMapper.updatePassword(account_ID,"111111"));
+    public int changePassword(String account_ID,String password) {
+        return accountMapper.updatePassword(account_ID,password) == 1? 1:-1;
     }
 
     @Override

@@ -53,7 +53,7 @@ public class CourseController {
         if(courseService.addCourse(course) == 1){
             return course_ID;
         }
-        return null;
+        return "-1";
     }
 
     /**

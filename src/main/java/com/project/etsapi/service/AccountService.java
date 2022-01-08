@@ -30,7 +30,7 @@ public interface AccountService {
 
     String deleteAccount(String account_ID);
 
-    String resetPassword(String account_ID);
+    int changePassword(String account_ID,String password);
 
     void addAccount(Account account);
 

@@ -47,13 +47,13 @@ public class ReportController {
     @PostMapping("/getContent")
     @ResponseBody
     public ReportTemplate getReportContent(String course_ID,String student_ID,String project_name){
-        return fileService.getReportContent(course_ID,student_ID,project_name);
-//        Report report = reportService.getReport(course_ID, student_ID, project_name);
-//        if(report == null || report.getSubmit_time() == null){
-//            return new ReportTemplate(course_ID,student_ID,project_name);
-//        }else{
-//            return fileService.getReportContent(course_ID,student_ID,project_name);
-//        }
+//        return fileService.getReportContent(course_ID,student_ID,project_name);
+        Report report = reportService.getReport(course_ID, student_ID, project_name);
+        ReportTemplate result = fileService.getReportContent(course_ID,student_ID,project_name);
+        if(report != null && report.getSubmit_time() != null){
+            result.setIsSubmit("1");
+        }
+        return result;
     }
 
     @GetMapping("/get")
