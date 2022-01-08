@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.etsapi.mapper.FeedbackMapper">
+    <!--查-->
+    <select id="getAll" parameterType="String" resultType="com.project.etsapi.entity.Feedback">
+        SELECT course_ID,student_ID,submit_time,content FROM feedback
+        WHERE course_ID = #{course_ID}
+    </select>
+
+    <insert id="addFeedback" parameterType="com.project.etsapi.entity.Feedback">
+        insert into feedback (course_ID,student_ID,submit_time,content)
+        values (#{course_ID,jdbcType=VARCHAR},
+                #{student_ID,jdbcType=VARCHAR},
+                #{submit_time},
+                #{content}
+               )
+    </insert>
+</mapper>
+
+

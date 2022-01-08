@@ -27,6 +27,16 @@ public class ReportController {
     @Autowired
     TakeCourseService takeCourseService;
 
+    public String addEmptyReport(HttpServletRequest request){
+        String course_ID = request.getParameter("course_ID");
+        String student_ID = request.getParameter("student_ID");
+        String project_name = request.getParameter("project_name");
+        String report_name = "没有提交";
+        Integer score = Integer.valueOf(request.getParameter("score"));
+        Report report = new Report(course_ID,student_ID,project_name,report_name,score);
+        return String.valueOf(reportService.addEmptyReport(report));
+    }
+
     /**
      * @description: 上传固定模板的实验报告
      * @path: "/report/add"
@@ -61,7 +71,6 @@ public class ReportController {
     public Report getReport(String course_ID,String project_name,String student_ID){
         return reportService.getReport(course_ID,student_ID,project_name);
     }
-
     /**
      * @description: 上传实验报告文件
      * @path: "/report/upload"
