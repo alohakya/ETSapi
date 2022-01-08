@@ -123,8 +123,13 @@ public class AccountController {
      * @date: 2022/1/7 23:07
      */
     @PostMapping("/changePassword")
-    public String changePassword(String account_ID,String password){
-        return String.valueOf(accountService.changePassword(account_ID,password));
+    public String changePassword(String account_ID,String password,HttpServletResponse response){
+        if(accountService.changePassword(account_ID,password) == 1){
+            String token = jwtUtil.createToken(account_ID,password);
+            response.setHeader("token",token);
+            return token;
+        }
+        return "-1";
     }
 
     /**
@@ -202,7 +207,7 @@ public class AccountController {
      * @description: 发送邮件
      * @type: post
      * @path: "/account/sendEmail"
-     * @param: account_ID 传入学号或工号account_ID，以及邮箱email
+     * @param: account_ID 传入学号或工号account_ID，邮箱email,身份证号ID_number
      * @param: email
      * @param: request
      * @return: java.lang.String
@@ -240,7 +245,7 @@ public class AccountController {
      * @description: 核对注册信息、验证码
      * @type: post
      * @path: "/account/register"
-     * @param: registerInfo 传入学号或工号account_ID、邮箱email、密码password、验证码code
+     * @param: registerInfo 传入学号或工号account_ID，邮箱email,身份证号ID_number，密码password，验证码code
      * @param: session
      * @return: java.lang.String
      * 返回1：成功

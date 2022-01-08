@@ -40,4 +40,6 @@ public interface StudentMapper {
      * @return
      */
     List<Student> getAll();
+
+    int addList(List<Student> list);
 }

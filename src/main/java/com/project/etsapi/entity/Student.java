@@ -10,13 +10,14 @@ public class Student implements Serializable {
     private String name;
     private String ID_number;
 
-    public Student(String student_ID, String name) {
-        this.student_ID = student_ID;
-        this.name = name;
-    }
-
     public Student() {
 
+    }
+
+    public Student(String student_ID, String name, String ID_number) {
+        this.student_ID = student_ID;
+        this.name = name;
+        this.ID_number = ID_number;
     }
 
     public String getID_number() {

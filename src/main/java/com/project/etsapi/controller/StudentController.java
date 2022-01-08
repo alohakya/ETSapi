@@ -4,6 +4,11 @@ import com.project.etsapi.entity.Student;
 import com.project.etsapi.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/student")
@@ -16,7 +21,7 @@ public class StudentController {
      * @description: 添加学生
      * @type: post
      * @path: "/student/add"
-     * @param: student 包含学生id、姓名
+     * @param: student 包含学生id，姓名，身份证号
      * @return: java.lang.String
      * 返回1：添加成功
      * 返回-1：学生id已存在
@@ -26,6 +31,21 @@ public class StudentController {
     public String addStudent(Student student) {
         return String.valueOf(studentService.addStudent(student));
     }
+
+    @PostMapping( "/addList")
+    public String addList(HttpServletRequest request) {
+        MultipartFile file = ((MultipartHttpServletRequest) request).getFile("file");
+        if(file==null || file.isEmpty()){
+            return "-1";
+        }
+        try {
+            return String.valueOf(studentService.addList(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "-2";
+        }
+    }
+
 
     /**
      * @description: 根据学生id删除学生

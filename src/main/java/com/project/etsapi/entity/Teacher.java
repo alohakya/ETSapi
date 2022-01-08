@@ -8,12 +8,13 @@ public class Teacher {
     private String name;
     private String ID_number;
 
-    public Teacher(String teacher_ID, String name) {
-        this.teacher_ID = teacher_ID;
-        this.name = name;
+    public Teacher() {
     }
 
-    public Teacher() {
+    public Teacher(String teacher_ID, String name, String ID_number) {
+        this.teacher_ID = teacher_ID;
+        this.name = name;
+        this.ID_number = ID_number;
     }
 
     public String getID_number() {

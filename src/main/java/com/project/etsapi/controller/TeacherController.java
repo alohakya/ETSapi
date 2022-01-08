@@ -4,6 +4,11 @@ import com.project.etsapi.entity.Teacher;
 import com.project.etsapi.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * @ClassName TeacherController
@@ -33,6 +38,19 @@ public class TeacherController {
         return String.valueOf(teacherService.addTeacher(teacher));
     }
 
+    @PostMapping( "/addList")
+    public String addList(HttpServletRequest request) {
+        MultipartFile file = ((MultipartHttpServletRequest) request).getFile("file");
+        if(file==null || file.isEmpty()){
+            return "-1";
+        }
+        try {
+            return String.valueOf(teacherService.addList(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "-2";
+        }
+    }
 
     /**
      * @description: 根据老师id删除老师

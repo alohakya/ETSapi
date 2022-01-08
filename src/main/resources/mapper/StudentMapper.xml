@@ -9,6 +9,18 @@
         VALUES (#{student_ID}, #{name},#{ID_number})
     </insert>
 
+    <insert id="addList">
+        insert into student (student_ID,name,ID_number)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.student_ID},
+            #{item.name},
+            #{item.ID_number}
+            )
+        </foreach>
+    </insert>
+
     <!--删-->
     <delete id="deleteStudent" parameterType="String">
         DELETE FROM student
