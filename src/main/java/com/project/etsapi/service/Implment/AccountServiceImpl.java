@@ -84,7 +84,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public int changePassword(String account_ID,String password) {
-        return accountMapper.updatePassword(account_ID,password) == 1? 1:-1;
+        return accountMapper.updatePassword(account_ID,password);
     }
 
     @Override

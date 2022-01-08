@@ -32,9 +32,9 @@
     <select id="getProjectScoreInfoList" resultType="com.project.etsapi.vo.ProjectScoreInfo">
         SELECT
             c.project_name,
-            SUM( score )/ COUNT(c.project_name) as avg_score,
-            MAX(score) as max_score,
-            MIN(score) as min_score
+            SUM(IFNULL(score,0))/ COUNT(c.project_name) as avg_score,
+            MAX(IFNULL(score,0)) as max_score,
+            MIN(IFNULL(score,0)) as min_score
         FROM
             (SELECT * FROM
             ( SELECT name AS project_name FROM project WHERE course_ID = #{course_ID} ) AS a
@@ -65,13 +65,13 @@
     </select>
 
     <select id="getStuProScoreList" resultType="com.project.etsapi.vo.StuPartScore">
-        SELECT name,score
+        SELECT name,IFNULL(score,0)
         FROM
             (SELECT * FROM project WHERE NOW() > end_time and course_ID = #{course_ID})as a
                 left JOIN ( SELECT * FROM report WHERE student_ID = #{student_ID} ) as b
         on a.course_ID = b.course_ID
         and a.name = b.project_name
-        WHERE correct_time is not NULL
+        WHERE (submit_time is null and correct_time is null) or (submit_time is not null and correct_time is not null)
     </select>
 
     <select id="getStuTotalScore" resultType="com.project.etsapi.vo.StuPartScore">

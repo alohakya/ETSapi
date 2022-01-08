@@ -48,4 +48,6 @@ public interface TeacherMapper {
      * @return
      */
     List<Teacher> getAll();
+
+    int addList(List<Teacher> list);
 }
