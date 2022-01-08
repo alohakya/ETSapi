@@ -31,6 +31,19 @@ public class Report {
     public Report() {
     }
 
+
+    public Report(String course_ID, String student_ID, String project_name,String report_name,
+                  Integer score) {
+        this.course_ID = course_ID;
+        this.student_ID = student_ID;
+        this.project_name = project_name;
+        this.report_name = report_name;
+        this.score = score;
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        this.submit_time = null;
+        this.correct_time = df.format(new Date());
+    }
+
     public Report(String course_ID, String student_ID, String project_name,String report_name) {
         this.course_ID = course_ID;
         this.student_ID = student_ID;

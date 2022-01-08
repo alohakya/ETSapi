@@ -27,6 +27,17 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
+    public int addEmptyReport(Report report) {
+        if(reportMapper.getReport(report.getCourse_ID(), report.getStudent_ID(), report.getProject_name())!=null){
+            reportMapper.updateReport(report);
+            return 2;
+        }
+        else{
+            return reportMapper.addEmptyReport(report);
+        }
+    }
+
+    @Override
     public List<ReportInfo> getTotalReportInfoList(String course_ID, String project_name) {
         return reportMapper.getTotalReportList(course_ID,project_name);
     }

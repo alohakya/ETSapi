@@ -12,6 +12,8 @@ public interface ReportMapper {
 
     void addReport(Report report);
 
+    int addEmptyReport(Report report);
+
     Report getReport(String course_ID, String student_ID, String project_name);
 
     void updateReport(Report report);
