@@ -33,4 +33,9 @@ public class AnnouncementController {
         return String.valueOf(announcementService.add(announcement));
     }
 
+    @PostMapping("/delete")
+    String deleteAnnouncement (Announcement announcement){
+        return String.valueOf(announcementService.delete(announcement));
+    }
+
 }

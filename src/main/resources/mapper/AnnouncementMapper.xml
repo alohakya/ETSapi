@@ -18,6 +18,16 @@
                 #{release_time},
                )
     </insert>
+
+    <select id="get" parameterType="String" resultType="com.project.etsapi.entity.Announcement">
+        SELECT course_ID,name,teacher_ID,content,release_time FROM announcement
+        WHERE course_ID = #{course_ID} and name=#{name}
+    </select>
+
+    <delete id="delete" parameterType="com.project.etsapi.entity.Announcement">
+        delete from announcement
+        where course_ID=#{course_ID} and name=#{name}
+    </delete>
 </mapper>
 
 

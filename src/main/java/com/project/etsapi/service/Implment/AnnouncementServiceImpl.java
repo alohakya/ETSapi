@@ -35,4 +35,19 @@ public class AnnouncementServiceImpl implements AnnouncementService {
             return announcementMapper.add(announcement);
         }
     }
+
+    @Override
+    public int delete(Announcement announcement) {
+        if(announcementMapper.get(announcement.getCourse_ID(), announcement.getName())!=null){
+            return announcementMapper.delete(announcement);
+        }
+        else{
+            return -1;
+        }
+    }
+
+    @Override
+    public Announcement get(String course_ID, String name) {
+        return announcementMapper.get(course_ID,name);
+    }
 }

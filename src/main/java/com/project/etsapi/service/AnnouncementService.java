@@ -17,4 +17,8 @@ public interface AnnouncementService {
     List<Announcement> getAll(String course_ID);
 
     int add (Announcement announcement);
+
+    int delete(Announcement announcement);
+
+    Announcement get(String course_ID, String name);
 }
