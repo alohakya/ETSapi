@@ -6,7 +6,7 @@
     <select id="getAll" parameterType="String" resultType="com.project.etsapi.entity.Feedback">
         SELECT course_ID,student_ID,submit_time,content FROM feedback
         WHERE course_ID = #{course_ID}
-        ORDER BY submit_time DESC 
+        ORDER BY submit_time DESC
     </select>
 
     <insert id="addFeedback" parameterType="com.project.etsapi.entity.Feedback">
