@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.etsapi.mapper.AnnouncementMapper">
+    <!--查-->
+    <select id="getAll" parameterType="String" resultType="com.project.etsapi.entity.Announcement">
+        SELECT course_ID,name,teacher_ID,content,release_time FROM announcement
+        WHERE course_ID = #{course_ID}
+        ORDER BY release_time DESC
+    </select>
+
+    <insert id="add" parameterType="com.project.etsapi.entity.Announcement">
+        insert into announcement (course_ID,name,teacher_ID,content,release_time)
+        values (#{course_ID,jdbcType=VARCHAR},
+                #{name},
+                #{teacher_ID,jdbcType=VARCHAR},
+                #{content}
+                #{release_time},
+               )
+    </insert>
+</mapper>
+
+

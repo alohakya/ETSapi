@@ -1,7 +1,7 @@
 package com.project.etsapi.controller;
 
-import com.project.etsapi.entity.Feedback;
-import com.project.etsapi.service.FeedbackService;
+import com.project.etsapi.entity.Announcement;
+import com.project.etsapi.service.AnnouncementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,22 +15,22 @@ import java.util.List;
  * @Description
  * @Author Li Lijun
  * @Date
- * @Time 23:56
+ * @Time 10:37
  **/
 
 @RestController
-@RequestMapping("/feedback")
-public class FeedbackController {
+@RequestMapping("/announcement")
+public class AnnouncementController {
     @Autowired
-    FeedbackService feedbackService;
-
+    AnnouncementService announcementService;
     @GetMapping("/getAll")
-    List<Feedback> getAll(String course_ID){
-        return feedbackService.getAll(course_ID);
+    List<Announcement> getAll(String course_ID){
+        return announcementService.getAll(course_ID);
     }
 
-    @PostMapping("/addFeedback")
-    String addFeedback (Feedback feedback){
-        return String.valueOf(feedbackService.addFeedback(feedback));
+    @PostMapping("/addAnnouncement")
+    String addAnnouncement (Announcement announcement){
+        return String.valueOf(announcementService.add(announcement));
     }
+
 }
