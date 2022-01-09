@@ -67,11 +67,11 @@
     <select id="getStuProScoreList" resultType="com.project.etsapi.vo.StuPartScore">
         SELECT name,IFNULL(score,0) as score
         FROM
-            (SELECT * FROM project WHERE NOW() > end_time and course_ID = #{course_ID})as a
+            (SELECT * FROM project WHERE course_ID = #{course_ID})as a
                 left JOIN ( SELECT * FROM report WHERE student_ID = #{student_ID} ) as b
         on a.course_ID = b.course_ID
         and a.name = b.project_name
-        WHERE (submit_time is null and correct_time is null) or (submit_time is not null and correct_time is not null)
+        WHERE (submit_time is null and correct_time is null and NOW() > end_time) or (submit_time is not null and correct_time is not null)
     </select>
 
     <select id="getStuTotalScore" resultType="com.project.etsapi.vo.StuPartScore">
