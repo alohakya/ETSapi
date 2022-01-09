@@ -23,8 +23,8 @@ public class FileServiceImpl implements FileService {
 
     @Autowired
     private FileMapper fileMapper;
-//    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
-    private final String basePath = "E:/PC/Desktop/";
+    private final String basePath = "C:/Users/Administrator/Desktop/ETS/";
+//    private final String basePath = "E:/PC/Desktop/";
     private final String projectPath = "/实验资料";
     private final String coursePath = "/课程资料";
     private final String photoPath = "/课程头像";
@@ -33,7 +33,6 @@ public class FileServiceImpl implements FileService {
     @Override
     public void addFile(File file){
         if(fileMapper.getFile(file.getCourse_ID(),file.getFile_name(),file.getPath()) != null){
-            System.out.println("!null");
             fileMapper.updateFile(file);
         }
         else {
@@ -199,12 +198,24 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    public String addFolder(String course_ID, String path, String fileName) {
+        if(fileMapper.addFile(new File(course_ID,fileName,path)) != 1){
+            return "-1";
+        }
+        String dirPath = basePath + course_ID + path + "/" + fileName;
+        java.io.File dir = new java.io.File(dirPath);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        return "1";
+    }
+
+    @Override
     public void downloadFile(HttpServletResponse response,
                                String course_ID, String path, String file_name) throws Exception {
         java.io.File file = new java.io.File(basePath + course_ID + path + '/' + file_name);
         if(file.exists()){
             FileInputStream is = new FileInputStream(file);
-            System.out.println(this.getServletContext(file_name));
             response.setContentType(this.getServletContext(file_name));
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Disposition", "attachment;filename="

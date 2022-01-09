@@ -45,6 +45,11 @@ public class FileController {
         return result;
     }
 
+    @PostMapping("/addFolder")
+    public String addFolder(String course_ID,String path,String fileName){
+        return fileService.addFolder(course_ID,path,fileName);
+    }
+
     /**
      * @description: 返回指定课程指定路径的文件信息列表
      * @path: "/file/getFileList"

@@ -121,8 +121,6 @@ public class TeacherServiceImpl implements TeacherService {
                 String name = row.getCell(1).getStringCellValue();
                 row.getCell(2).setCellType(CellType.STRING);
                 String ID_number = row.getCell(2).getStringCellValue();
-                System.out.println(teacher_ID + ":" + teacher_ID.length());
-                System.out.println(ID_number + ":" + ID_number.length());
                 if(teacher_ID.length() != 5 || ID_number.length()!= 18){
                     continue;
                 }
