@@ -34,4 +34,20 @@ public class FeedbackServiceImpl implements FeedbackService {
             return feedbackMapper.addFeedback(feedback);
         }
     }
+
+    @Override
+    public int deleteFeedback(Feedback feedback) {
+        if(feedbackMapper.get(feedback.getCourse_ID(), feedback.getStudent_ID(),
+                feedback.getSubmit_time())!=null){
+            return feedbackMapper.deleteFeedback(feedback);
+        }
+        else{
+            return -1;
+        }
+    }
+
+    @Override
+    public Feedback get(String course_ID, String student_ID, String submit_time) {
+        return feedbackMapper.get(course_ID,student_ID,submit_time);
+    }
 }

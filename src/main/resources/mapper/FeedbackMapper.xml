@@ -9,6 +9,12 @@
         ORDER BY submit_time DESC
     </select>
 
+    <!--查-->
+    <select id="get" parameterType="String" resultType="com.project.etsapi.entity.Feedback">
+        SELECT course_ID,student_ID,submit_time,content FROM feedback
+        WHERE submit_time=#{submit_time} and course_ID=#{course_ID} and student_ID=#{student_ID}
+    </select>
+
     <insert id="addFeedback" parameterType="com.project.etsapi.entity.Feedback">
         insert into feedback (course_ID,student_ID,submit_time,content)
         values (#{course_ID,jdbcType=VARCHAR},
@@ -17,6 +23,11 @@
                 #{content}
                )
     </insert>
+
+    <delete id="deleteFeedback" parameterType="com.project.etsapi.entity.Feedback">
+        delete from feedback
+        where submit_time=#{submit_time} and course_ID=#{course_ID} and student_ID=#{student_ID}
+    </delete>
 </mapper>
 
 

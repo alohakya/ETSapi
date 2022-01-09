@@ -17,4 +17,8 @@ public interface FeedbackService {
     List<Feedback> getAll(String course_ID);
 
     int addFeedback (Feedback feedback);
+
+    int deleteFeedback(Feedback feedback);
+
+    Feedback get(String course_ID,String student_ID,String submit_time);
 }

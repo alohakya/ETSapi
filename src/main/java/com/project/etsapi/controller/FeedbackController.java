@@ -29,8 +29,15 @@ public class FeedbackController {
         return feedbackService.getAll(course_ID);
     }
 
+//  /feedback/addFeedback
     @PostMapping("/addFeedback")
     String addFeedback (Feedback feedback){
         return String.valueOf(feedbackService.addFeedback(feedback));
     }
+
+    @PostMapping("/deleteFeedback")
+    String deleteFeedback (Feedback feedback){
+        return String.valueOf(feedbackService.deleteFeedback(feedback));
+    }
+
 }
