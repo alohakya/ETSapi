@@ -14,8 +14,8 @@
         values (#{course_ID,jdbcType=VARCHAR},
                 #{name},
                 #{teacher_ID,jdbcType=VARCHAR},
-                #{content}
-                #{release_time},
+                #{content},
+                #{release_time}
                )
     </insert>
 
