@@ -50,6 +50,8 @@ public class CourseController {
         String course_ID = String.valueOf(new Random().nextInt(89999999) + 10000000);
         course.setCourse_ID(course_ID);
         course.setIs_active("1");
+        course.setAttend_percentage(0.1);
+        course.setProject_percentage(0.9);
         if(courseService.addCourse(course) == 1){
             return course_ID;
         }
