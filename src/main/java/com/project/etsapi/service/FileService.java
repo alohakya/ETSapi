@@ -7,7 +7,6 @@ import com.project.etsapi.vo.ReportTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
@@ -46,4 +45,6 @@ public interface FileService {
     void addReport(ReportTemplate reportTemplate) throws IOException;
 
     ReportTemplate getReportContent(String course_ID, String student_ID, String project_name);
+
+    String addFolder(String course_ID, String path, String fileName);
 }

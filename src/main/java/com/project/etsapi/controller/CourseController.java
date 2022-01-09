@@ -131,7 +131,6 @@ public class CourseController {
 
     @GetMapping("/getTotalCourse")
     public List<CourseInfo> getTotalCourse(@RequestParam("account_ID") String account_ID){
-        System.out.println(account_ID);
         if(account_ID.length() == 7) {
             return courseService.getTotalCourse(account_ID, true);
         }
