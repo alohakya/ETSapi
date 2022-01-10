@@ -38,8 +38,8 @@
         SELECT
              student_ID,
              NAME,
-             project_score * project_percentage * 100 /IF( project_number = 0, 1, project_number ),
-             attend_score * attend_percentage * 100 /IF( attend_number = 0, 1, attend_number ) AS attned_score
+             FORMAT(project_score * project_percentage * 100 /IF( project_number = 0, 1, project_number * 100 ),2) as project_score,
+             FORMAT(attend_score * attend_percentage * 100 /IF( attend_number = 0, 1, attend_number ),2) AS attend_score
         FROM e
     </select>
 
@@ -52,8 +52,8 @@
         SELECT
             student_ID,
             NAME,
-            project_score * project_percentage * 100 /IF( project_number = 0, 1, project_number ),
-            attend_score * attend_percentage * 100 /IF( attend_number = 0, 1, attend_number ) AS attned_score
+            FORMAT(project_score * project_percentage * 100 /IF( project_number = 0, 1, project_number * 100 ),2) as project_score,
+            FORMAT(attend_score * attend_percentage * 100 /IF( attend_number = 0, 1, attend_number ),2) AS attend_score
         FROM e
     </select>
 </mapper>

@@ -32,7 +32,7 @@
     <select id="getProjectScoreInfoList" resultType="com.project.etsapi.vo.ProjectScoreInfo">
         SELECT
             c.project_name,
-            SUM(IFNULL(score,0))/ COUNT(c.project_name) as avg_score,
+            FORMAT(SUM(IFNULL(score,0))/ COUNT(c.project_name),2) as avg_score,
             MAX(IFNULL(score,0)) as max_score,
             MIN(IFNULL(score,0)) as min_score
         FROM
