@@ -76,10 +76,13 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String deleteAccount(String account_ID) {
-        if(accountMapper.getAccountById(account_ID) == null){
-            return "-1";
+        if(account_ID.length() == 7) {
+            return String.valueOf(studentMapper.deleteStudent(account_ID));
         }
-        return String.valueOf(accountMapper.deleteAccount(account_ID));
+        else if(account_ID.length() == 5) {
+            return String.valueOf(teacherMapper.deleteTeacher(account_ID));
+        }
+        return "-1";
     }
 
     @Override
