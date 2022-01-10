@@ -116,11 +116,11 @@ public class ReportTemplate {
 
     @Override
     public String toString() {
-        return this.purpose + "\n\n0000000000\n\n" +
-                this.principle + "\n\n0000000000\n\n" +
-                this.device + "\n\n0000000000\n\n" +
-                this.steps + "\n\n0000000000\n\n" +
-                this.conclusion;
+        return (this.purpose.equals("") ?" ":this.purpose) + "\n\n0000000000\n\n" +
+                (this.principle.equals("")?" ":this.principle) + "\n\n0000000000\n\n" +
+                (this.device.equals("")?" ":this.device) + "\n\n0000000000\n\n" +
+                (this.steps.equals("")?" ":this.steps) + "\n\n0000000000\n\n" +
+                (this.conclusion.equals("")?" ":this.conclusion);
     }
 
     public Report toReport() {
