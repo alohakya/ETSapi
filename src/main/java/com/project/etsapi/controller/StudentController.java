@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/student")
@@ -89,5 +90,11 @@ public class StudentController {
     @ResponseBody
     public Student getStudent(@RequestParam("student_ID") String student_ID){
         return studentService.getStudent(student_ID);
+    }
+
+    @GetMapping("/getAll")
+    @ResponseBody
+    public List<Student> getAll(){
+        return studentService.getAll();
     }
 }

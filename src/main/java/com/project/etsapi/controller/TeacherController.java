@@ -1,5 +1,6 @@
 package com.project.etsapi.controller;
 
+import com.project.etsapi.entity.Student;
 import com.project.etsapi.entity.Teacher;
 import com.project.etsapi.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @ClassName TeacherController
@@ -98,5 +100,11 @@ public class TeacherController {
     @ResponseBody
     public Teacher getTeacher(@RequestParam("teacher_ID") String teacher_ID){
         return teacherService.getTeacher(teacher_ID);
+    }
+
+    @GetMapping("/getAll")
+    @ResponseBody
+    public List<Teacher> getAll(){
+        return teacherService.getAllTeacher();
     }
 }

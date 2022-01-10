@@ -43,15 +43,23 @@
     </select>
 
     <select id="getAllTeacherAccount" resultType="com.project.etsapi.vo.AccountInfo">
-        select account_ID,name,email,is_active
-        from account join teacher
-        where account_ID = teacher_ID
+        SELECT
+            teacher_ID as account_ID,
+            NAME,
+            email,
+            IFNULL(is_active,-1) as is_active
+        FROM
+            teacher left JOIN account on teacher_ID = account_ID
     </select>
 
     <select id="getAllStudentAccount" resultType="com.project.etsapi.vo.AccountInfo">
-        select account_ID,name,email,is_active
-        from account join student
-        where account_ID = student_ID
+        SELECT
+            student_ID as account_ID,
+            NAME,
+            email,
+            IFNULL(is_active,-1) as is_active
+        FROM
+            student left JOIN account on student_ID = account_ID
     </select>
 
     <select id="getStudentPrivacy" resultType="com.project.etsapi.vo.Privacy">
