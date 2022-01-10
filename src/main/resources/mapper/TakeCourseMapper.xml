@@ -30,15 +30,31 @@
     </select>
 
     <select id="getTotalScoreList" resultType="com.project.etsapi.vo.ScoreInfo">
-        select student_ID,name,project_score,attend_score
-        from student natural join takecourse
-        where course_ID = #{course_ID} and is_student = "1"
+        WITH a AS ( SELECT student_ID, NAME, project_score, attend_score FROM student NATURAL JOIN takecourse WHERE course_ID = #{course_ID} AND is_student = "1" ),
+             b AS ( SELECT attend_percentage, project_percentage FROM course WHERE course_ID = #{course_ID} ),
+             c AS ( SELECT count( course_ID ) AS project_number FROM project WHERE course_ID = #{course_ID} ),
+             d AS ( SELECT count( course_ID ) AS attend_number FROM attendance WHERE course_ID = #{course_ID} ),
+             e AS ( SELECT * FROM a JOIN b JOIN c JOIN d )
+        SELECT
+             student_ID,
+             NAME,
+             project_score * project_percentage * 100 /IF( project_number = 0, 1, project_number ),
+             attend_score * attend_percentage * 100 /IF( attend_number = 0, 1, attend_number ) AS attned_score
+        FROM e
     </select>
 
     <select id="getPartScore" resultType="com.project.etsapi.vo.PartScore">
-        select project_score,attend_score
-        from takecourse
-        where course_ID = #{course_ID} and student_ID = #{student_ID} and is_student = "1"
+        WITH a AS ( SELECT student_ID, NAME, project_score, attend_score FROM student NATURAL JOIN takecourse WHERE course_ID = #{course_ID} AND is_student = "1" and student_ID = #{student_ID}),
+             b AS ( SELECT attend_percentage, project_percentage FROM course WHERE course_ID = #{course_ID} ),
+             c AS ( SELECT count( course_ID ) AS project_number FROM project WHERE course_ID = #{course_ID} ),
+             d AS ( SELECT count( course_ID ) AS attend_number FROM attendance WHERE course_ID = #{course_ID} ),
+             e AS ( SELECT * FROM a JOIN b JOIN c JOIN d )
+        SELECT
+            student_ID,
+            NAME,
+            project_score * project_percentage * 100 /IF( project_number = 0, 1, project_number ),
+            attend_score * attend_percentage * 100 /IF( attend_number = 0, 1, attend_number ) AS attned_score
+        FROM e
     </select>
 </mapper>
 
